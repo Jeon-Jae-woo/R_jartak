@@ -16,4 +16,10 @@ public class MemberController {
 		return "home";
 	}
 	
+	
+	@RequestMapping("/main.do")
+	public String main() {
+		logger.info("MAIN CONTROLLER");
+		return "main";
+	}
 }

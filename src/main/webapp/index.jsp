@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<h1>test</h1>
 	<h1>테스트</h1>
 	<a href="test">홈테스트</a>
 	<a href="test2">컨트롤러2 테스트</a>

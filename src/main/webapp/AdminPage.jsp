@@ -11,7 +11,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/adminpage.css"/>
+	<link rel="stylesheet" type="text/css" href="/css/adminpage.css">
 	
 	<script type="text/javascript" href="jQuery/jquery-3.6.0.min.js" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">

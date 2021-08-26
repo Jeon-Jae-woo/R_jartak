@@ -216,6 +216,8 @@ th{
 </head>
 <body>
 
+	<%@ include file="header.jsp"  %>	
+
 	<!-- 로그인/공지/검색 -->
 <div class="main">
 <div class="header"></div>

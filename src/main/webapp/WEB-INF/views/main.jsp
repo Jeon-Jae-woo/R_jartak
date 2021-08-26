@@ -215,8 +215,7 @@ th{
 </style>
 </head>
 <body>
-	
-	
+
 	<!-- 로그인/공지/검색 -->
 <div class="main">
 <div class="header"></div>
@@ -332,6 +331,7 @@ th{
 				</tr>
 			</table>
 		</div>
+
 		<br>
 		
 		
@@ -404,6 +404,6 @@ th{
 	
 	
 
-
+<%@ include file="footer.jsp"  %>	
 </body>
 </html>

@@ -10,4 +10,18 @@ public class AuctionController {
 	public String test() {
 		return "home";
 	}
+	
+	
+	@RequestMapping("/product")
+	public String product() {
+		return "product";
+	}
+	
+	@RequestMapping("/productAdd")
+	public String productAdd() {
+		return "productAdd";
+	}
+	
+	
+	
 }

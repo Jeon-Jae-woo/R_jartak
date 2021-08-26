@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<h1>존재하지 않는 URL입니다</h1>
 </body>
 </html>

@@ -1,0 +1,174 @@
+*{
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+
+.container{
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "title title"
+    "image content"
+    "web_editor web_editor"
+    "footer footer";
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 200px 300px 1000px 1000px 700px 100px;
+  grid-gap:10px;
+  max-width: 1280px;
+  margin: 0 auto;
+  height:100%;
+  
+
+
+}
+.header{
+  grid-area:header;
+  background-color: gray;
+}
+
+.title{
+  grid-area:title;
+  background-color: gray;
+}
+
+.image{
+  grid-area: image;
+  /*background-color: gray;*/
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+.content{
+  grid-area:content;
+  
+  /*background-color: gray;*/
+}
+
+
+
+.web_editor{
+  grid-area:web_editor;
+  /*background-color: gray;*/
+}
+
+.naver_blog{
+  grid-area: naver_blog
+}
+
+.footer{
+  grid-area:footer;
+  background-color: gray;
+}
+
+hr{
+    opacity: 20%;
+}
+/* title 영역 ------------------------------------------------------*/
+
+
+
+/* image 영역----------------------------------------------------- */
+
+.image{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.img-div img{
+  overflow: hidden;
+  max-width: 100%;
+  max-height: 662px;
+
+}
+
+
+/* content  ------------------------------------------------------*/
+.content{
+  height: 700px;
+  width: 100%;
+}
+
+.content p,.content h3,.content h4{
+  margin: 1.5rem;
+}
+
+.content h3{
+  margin-bottom: 2rem;
+}
+
+.content h4{
+  margin-top: 3rem;
+  text-align: right;
+}
+
+
+.title{
+  display: flex;
+  justify-content : space-between;
+  align-items: flex-end;
+  flex-direction: row;
+}
+
+.row{
+  width: 100%;
+}
+
+#ss{
+  width: 200px;
+  
+  background-color: blue;
+  color: aliceblue;
+}
+
+.userinfo{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.state{
+  display: flex;
+}
+
+.state div{
+  flex: 1;
+}
+
+.btns{
+  padding: 1rem;
+  display: flex;
+}
+
+.btn{
+  width: 100%;
+  margin: 0.2rem;
+}
+
+
+
+/* web_editor ---------------------------------------------------------*/
+/*  .editor4{
+
+}*/
+.web_editor>p{
+  font-size: 30px;
+  text-align: center;
+  font-weight: 400;
+}
+
+.product_detail_info{
+    min-height: 300px;
+    padding-bottom : 5rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    
+}
+
+.product_detail_info img{
+  object-fit: cover;
+  max-width: 100%;
+}
+
+.check_img img{
+  object-fit: cover;
+  max-width: 100%;
+}

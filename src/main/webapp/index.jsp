@@ -8,8 +8,8 @@
 
 <script type="text/javascript">
 	function report(){
-		//세션 및 디테일 페이지에서 유저 아이디를 얻어오고 넘겨줘야 함
-		window.open("report.jsp", "신고", "width=500px, height=500px");
+		//세션 및 디테일 페이지에서 유저 아이디를 얻어오고 넘겨줘야 함, controller로 처리되도록 수정 필요
+		window.open("reportForm", "신고", "width=500px, height=500px");
 	}
 </script>
 
@@ -24,5 +24,8 @@
 	
 
 	<a href="main.do">메인테스트</a>
+	
+	
+	<a href="admin">헤더테스트</a>
 </body>
 </html>

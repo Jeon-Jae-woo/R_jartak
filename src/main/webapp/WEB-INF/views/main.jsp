@@ -48,6 +48,9 @@
 </style>
 </head>
 <body>
+	<!-- header -->
+	<%@ include file="header.jsp"  %>	
+
 <div class="category">
 	<div class="center">
 		<div class="center-box table">
@@ -62,13 +65,11 @@
 			</table>
 		</div>
 		<div class="center-box login">
-
-
 		</div>
 	</div>
 	
 </div>
 
-
+<%@ include file="footer.jsp"  %>	
 </body>
 </html>

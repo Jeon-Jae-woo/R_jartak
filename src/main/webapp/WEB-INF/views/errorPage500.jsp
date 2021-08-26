@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
- 	<h1>Hello</h1>
- 	<h1>Hello2</h1>
- 	
+	<h1>서버 에러</h1>
 </body>
 </html>

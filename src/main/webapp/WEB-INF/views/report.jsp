@@ -44,7 +44,6 @@
 			<select name="">
 				<option value="">부적절한 게시물</option>
 				<option value="">광고 및 홍보</option>
-				<option value=""></option>
 			</select>
 			</div>
 			<br>

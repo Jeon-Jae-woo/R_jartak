@@ -55,7 +55,7 @@
             
             <ul class="side_ul">
                 <li class="side_li" id="notice"><a href="#">공지 사항</a></li>
-                <li class="side_li" id="inspection"><a href="#">검수 기준</a></li>
+                <li class="side_li" id="event"><a href="#">이벤트</a></li>
             </ul>
         </div>
         <div id="contents">

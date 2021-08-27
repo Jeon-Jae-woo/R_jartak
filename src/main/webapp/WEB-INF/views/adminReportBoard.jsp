@@ -55,14 +55,13 @@
 				<textarea rows="7" cols="40" readonly="readonly"></textarea>
 			</div>
 			<hr>
-			<!-- div로 flex하고 안에서 div div row 형태로 변경 해야함 -->
+			
 			<div class="reportuser">
 				<div class="">
 					<div class="form_label"><label>신고 대상</label></div>
 					<div>
 						<input type="text" value="" readonly="readonly"/>
 					</div>
-					
 				</div>
 				<div class="">
 					<div class="form_label" style="margin-right:30%"><label>신고자</label></div>

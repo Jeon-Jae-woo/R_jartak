@@ -101,6 +101,11 @@
             
             
         });
+        
+        //신고 상세 팝업창 띄움
+    	function reportDetail(){
+    		window.open("admin/report", "신고", "width=500px, height=500px");
+    	}
     </script>
     <style type="text/css">
     	dd{
@@ -109,12 +114,13 @@
 		a{
 		    text-decoration:none; color:black;
 		}
-		table, th, td{
-		    border: 1px solid #000;
-		    border-collapse: collapse;
+		
+		th{
+			background: #eee;
 		}
 		
 		th,td{
+			border-bottom: 1px solid #ccc;
 		    padding: 10px;
 		}
 		
@@ -127,64 +133,76 @@
 		    background-color: gray;
 		}
 		
+		/* 페이지 전체 */
 		#main {
-		    max-width: 1280px;
+		    max-width: 0 auto;
 		    margin: 0 auto;
-		    display: grid;
-		    grid-template-columns: 0.5fr 3.5fr;
+		    margin-top: 5%;
+		    display: flex;
+		   justify-content: space-evenly;
 		}
 		
+		/* 왼쪽 메뉴 */
 		#menu {
 		    min-height: 1000px; 
-		    min-width: 180px;
+		    min-width: 18%;
+		    border-right:1px solid;
 		}
 		
 		
 		#title{
-		    font-size: 30px;
+		    font-size: 25px;
 		
 		}
 		
+		/* 왼쪽 nav ul*/
 		#Mul{
+			margin-top:18%;
 		    list-style: none;
-		    text-align: left;
-		    float: left;
+		    text-align: center;
 		    padding-inline-start: 0px;
+		    justify-content: center;
 		}
 		
+		/* 왼쪽 nav li*/
 		.Mli{
 		    margin-top: 20px;
+		    margin-bottom: 20px;
 		}
 		#search{
+			display:flex;
+			justify-content: flex-end;
 		    width: 100%;
-		    height: 30px; 
+		    height: 30px;   
+		    margin:2px;
 		}
 		
+		/*
 		#search_mem{
-		    float: right;
 		    height: 23px;
 		    background-color: black;
 		    color: white;
 		}
+		*/
 		
 		#search_sel{
-		    float: right;
+		   
 		    margin-right: 5px;
 		    height: 25.5px;
-		    border-left: none;
+		    
 		}
 		
 		#search_box{
-		    float: right;
+		    
 		    outline: none;
 		 }
 		
-		 .table{
-		     border-collapse: collapse;
-		 }
+		 
 		
 		 #re_table{
 		     margin-top: 38px;
+		     display:flex;
+		     justify-content: center;
 		 }
 		
 		 @media (max-width:600px){
@@ -245,17 +263,29 @@
 		    background-color: red;
 		    color: white;
 		}
+		
+		/* 중간*/
+		#member, #report, #withdraw{
+			width:70%;
+			
+		}
+		
+		#report_a{
+			text-decoration: underline;
+			color:navy;
+		}
     </style>
 
 </head>
 <body>
-	<h1 id="Nav">Header</h1>
-    
+	
+	<jsp:include page="header.jsp"/>
+	
     <div id="main">
         
         <div id="menu">
             
-            <h2 id="title">관리자 메뉴</h2>
+            <h2 id="title" style="text-align:center;">관리자 메뉴</h2>
             
             <ul id="Mul">
                 <li class="Mli" id="M_member"><a href="#">회원관리</a></li>
@@ -268,58 +298,57 @@
                 <h2 class="sub_title">회원관리</h2>
                 <hr>
                 <div id="search">
-                    <input type="button" value="검색" id="search_mem" >
-                    <select id="search_sel">
-                        <option>전체</option>
-                        <option>아이디</option>
-                        <option>이름</option>
-                        <option>이메일</option>
-                        <option>전화번호</option>
-                        <option>블랙리스트</option>
-                    </select>
-                    <input type="search" id="search_box">
+                	<form action="" method="post">
+	                    <select id="search_sel">
+	                        <option>이메일</option>
+	                        <option>닉네임</option>
+	                    </select>
+	                    <input type="search" id="search_box">
+	                    
+	                    <input type="button" value="검색" id="search_mem" >
+                    </form>
                 </div>
 
                 <div class="table" >
-                    <table border="1">
-                        <col width="50px">
-                        <col width="300px">
-                        <col width="150px">
+                    <table>
+                        <col width="20%">
                         <col width="80px">
                         <col width="150px">
                         <col width="150px">
                         <col width="80px">
                         <col width="180px">
+                        <col width="5%">
+                        <col width="5%">
 	                        <thead>
 		                        <tr>
-		                            <th><input type="checkbox"></th>
-		                            <th>아이디</th>
-		                            <th>비밀번호</th>
-		                            <th>이름</th>
 		                            <th>이메일</th>
-		                            <th>전화번호</th>
-		                            <th>점수</th>
-		                            <th>로그인 불/가능</th>
-		                            <th>블랙/화이트 처리</th>
+		                            <th>닉네임</th>
+		                            <th>이름</th>
+		                            <th>가입날짜</th>
+		                            <th>보유금액</th>
+		                            <th>거래금액</th>
+		                            <th>상태</th>
+		                            <th>변경</th>
 		                        </tr>
 	                        </thead>
                         
 	                        <tbody>
-		                        <tr>
-		                            <td><input type="checkbox"></td>
-		                            <td>ID</td>
-		                            <td>PW</td>
+		                        <tr>             
+		                            <td>jaewoo6836@naver.com</td>
+		                            <td>NICKNAME</td>
 		                            <td>NAME</td>
-		                            <td>Email@email.com</td>
-		                            <td>01012345678</td>
-		                            <td>0</td>
+		                            <td>2021-10-10</td>
+		                            <td>1000000</td>
+		                            <td>5000000</td>
 		                            <td>
-		                                <a id="O"><strong>O</strong></a>
-		                                <a id="X"><strong>X</strong></a>
+					                    <select id="">
+					                        <option>활동</option>
+					                        <option>정지</option>
+					                        <option>탈퇴</option>
+					                    </select>
 		                            </td>
 		                            <td>
-		                                <input type="button" id="black" value="블랙리스트">
-		                                <input type="button" id="white" value="화이트리스트">
+		                            	<input type="button" value="변경"/>
 		                            </td>
 	                        	</tr>
                         	</tbody>
@@ -333,37 +362,36 @@
                     <h2 class="sub_title">신고관리</h2>
                     <hr>
                     <div class="table" id="re_table">
-                        <table border="1">
+                        <table>
                             <col width="50px">
                             <col width="450px">
                             <col width="150px">
                             <col width="150px">
                             <col width="150px">
                             <col width="150px">
-                            
                             <thead>
 	                            <tr>
 	                                <th>NO</th>
-	                                <th>신고사유</th>
+	                                <th>제목</th>
 	                                <th>신고자</th>
-	                                <th>신고대상자</th>
+	                                <th>신고대상</th>
 	                                <th>신고날짜</th>
-	                                <th>처리상태</th>
+	                               	<th>처리</th>
 	                            </tr>
                             </thead>
                             
                             <tbody>
 	                            <tr>
 	                                <td>1</td>
-	                                <td>욕설 / 부적절한 단어 사용</td>
+	                                <td><a id="report_a" href="javascript:void(0);" onclick="reportDetail();">신고 제목</a></td>
 	                                <td>욕먹은사람</td>
 	                                <td>욕쟁이</td>
 	                                <td>2021.09.24</td>
 	                                <td>
-	                                    <input type="button" class="rep_button" id="rep_null" value="무효">
-	                                    <input type="button" class="rep_button" id="rep_black" value="블랙">
+	                                    <input type="button" class="rep_button" id="" value="정지">
+	                                    <input type="button" class="rep_button" id="" value="탈퇴">
 	                                    <a id="complete"><strong>처리완료</strong></a>
-	                                </td>
+	                                </td> 
 	                            </tr>
                             </tbody>
                         </table>
@@ -378,44 +406,50 @@
             <div class="table" id="re_table">
                 <table>
                     <col width="50px">
-                    <col width="350px">
-                    <col width="100px">
-                    <col width="100px">
-                    <col width="200px">
                     <col width="300px">
+                    <col width="200px">
+                    <col width="150px">
+                    <col width="200px">
                     
                     <thead>
                     	<tr>
                         	<th>NO</th>
-                        	<th>상품</th>
-                        	<th>판매자</th>
-                        	<th>구매자</th>
-                        	<th>출금 금액</th>
-                        	<th>허가여부</th>
+                        	<th>이메일</th>
+                        	<th>닉네임</th>
+                        	<th>출금액</th>
+                        	<th>상태</th>
+                        	
                     	</tr>
                     </thead>
                     
                     <tbody>
-                    	<form>
-                    		<tr>
+                    		<tr>	
                         		<td>1</td>
-                        		<td>상품이름</td>
-                        		<td>김판매</td>
-                        		<td>이구매</td>
-                        		<td>1,000,000</td>
+                        		<td>jaewoo6836@naver.com</td>
+                        		<td>NICKNAME</td>
+                        		<td>50000</td>
+                        		<td>
+                        			<button onclick="">승인</button>
+                        			<button onclick="">거절</button>
+                        			<button onclick="">보류</button>
+                        		</td>
+                        		<!-- 
                         		<td>
                             		<button class="with_button" id="com">반려</button>
                             		<button class="with_button" id="acc">수락</button>
                             		<a class="with_text" id="with_comT"><strong>반려되었습니다.</strong></a>
                             		<a class="with_text" id="with_accT"><strong>수락되었습니다.</strong></a>
-                        		</td>
+                            	</td>
+                            	-->
 							</tr>
-                		</form>
                     </tbody>
                 </table>
             </div>
             
 		</div>
 	</div>
+	
+	
+	<%@ include file="footer.jsp"  %>	
 </body>
 </html>

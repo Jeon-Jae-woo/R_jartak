@@ -27,12 +27,12 @@
 	
 	<a href="admin">헤더테스트</a>
 	
+	<a href="adminForm">관리자페이지</a>
+
 	<a href="product.do">경매테스트</a>
 	
 	<a href="productAdd.do">경매등록테스트</a>
-	
-	<a href="mypage.do">마이페이지테스트</a>
-	
+
 	
 </body>
 </html>

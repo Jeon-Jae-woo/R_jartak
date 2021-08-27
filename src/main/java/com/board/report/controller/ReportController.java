@@ -11,5 +11,9 @@ public class ReportController {
 		return "report";
 	}
 	
+	@RequestMapping(value="admin/report")
+	public String adminReportBoard() {
+		return "adminReportBoard";
+	}
 	
 }

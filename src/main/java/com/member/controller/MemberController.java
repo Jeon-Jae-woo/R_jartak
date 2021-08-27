@@ -25,10 +25,14 @@ public class MemberController {
 		
 		return "main";
 	}
-	@RequestMapping("/main2.do")
-	public String main2() {
-		logger.info("MAIN CONTROLLER");
+
+	
+	@RequestMapping("/mypage.do")
+	public String mypage() {
 		
-		return "main2";
+		return "mypage_personal_quit";
 	}
+	
+	
+
 }

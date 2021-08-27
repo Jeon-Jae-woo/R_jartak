@@ -26,5 +26,8 @@
 	
 	
 	<a href="admin">헤더테스트</a>
+	
+	<a href="adminForm">관리자페이지</a>
+	
 </body>
 </html>

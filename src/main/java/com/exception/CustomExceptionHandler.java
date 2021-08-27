@@ -15,7 +15,8 @@ public class CustomExceptionHandler {
 
 	private static final Logger logger = LoggerFactory.getLogger(CustomExceptionHandler.class);
 	
-	//500
+	
+	//500 
 	@ExceptionHandler(Exception.class)
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	public String Allexception(Exception e, WebRequest request) {
@@ -28,7 +29,7 @@ public class CustomExceptionHandler {
 		return "errorPage500";
 	}
 	
-	//404
+	//404 - URL 접근 에러
 	@ExceptionHandler(NoHandlerFoundException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	public String notFound(Exception e, WebRequest request) {

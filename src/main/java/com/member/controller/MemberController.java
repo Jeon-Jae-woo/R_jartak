@@ -25,6 +25,7 @@ public class MemberController {
 		
 		return "main";
 	}
+
 	
 	@RequestMapping("/mypage.do")
 	public String mypage() {
@@ -33,4 +34,5 @@ public class MemberController {
 	}
 	
 	
+
 }

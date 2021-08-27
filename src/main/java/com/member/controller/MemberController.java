@@ -25,4 +25,10 @@ public class MemberController {
 		
 		return "main";
 	}
+	@RequestMapping("/main2.do")
+	public String main2() {
+		logger.info("MAIN CONTROLLER");
+		
+		return "main2";
+	}
 }

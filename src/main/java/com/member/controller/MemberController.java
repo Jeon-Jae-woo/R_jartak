@@ -34,4 +34,12 @@ public class MemberController {
 		
 		return "main";
 	}
+	
+	@RequestMapping("/mypage.do")
+	public String mypage() {
+		
+		return "mypage_personal_quit";
+	}
+	
+	
 }

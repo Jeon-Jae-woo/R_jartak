@@ -9,24 +9,24 @@
 	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript"></script>
 <style type="text/css">
-.header {
+/* .header {
 	background-color: gray;
 	width: 1000px;
 	height: 100px;
-}
+} */
 
-.main{
-	width: 1000px;
+/* .main{
+	width: 100%;
 	
 	
-}
+} */
 
 .category {
 	background-color: lightgreen;
 	width: 100%;
 	height: 500px;
 	padding: 10px 10px 0px 0px;
-	position: relative;
+	/* position: relative; */
 }
 
 .loginForm h2 {
@@ -125,6 +125,7 @@
 	text-align: center;
 	transform: translate(-50%, -50%);
 	border-radius: 15px;
+	left:20%;
 }
 
 .notice {
@@ -132,7 +133,7 @@
 	width: 540px;
 	height: 320px;
 	position: relative;
-	left: 200px;
+	left: 40%;
 	bottom: 525px;
 	border-radius: 15px;
 	padding:8px 30px 30px 30px;
@@ -143,7 +144,6 @@
 	width: 100%;
 	height: 70%;
 	top: 30%;
-	left: 20%;
 
 }
 
@@ -216,11 +216,11 @@ th{
 </head>
 <body>
 
-	<%@ include file="header.jsp"  %>	
+<%@ include file="header.jsp"  %> 
 
 	<!-- 로그인/공지/검색 -->
 <div class="main">
-<div class="header"></div>
+<!-- <div class="header"></div> -->
 	<div class="category">
 		<div class="upbox">
 			<form action="" method="post">
@@ -406,6 +406,6 @@ th{
 	
 	
 
-<%@ include file="footer.jsp"  %>	
+ <%@ include file="footer.jsp"  %>	
 </body>
 </html>

@@ -80,9 +80,16 @@
             <div class="content_02">
                 <h2>이벤트</h2>
                 <hr>
-                <ul class="content_ul">
-                    <li class="content_li"><a href="notice.do?command=event">[검수기준] 거래 하기 전, 꼭 봐주세요!</a></li>
-                </ul>
+                <c:choose>
+            		<c:when test="${empty list }">
+            			<p class="content_li"><strong>작성된 글이 없어요... 곧 올리실거에요</strong></p>
+            		</c:when>
+            		<c:otherwise>
+            			<c:forEach var="dto" items="${list }">
+                	<li class="content_li"><a href="notice.do?command=eventdetail&event_no=${dto.event_no }">${dto.event_title }</a></li>
+                		</c:forEach>
+                	</c:otherwise>
+            	</c:choose>
             </div>
         </div>
     </div>

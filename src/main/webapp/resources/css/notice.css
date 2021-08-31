@@ -1,0 +1,158 @@
+/*글씨체*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');    
+
+*{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/*해더*/
+h1{
+    background-color: bisque;
+}
+
+a{
+    text-decoration:none; color:black;
+
+    text-decoration:none;color:black;
+
+    text-decoration:none; color:black; 
+
+    text-decoration:none; color:black;
+    text-decoration: none;
+}
+
+#main {
+    max-width: 1280px;
+    margin: 0 auto;
+
+    display: flex;
+    
+    
+
+    display: grid;
+    grid-template-columns: 0.5fr 3.5fr;  
+
+}
+.content_01,.content_02{
+	margin-top: 50px;
+}
+
+
+
+.content_ul{
+    
+    flex: 1 1 25%;
+    padding: 0;
+    list-style: none;
+}
+.content_li{
+   
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgb(235, 231, 231);
+}
+
+#sidebar{
+	margin-top: 50px;
+}
+
+.side_ul{
+    
+    list-style: none;
+    text-align: left;
+    float: left;
+    padding-inline-start: 0px;
+}
+.side_maintitle{
+    
+    font-size: 30px;
+    
+}
+
+.side_li{
+    margin-top: 10px;
+    
+}
+#main #contents {
+    flex-basis: 1000px;
+    min-height: 1000px; 
+    
+    margin-right: 10px;
+}
+#main #contents1 {
+    min-height: 1160px; 
+    
+    margin-right: 10px;
+}
+
+#main #sidebar {
+   
+   flex-basis: 140px;
+    min-height: 1000px; 
+    max-width: 300;
+}
+hr{
+    border: 0;
+    height: 3px;
+    background-color: black;
+}
+
+
+#footer {
+    margin-top: 10px; 
+    
+}
+
+
+@media (max-width:600px){ /*가로 너비가 600px 이하일 때 아래 스타일 적용*/
+    #main {
+        display: block;    
+    }
+
+    #main #contents {  
+        margin-bottom: 10px; 
+        margin-right: 0px;
+    }
+    #main #sidebar {
+        min-height: 0;
+    }
+
+}
+
+/* notice detail */
+.content_date{
+    font-size: 12px;
+}
+
+.content_title{
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.content_content{
+    font-size: 14px;
+    background-color: whitesmoke;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.submit_btn{
+	width: 100px;
+	height: 30px;
+	display: inline-block;
+	border-radius: 5px;
+	border: 1px solid rgba(0,0,0,0.3);
+	cursor: pointer;
+}
+
+.boardsubmit{
+	margin-top: 20px;
+	text-align: center;
+	
+}
+
+table, th, td{
+    border: 1px solid #bcbcbc;
+    background-color: whitesmoke;
+}
+

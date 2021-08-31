@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.member.biz.MemberBiz;
 
@@ -17,12 +18,20 @@ public class MemberController {
 	
 	@Autowired
 	private MemberBiz biz; 
-	
-	@RequestMapping("/test")
-	public String test() {
-		logger.info("TEST CONTROLLER");
-		return "home";
+	//로그인 폼 전환
+	@RequestMapping(value="/loginForm", method=RequestMethod.GET)
+	public String loginForm() {
+		logger.info("LOGIN FORM");
+		return "login";
 	}
+	
+	//회원가입 폼 전환
+	@RequestMapping(value="/joinForm", method=RequestMethod.GET)
+	public String joinForm() {
+		logger.info("JOIN FORM");
+		return "join";
+	}
+	
 	
 	
 	@RequestMapping("/main.do")
@@ -31,6 +40,7 @@ public class MemberController {
 		
 		return "main";
 	}
+
 	
 	@RequestMapping("/mypage.do")
 	public String mypage(Model model,String email) {
@@ -44,4 +54,5 @@ public class MemberController {
 	
 	
 	
+
 }

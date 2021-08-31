@@ -23,6 +23,7 @@
 	
 
 	<a href="main.do">메인테스트</a>
+	<a href="main2.do">메인2테스트</a>
 	
 	
 	<a href="admin">헤더테스트</a>
@@ -34,6 +35,6 @@
 	<a href="productAdd.do">경매등록테스트</a>
 
 	<a href="mypage.do?email=kh@kh.co.kr">마이페이지</a>
-	
+
 </body>
 </html>

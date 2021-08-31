@@ -177,8 +177,8 @@
 				
 				<% if(session.getAttribute("email")==null){ %>
 				<div class="header_nav_side">
-					<a href="">로그인</a>
-					<a href="">회원가입</a>
+					<a href="loginForm">로그인</a>
+					<a href="joinForm">회원가입</a>
 				
 				<!-- 관리자인 경우 보여줌, 임시 레벨 지정 -->
 				<% }else if(session.getAttribute("levelNo")=="1"){ %>

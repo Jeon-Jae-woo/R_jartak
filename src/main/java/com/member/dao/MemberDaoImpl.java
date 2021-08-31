@@ -19,6 +19,23 @@ public class MemberDaoImpl implements MemberDao {
 		loginMember = sqlSession.selectOne(NAMESAPCE+"login", reqMember);
 		
 		return loginMember;
+
+	}
+	
+	@Override
+	public MemberDto selectOne(String email) {
+		System.out.println(email);
+		MemberDto dto = new MemberDto();
+		try {
+			dto =  sqlSession.selectOne(NAMESPACE2+"selectOne",email);
+			System.out.println(dto.getEmail());
+		} catch (Exception e) {
+			System.out.println("[error] : selectOne ");
+			e.printStackTrace();
+		}
+		
+		return dto;
+
 	}
 
 }

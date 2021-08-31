@@ -34,10 +34,9 @@
 	
 	<a href="productAdd.do">경매등록테스트</a>
 
-	<a href="mypage.do">마이페이지테스트</a>
-
-	
 	<a href="list.do">리스트페이지테스트</a>
 	
+	<a href="mypage.do?email=kh@kh.co.kr">마이페이지</a>
+
 </body>
 </html>

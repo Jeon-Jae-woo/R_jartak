@@ -7,6 +7,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.member.dao.MemberDao;
 import com.member.dto.MemberDto;
 
+import com.member.dao.MemberDao;
+import com.member.dto.MemberDto;
+
 @Service
 @Transactional
 public class MemberBizImpl implements MemberBiz {
@@ -18,6 +21,12 @@ public class MemberBizImpl implements MemberBiz {
 	public MemberDto login(MemberDto reqMember) {
 		MemberDto loginMember = memberdao.login(reqMember);
 		return loginMember;
+	}
+	
+	@Override
+	public MemberDto selectOne(String email) {
+		return memberdao.selectOne(email);
+
 	}
 
 	

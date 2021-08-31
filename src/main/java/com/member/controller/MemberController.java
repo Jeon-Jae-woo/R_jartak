@@ -11,13 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.member.biz.MemberBiz;
 import com.member.dto.MemberDto;
-
 
 @Controller
 public class MemberController {
@@ -26,7 +26,6 @@ public class MemberController {
 	
 	@Autowired
 	private MemberBiz memberbiz;
-	
 	
 	//로그인 폼 전환
 	@RequestMapping(value="/loginForm", method=RequestMethod.GET)
@@ -71,10 +70,12 @@ public class MemberController {
 		return "redirect:main.do";
 	}
 	
+	
 	@RequestMapping("/mypage.do")
-	public String mypage() {
+	public String mypage(Model model,String email) {
 		
-		return "mypage_personal_quit";
+		model.addAttribute("dto",memberbiz.selectOne(email));
+		return "mypage_personal_information";
 	}
 	
 

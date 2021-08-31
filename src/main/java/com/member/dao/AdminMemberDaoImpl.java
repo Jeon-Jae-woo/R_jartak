@@ -29,8 +29,6 @@ public class AdminMemberDaoImpl implements AdminMemberDao {
 		paging.put("endRow", endRow);
 		
 		userlist = sqlSession.selectList(NAMESPACE+"memberlist", paging);
-		System.out.println("정상실행");
-		System.out.println(userlist.size());
 		
 		return userlist;
 	}

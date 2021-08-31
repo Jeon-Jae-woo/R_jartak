@@ -8,7 +8,7 @@
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript"></script>
-<link href="resources/css/main2.css" rel="stylesheet"/>
+<link href="resources/css/main33.css" rel="stylesheet"/>
 </head>
 <body>
 
@@ -22,15 +22,22 @@
 			<form action="" method="post">
 			
 				<div class="loginForm">
-					<h2>Login</h2>
-					<div class="idForm">
-						<input type="text" class="id" placeholder="ID">
-					</div>
-					<div class="passForm">
-						<input type="password" class="pw" placeholder="PW">
-					</div>
-					<button type="submit" class="btn" onclick="button()">LOG
-						IN</button>
+					<table>
+						<tr>
+							<th rowspan="3"><img src="/webapp/resources/userIcon.png"></th>
+							<th colspan="2">이름</th>
+						</tr>
+						<tr>
+							<td colspan="2">내정보</td>
+						</tr>
+						<tr>
+							<td colspan="2">회원등급</td>
+						</tr>
+						<tr>
+							<td colspan="2"></td>
+							<td><input type="button" value="로그아웃"></td>
+						</tr>
+					</table>
 				</div>
 			</form>
 

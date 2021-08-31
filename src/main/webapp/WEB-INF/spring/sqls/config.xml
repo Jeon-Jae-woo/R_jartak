@@ -3,5 +3,17 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+	<typeAliases>
+		<typeAlias type="com.member.dto.MemberDto" alias="memberDto"/>
+		<typeAlias type="com.member.dto.MemberStatusDto" alias="memberStatusDto"/>
+	</typeAliases>
+	
+	<!-- mapper -->
+	<mappers>
+		<mapper resource="/mybatis/member-mapper.xml"/>
+		<mapper resource="/mybatis/admin-mapper.xml"/>
+		<mapper resource="/mybatis/mypage-mapper.xml"/>
+	</mappers>
+	
 
 </configuration>

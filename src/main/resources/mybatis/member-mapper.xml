@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="member">
+	
+	<!-- 로그인 -->
+	<select id="login" parameterType="memberDto" resultType="memberDto">
+		SELECT EMAIL, NICKNAME, PASSWORD, GENDER, NAME, BIRTH, CREATED_AT, UPDATED_AT, 
+		ADDRESS, ADDRESS_DETAIL, AMOUNT, TX_AMOUNT, LEVEL_NO, STATUS_NO, RANK_NO
+		FROM MEMBER
+		WHERE EMAIL= #{email} AND PASSWORD=#{password}
+	</select>
+	
+</mapper>
+ 

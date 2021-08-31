@@ -1,14 +1,46 @@
 package com.member.controller;
 
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.member.biz.AdminMemberBiz;
+import com.member.dto.MemberDto;
+import com.util.pagingDto;
 
 @Controller
 public class AdminMemberController {
-
-	@RequestMapping("/adminForm")
+	Logger logger = LoggerFactory.getLogger(AdminMemberController.class);
+	
+	@Autowired
+	private AdminMemberBiz adminbiz;
+	
+	
+	@RequestMapping(value = "/adminPage", method = RequestMethod.GET)
 	public String adminForm() {
+		logger.info("ADMIN PAGE CONTROLLER");
 		return "adminPage";
 	}
+	
+	//회원목록
+	@RequestMapping(value = "/adminMemberList", method = RequestMethod.GET)
+	public String adminMemberList(Model model,@RequestParam("pageNum")int pageNum) {
+		
+		List<MemberDto> memberlist = adminbiz.memberList(pageNum);
+		pagingDto paging = adminbiz.memberListPaging(pageNum);
+		
+		model.addAttribute("memberlist", memberlist);
+		model.addAttribute("paging", paging);
+		
+		return "adminPage";
+	}
+	
 	
 }

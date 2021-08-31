@@ -77,23 +77,65 @@
 
 </style>
 
+<script type="text/javascript">
+	function loginCheck(){
+		console.log("[LOGIN]");
+		
+		var email = $("#email").val().trim();
+		var password = $("#password").val().trim();
+		
+		var loginInfo = {
+				"email":email,
+				"password":password
+		};
+		
+		if(email==""||email==null||password==""||password==null){
+			alert("아이디 혹은 비밀번호를 입력해 주세요");
+			
+		}else{
+			$.ajax({
+				type:"POST",
+				url:"login",
+				data:JSON.stringify(loginInfo),
+				contentType:"application/json",
+				dataType:"json",
+				success:function(data){
+					console.log(data.status_code);
+					if(data.status_code=='UNAUTHORIZED'){
+						alert("아이디 혹은 비밀번호를 잘못 입력했습니다");
+					}else if(data.status_code=='OK'){
+						location.href='main.do';
+					}
+				},
+				error:function(){
+					alert("서버 에러");
+				}
+			});
+		}
+		
+		
+	}
+
+</script>
+
+
 </head>
 <body>
 	<%@ include file="header.jsp" %>	
 	<div id="loginBody">
 		<div>
-			<form action="" method="post">
+			<div id="login_Form">
 				<div class="loginForm">
 					<h2>Login</h2>
 					<div class="idForm">
-						<input type="text" class="id" placeholder="EMAIL" name="email">
+						<input type="text" class="id" placeholder="EMAIL" name="email" id="email">
 					</div>
 					<div class="passForm">
-						<input type="password" class="pw" placeholder="PW" name="password">
+						<input type="password" class="pw" placeholder="PW" name="password" id="password">
 					</div>
-					<button type="submit" class="btn" onclick="">LOGIN</button>
+					<button type="button" class="btn" onclick="loginCheck();">LOGIN</button>
 				</div>
-			</form>
+			</div>
 		</div>
 	</div>
 			

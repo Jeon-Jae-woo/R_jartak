@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="admin">
+	
+	<resultMap type="memberStatusDto" id="memberStatus">
+		<result column="STATUS_NO" property="status_no"/>
+		<result column="STATUS_NAME" property="status_name"/>
+	</resultMap>
+	
+	<resultMap type="memberDto" id="memberJoinStatus">
+		<result column="EMAIL" property="email"/>
+		<result column="NICKNAME" property="nickname"/>
+		<result column="NAME" property="name"/>
+		<result column="CREATED_AT" property="created_at"/>
+		<result column="AMOUNT" property="amount"/>
+		<result column="TX_AMOUNT" property="tx_amount"/>
+		<result column="STATUS_NO" property="status_no"/>
+		<collection property="memberStatus" resultMap="memberStatus"></collection>
+	</resultMap>
+	
+	<select id="memberlist" parameterType="HashMap" resultMap="memberJoinStatus">
+		SELECT EMAIL, NICKNAME, NAME, CREATED_AT, AMOUNT, TX_AMOUNT, STATUS_NO, STATUS_NAME
+		FROM(
+		    SELECT ROWNUM AS RNUM, EMAIL, NICKNAME, NAME, CREATED_AT, AMOUNT, TX_AMOUNT, STATUS_NO, STATUS_NAME
+		    FROM(
+		        SELECT EMAIL, NICKNAME, NAME, CREATED_AT, AMOUNT, TX_AMOUNT, M.STATUS_NO, MS.STATUS_NAME 
+		        FROM MEMBER M
+		        JOIN MEMBER_STATUS MS ON(M.STATUS_NO=MS.STATUS_NO)
+		        ORDER BY CREATED_AT DESC)
+		    WHERE ROWNUM<![CDATA[ < ]]> #{endRow})
+		WHERE RNUM>=#{startRow}
+	</select>
+	
+	<select id="memberlistCount" resultType="int">
+		SELECT COUNT(*) FROM MEMBER
+	</select>
+	
+</mapper>
+ 

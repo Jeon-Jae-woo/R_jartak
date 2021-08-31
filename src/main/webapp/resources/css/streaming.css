@@ -2,3 +2,116 @@
     font-family: 'Noto Sans KR', sans-serif;
     margin : 0;
   }
+.header{
+    height: 100px;
+}
+.container{
+    border: 5px solid;
+    /* background-color: gray; */
+    display: grid;
+    grid-template-columns: 1fr 20%;
+    grid-template-rows: 100px 1fr 100px;
+    height: 700px;   
+    grid-template-areas: 
+        "title price"
+        "streaming side"
+        "streaming text"
+        "streaming input";
+
+    width: 1280px;
+    margin: 0 auto;
+    border-radius: 10px 10px 10px 10px;
+    
+}
+
+.title{
+    
+    /* border: 1px solid; */
+    grid-area: title;
+    font-size: 20pt;
+    font-weight: bold;
+    /* background-color: gray; */
+}
+.price{
+    
+     border: 0px ;
+     border-left: 1px solid;
+    grid-area: price;
+}
+.price p {
+    padding: 8% 0 8% 0;
+    font-size: 30pt;
+    
+   text-align: center;
+}
+
+.streaming{
+    /* border: 1px solid; */
+    grid-area: streaming;
+    /* background-color: gray; */
+}
+
+.side{
+    border: 0px ;
+    border-top: 1px solid ;
+    border-left: 1px solid;
+    /* border: 1px solid; */
+    grid-area: side;
+    resize: none;
+    
+}
+.text{
+    border: 0px ;
+     border-left: 1px solid;
+    border-top: 1px solid ;
+    grid-area: text;
+    resize: none;
+
+}
+
+.input{
+    border: 0px ;
+    border-left: 1px solid;
+    /* border: 1px solid; */
+    grid-area: input;
+    height: 50px;
+   
+    
+}
+
+.side:focus, .side:hover, .text:focus, .text:hover{
+    outline: none;
+}
+
+input{
+    margin-left: 2.5px;
+    border: 0;
+    height: 90%;
+    width: 48%;
+   font-weight: bold;
+
+   border-radius: 10px 10px 10px 10px;
+    
+}
+
+.bidding{
+    border: 1px solid black;
+    background-color: ivory;
+    color: black;
+}
+
+.chatting{
+    border:1px solid black;
+    background-color: ivory;
+    color: black;
+}
+
+.bidding:hover{
+    background-color: black;
+    color: ivory;
+}
+.chatting:hover{
+    background-color: black;
+    color: ivory;
+}
+

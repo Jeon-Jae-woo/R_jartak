@@ -22,6 +22,9 @@ public class AuctionController {
 		return "productAdd";
 	}
 	
-	
+	@RequestMapping("/list")
+	public String list() {
+		return "list";
+	}
 	
 }

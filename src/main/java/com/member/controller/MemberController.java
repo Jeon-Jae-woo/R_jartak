@@ -71,6 +71,13 @@ public class MemberController {
 	}
 	
 	
+	@RequestMapping("/main2.do")
+	   public String main2() {
+	      logger.info("MAIN CONTROLLER");
+	      
+	      return "main2";
+	   }
+	
 	@RequestMapping("/mypage.do")
 	public String mypage(Model model,String email) {
 		

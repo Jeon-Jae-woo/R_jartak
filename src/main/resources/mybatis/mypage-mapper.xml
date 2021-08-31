@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace = "mypage">
+  
+  	<resultMap type="memberDto" id="memberOne">
+  		<result property="email" column="EMAIL"></result>
+  		<result property="nickname" column="NICKNAME"></result>
+  		<result property="password" column="PASSWORD"></result>
+  		<result property="gender" column="GENDER"></result>
+  		<result property="name" column="NAME"></result>
+  		<result property="birth" column="BIRTH"></result>
+  		<result property="created_at" column="CREATED_AT"></result>
+  		<result property="updated_at" column="UPDATED_AT"></result>
+  		<result property="address" column="ADDRESS"></result>
+  		<result property="address_detail" column="ADDRESS_DETAIL"></result>
+  		<result property="ammount" column="AMMOUNT"></result>
+  		<result property="tx_amount" column="TX_AMOUNT"></result>
+  		<result property="level_no" column="LEVEL_NO"></result>
+  		<result property="status_no" column="STATUS_NO"></result>
+  		<result property="rank_no" column="RANK_NO"></result>
+  		
+  	</resultMap>
+  
+  	<select id="selectOne" parameterType="String" resultMap="memberOne">
+ 		SELECT EMAIL,NICKNAME,PASSWORD,GENDER,NAME,BIRTH,CREATED_AT,UPDATED_AT,ADDRESS,ADDRESS_DETAIL,AMMOUNT,TX_AMOUNT,LEVEL_NO,STATUS_NO,RANK_NO
+ 		FROM MEMBER
+ 		WHERE EMAIL = trim(#{email})
+  	</select>
+  
+  </mapper>

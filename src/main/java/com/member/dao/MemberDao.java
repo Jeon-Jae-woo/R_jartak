@@ -1,5 +1,9 @@
 package com.member.dao;
 
-public interface MemberDao {
+import com.member.dto.MemberDto;
 
+public interface MemberDao {
+	String NAMESAPCE="member.";
+	
+	public MemberDto login(MemberDto reqMember);
 }

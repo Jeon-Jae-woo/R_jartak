@@ -275,8 +275,9 @@
 			color:navy;
 		}
     </style>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 </head>
+
 <body>
 	
 	<jsp:include page="header.jsp"/>
@@ -294,66 +295,109 @@
             </ul>
         </div>
 
-            <div id="member">
-                <h2 class="sub_title">회원관리</h2>
-                <hr>
-                <div id="search">
-                	<form action="" method="post">
-	                    <select id="search_sel">
-	                        <option>이메일</option>
-	                        <option>닉네임</option>
-	                    </select>
-	                    <input type="search" id="search_box">
-	                    
-	                    <input type="button" value="검색" id="search_mem" >
-                    </form>
-                </div>
+        <div id="member">
+            <h2 class="sub_title">회원관리</h2>
+            <hr>
+            <div id="search">
+            	<form action="" method="post">
+                 <select id="search_sel">
+                     <option>이메일</option>
+                     <option>닉네임</option>
+                 </select>
+                 <input type="search" id="search_box">
+                 
+                 <input type="button" value="검색" id="search_mem" >
+                </form>
+            </div>
 
-                <div class="table" >
-                    <table>
-                        <col width="20%">
-                        <col width="80px">
-                        <col width="150px">
-                        <col width="150px">
-                        <col width="80px">
-                        <col width="180px">
-                        <col width="5%">
-                        <col width="5%">
-	                        <thead>
-		                        <tr>
-		                            <th>이메일</th>
-		                            <th>닉네임</th>
-		                            <th>이름</th>
-		                            <th>가입날짜</th>
-		                            <th>보유금액</th>
-		                            <th>거래금액</th>
-		                            <th>상태</th>
-		                            <th>변경</th>
-		                        </tr>
-	                        </thead>
-                        
-	                        <tbody>
-		                        <tr>             
-		                            <td>jaewoo6836@naver.com</td>
-		                            <td>NICKNAME</td>
-		                            <td>NAME</td>
-		                            <td>2021-10-10</td>
-		                            <td>1000000</td>
-		                            <td>5000000</td>
-		                            <td>
-					                    <select id="">
-					                        <option>활동</option>
-					                        <option>정지</option>
-					                        <option>탈퇴</option>
-					                    </select>
-		                            </td>
-		                            <td>
-		                            	<input type="button" value="변경"/>
-		                            </td>
-	                        	</tr>
-                        	</tbody>
-                    	</table>
-                	</div>
+            <div class="table" >
+                <table>
+                    <col width="20%">
+                    <col width="80px">
+                    <col width="150px">
+                    <col width="150px">
+                    <col width="80px">
+                    <col width="180px">
+                    <col width="5%">
+                    <col width="5%">
+                     <thead>
+                      <tr>
+                          <th>이메일</th>
+                          <th>닉네임</th>
+                          <th>이름</th>
+                          <th>가입날짜</th>
+                          <th>보유금액</th>
+                          <th>거래금액</th>
+                          <th>상태</th>
+                          <th>변경</th>
+                      </tr>
+                     </thead>
+                    	
+                     <tbody>
+              			<c:choose>
+					<c:when test="${empty memberlist }">
+						<tr>
+							<td colspan="8">가입한 회원이 존재하지 않습니다</td>
+						</tr>
+					</c:when>
+				<c:otherwise>
+				<c:forEach var="list" items="${memberlist}">
+					<tr>
+						<td>${list.email }</td>
+						<td>${list.nickname }</td>
+						<td>${list.name }</td>
+						<td>${list.created_at }</td>
+						<td>${list.amount }</td>
+						<td>${list.tx_amount }</td>
+						<!-- 이론적으로, 부모 tr 태그를 찾고, tr 태그밑에 있는 select td 태그를 찾고, 넘어온 status 값을 체크 -->
+						<td id="status_td">
+		                    <select name="member_status_box">
+		                        <option value="1">활동</option>
+		                        <option value="2">정지</option>
+		                        <option value="3">탈퇴</option>
+		                    </select>
+	                    <script>
+	                    </script>
+                        </td>
+                        <td>
+                        	<input type="button" value="변경" onclick=""/>
+                        </td>
+					</tr>
+				</c:forEach>
+				</c:otherwise>
+				</c:choose>
+                    	</tbody>
+                	</table>
+            	</div>
+              	
+              	<!-- 회원 목록 페이징 처리 -->
+	            <nav class="pull-bottom">
+				<c:set var="pageNum" value="${paging.pageNum }"/>
+				<c:set var="startPage" value="${paging.startPage}"/>
+				<c:set var="endPage" value="${paging.endPage}"/>
+				<c:set var="totalPage" value="${paging.totalPage}"/>
+				<c:set var="itemCount" value="${paging.itemCount}"/>
+					<ul class="pagination">
+						<li>
+				      		<a href="adminMemberList?pageNum=1" aria-label="Previous">
+				        	<span aria-hidden="true">&laquo;</span>
+				      		</a>
+				    	</li>
+						<c:forEach var="item" varStatus="status" begin="${ startPage }" end="${ endPage }" step="1">
+	                		<c:if test="${ pageNum == item }">
+	                    		<li><a href="adminMemberList?pageNum=1">${ item }</a></li>
+	                		</c:if>
+	                		<c:if test="${ pageNum != item }">
+			 					<li><a href="adminMemberList?pageNum=${ item }">${ item }</a></li>
+	                		</c:if>
+	            		</c:forEach>
+	            		<li>
+				      		<a href="adminMemberList?pageNum=${totalPage }" aria-label="Next">
+				        	<span aria-hidden="true">&raquo;</span>
+				      		</a>
+				    	</li>
+					</ul>
+				</nav>
                 </div>
                 
                 <!-- 신고관리 -->

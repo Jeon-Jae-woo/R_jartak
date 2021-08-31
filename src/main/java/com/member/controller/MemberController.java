@@ -1,16 +1,32 @@
 package com.member.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.member.biz.MemberBiz;
+import com.member.dto.MemberDto;
 
 
 @Controller
 public class MemberController {
 
 	Logger logger = LoggerFactory.getLogger(MemberController.class);
+	
+	@Autowired
+	private MemberBiz memberbiz;
+	
 	
 	//로그인 폼 전환
 	@RequestMapping(value="/loginForm", method=RequestMethod.GET)
@@ -26,15 +42,34 @@ public class MemberController {
 		return "join";
 	}
 	
-	
-	
-	@RequestMapping("/main.do")
-	public String main() {
-		logger.info("MAIN CONTROLLER");
-		
-		return "main";
-	}
+	//로그인
+	@RequestMapping(value="/login", method=RequestMethod.POST)
+	public @ResponseBody Map<String, Object> login(HttpSession session, @RequestBody MemberDto reqMember) {
+		logger.info("LOGIN CONTROLLER");
 
+		MemberDto loginMember = memberbiz.login(reqMember);
+		
+		Map<String,Object> data = new HashMap<String, Object>();
+		
+		if(loginMember==null) {
+			data.put("status_code", HttpStatus.UNAUTHORIZED); // 401
+			return data;
+		}else {
+			session.setAttribute("email", loginMember.getEmail());
+			session.setAttribute("nickname", loginMember.getNickname());
+			session.setAttribute("level_no", loginMember.getLevel_no());
+			data.put("status_code", HttpStatus.OK); // 200
+			return data;
+		}
+	}
+	
+	//로그아웃
+	@RequestMapping(value="/logout", method=RequestMethod.GET)
+	public String logout(HttpSession session) {
+		logger.info("LOGOUT");
+		session.invalidate();
+		return "redirect:main.do";
+	}
 	
 	@RequestMapping("/mypage.do")
 	public String mypage() {
@@ -42,6 +77,13 @@ public class MemberController {
 		return "mypage_personal_quit";
 	}
 	
+
 	
+	@RequestMapping("/main.do")
+	public String main() {
+		logger.info("MAIN CONTROLLER");
+		
+		return "main";
+	}
 
 }

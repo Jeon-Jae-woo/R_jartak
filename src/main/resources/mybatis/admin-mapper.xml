@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="admin">
+	
+	
+	<select id="memberlist" parameterType="HashMap" resultType="memberDto">
+		SELECT EMAIL, NICKNAME, NAME, CREATED_AT, AMOUNT, TX_AMOUNT, STATUS_NO
+		FROM(
+    		SELECT ROWNUM AS RNUM, EMAIL, NICKNAME, NAME, CREATED_AT, AMOUNT, TX_AMOUNT, STATUS_NO
+    		FROM(
+        		SELECT EMAIL, NICKNAME, NAME, CREATED_AT, AMOUNT, TX_AMOUNT, STATUS_NO
+        		FROM MEMBER ORDER BY CREATED_AT DESC)
+    	WHERE ROWNUM <![CDATA[ < ]]> #{endRow} )
+		WHERE RNUM>= #{startRow}
+	</select>
+	
+	<select id="memberlistCount" resultType="int">
+		SELECT COUNT(*) FROM MEMBER
+	</select>
+	
+</mapper>
+ 

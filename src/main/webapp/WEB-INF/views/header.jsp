@@ -58,7 +58,7 @@
 	}
 	
 	/* 맨 위 사이드*/
-	.header_nav_side a{
+	.side_a{
 		padding:5px;
 		color:black;
 		text-decoration:none;
@@ -147,7 +147,7 @@
 	
 
 </style>
-
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	function todayTime(){
 		var clock = document.getElementById("clock");
@@ -177,17 +177,16 @@
 				
 				<% if(session.getAttribute("email")==null){ %>
 				<div class="header_nav_side">
-					<a href="loginForm">로그인</a>
-					<a href="joinForm">회원가입</a>
-				
+					<a class="side_a" href="loginForm">로그인</a>
+					<a class="side_a" href="joinForm">회원가입</a>		
 				<!-- 관리자인 경우 보여줌, 임시 레벨 지정 -->
-				<% }else if(session.getAttribute("levelNo")=="1"){ %>
-					<a href="">관리자</a>
-					<a href="">로그아웃</a>
+				<% }else if((Integer)session.getAttribute("level_no")==1){ %>
+					<a class="side_a" href="adminMemberList?pageNum=1">관리자</a>
+					<a class="side_a" href="logout">로그아웃</a>
 				<!-- 로그인했을 경우 -->
 				<% } else{  %>
-					<a href="">마이페이지</a>
-					<a href="">로그아웃</a>
+					<a class="side_a" href="">마이페이지</a>
+					<a class="side_a" href="logout">로그아웃</a>
 			<% } %>
 				</div>
 			</div>

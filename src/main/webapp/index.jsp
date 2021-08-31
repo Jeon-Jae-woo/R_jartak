@@ -35,6 +35,7 @@
 	<a href="productAdd.do">경매등록테스트</a>
 
 	<a href="mypage.do">마이페이지테스트</a>
+
 	
 </body>
 </html>

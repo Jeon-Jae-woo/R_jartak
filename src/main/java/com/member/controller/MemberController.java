@@ -141,9 +141,9 @@ public class MemberController {
 	
 	@RequestMapping("/mypage_emoney.do")
 	public String mypage_emoney(String emoney) {
-		if(emoney=="main") {
+		if(emoney.equals("main")) {
 			return "mypage_emoney_main";
-		}else if(emoney=="charge") {
+		}else if(emoney.equals("charge")) {
 			return "mypage_emoney_charge";
 		}else {
 			return "mypage_emoney_withdrawal";

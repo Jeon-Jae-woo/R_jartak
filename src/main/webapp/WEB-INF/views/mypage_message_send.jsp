@@ -16,16 +16,16 @@
         
         <div id="navi" name="navi">
             <div id="navi_text">
-            <a href="#">활동</a>
-            <a href="#">메시지</a>
-            <a href="#">계정</a>
+            <a href="mypage_interest.do">활동</a>
+            <a href="mypage_msg_receive.do" style="font-weight:bold">메시지</a>
+            <a href="mypage.do?email=kh@kh.co.kr">계정</a>
              </div>
         </div>
         
         <div id="grid">
             <div id="left-grid">
-                <a href="#">보낸 메시지함</a>
-                <a href="#">받은 메시지함</a>
+                <a href="mypage_msg_send.do" style="background-color: lightseagreen;">보낸 메시지함</a>
+                <a href="mypage_msg_receive.do">받은 메시지함</a>
             </div>    
             <div id="main">
                  

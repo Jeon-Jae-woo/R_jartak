@@ -318,7 +318,7 @@
                     <col width="150px">
                     <col width="80px">
                     <col width="180px">
-                    <col width="5%">
+                    <col width="8%">
                     <col width="5%">
                      <thead>
                       <tr>
@@ -349,17 +349,14 @@
 						<td>${list.created_at }</td>
 						<td>${list.amount }</td>
 						<td>${list.tx_amount }</td>
-						<!-- 이론적으로, 부모 tr 태그를 찾고, tr 태그밑에 있는 select td 태그를 찾고, 넘어온 status 값을 체크 -->
 						<td id="status_td">
-		                    <select name="member_status_box">
-		                        <option value="1">활동</option>
-		                        <option value="2">정지</option>
-		                        <option value="3">탈퇴</option>
-		                    </select>
-	                    <script>
+		                    ${list.memberStatus.status_name }	                    
+		                <script>
 	                    </script>
                         </td>
                         <td>
+                        	<input type="button" value="변경" onclick=""/>
+                        	<input type="button" value="변경" onclick=""/>
                         	<input type="button" value="변경" onclick=""/>
                         </td>
 					</tr>

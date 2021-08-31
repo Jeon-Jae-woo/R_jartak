@@ -16,7 +16,7 @@ public class MemberDaoImpl implements MemberDao {
 	public MemberDto login(MemberDto reqMember) {
 		MemberDto loginMember = null;
 		
-		loginMember = sqlSession.selectOne(NAMESAPCE+"login", reqMember);
+		loginMember = sqlSession.selectOne(MEMBER_NAMESAPCE+"login", reqMember);
 		
 		return loginMember;
 
@@ -27,8 +27,7 @@ public class MemberDaoImpl implements MemberDao {
 		System.out.println(email);
 		MemberDto dto = new MemberDto();
 		try {
-			dto =  sqlSession.selectOne(NAMESPACE2+"selectOne",email);
-			System.out.println(dto.getEmail());
+			dto =  sqlSession.selectOne(MYPAGE_NAMESPACE+"selectOne",email);
 		} catch (Exception e) {
 			System.out.println("[error] : selectOne ");
 			e.printStackTrace();

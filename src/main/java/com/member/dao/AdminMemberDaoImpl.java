@@ -29,7 +29,7 @@ public class AdminMemberDaoImpl implements AdminMemberDao {
 		paging.put("endRow", endRow);
 		
 		userlist = sqlSession.selectList(NAMESPACE+"memberlist", paging);
-		
+			
 		return userlist;
 	}
 	

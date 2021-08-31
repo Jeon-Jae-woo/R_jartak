@@ -4,8 +4,8 @@ import com.member.dto.MemberDto;
 
 public interface MemberDao {
 
-	String NAMESAPCE="member.";
-	String NAMESPACE2 = "mypage.";
+	String MEMBER_NAMESAPCE="member.";
+	String MYPAGE_NAMESPACE = "mypage.";
 	
 	public MemberDto login(MemberDto reqMember);
 

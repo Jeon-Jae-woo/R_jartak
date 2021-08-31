@@ -33,6 +33,7 @@
 	
 	<a href="productAdd.do">경매등록테스트</a>
 
+	<a href="mypage.do?email=kh@kh.co.kr">마이페이지</a>
 	
 </body>
 </html>

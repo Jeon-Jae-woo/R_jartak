@@ -19,6 +19,7 @@ public class MemberDto {
 	private int level_no;
 	private int status_no;
 	private int rank_no;
+	private String phone;
 	
 	//JOIN시에 활용
 	private MemberStatusDto MemberStatus;
@@ -33,7 +34,7 @@ public class MemberDto {
 	public MemberDto(String email, String nickname, String password, String gender, String name, String birth,
 			Date created_at, Date updated_at, String address, String address_detail, int amount, int tx_amount,
 			int level_no, int status_no, int rank_no, MemberStatusDto memberStatus, MemberLevelDto memberLevel,
-			com.member.dto.MemberRankDto memberRankDto) {
+			com.member.dto.MemberRankDto memberRankDto, String phone) {
 		super();
 		this.email = email;
 		this.nickname = nickname;
@@ -50,9 +51,18 @@ public class MemberDto {
 		this.level_no = level_no;
 		this.status_no = status_no;
 		this.rank_no = rank_no;
+		this.phone = phone;
 		MemberStatus = memberStatus;
 		MemberLevel = memberLevel;
 		MemberRankDto = memberRankDto;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public String getEmail() {

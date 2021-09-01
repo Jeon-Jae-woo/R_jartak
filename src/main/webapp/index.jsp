@@ -22,7 +22,7 @@
 	<button onclick="report();">신고하기</button>
 	
 
-	<a href="main.do">메인테스트</a>
+	<a href="main.do">메.인테스트</a>z
 	<a href="main2.do">메인2테스트</a>
 	
 	

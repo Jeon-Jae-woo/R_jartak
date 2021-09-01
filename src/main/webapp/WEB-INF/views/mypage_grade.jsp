@@ -37,31 +37,21 @@
                 
                 <div id=contents>
 
+
                     <div class="content">
-                       <h4>구매등급</h4>
+                       <h4>거래등급</h4>
                        <div class="grade-content">
                         
                             <img src="image/general.png">
-                            <span>ooo님의 구매등급은 일반입니다.</span>
+                            <span>ooo님의 거래등급은 일반입니다.</span>
                             <div style="border-left: black solid 1px; height: 50px; padding-left: 50px;">
-                                <div>구매횟수 : 0회</div>
-                                <div>구매총액 : 0원</div>
+                                <div>거래횟수 : 0회</div>
+                                <div>거래총액 : 0원</div>
                             </div>
                        </div>
                     </div>
 
-                    <div class="content">
-                        <h4>판매등급</h4>
-                        <div class="grade-content">
-                         
-                             <img src="image/vip.png">
-                             <span>ooo님의 구매등급은 일반입니다.</span>
-                             <div style="border-left: black solid 1px; height: 50px; padding-left: 50px;">
-                                 <div>구매횟수 : 0회</div>
-                                 <div>구매총액 : 0원</div>
-                             </div>
-                        </div>
-                     </div>
+       
 
                     <div class="item">
                        

@@ -35,7 +35,7 @@
                     <div class="content">
                        <h4 style="margin-left: 10px; ">기본정보입력</h4>
                        <div class="grade-content">
-                           <form action="">
+                           <form action="#">
 
                             <table class="type05">
                                 <tr>

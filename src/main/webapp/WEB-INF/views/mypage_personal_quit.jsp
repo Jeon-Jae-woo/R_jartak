@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mypage/mypage_peronal.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mypage/mypage_personal_quit.css">
 <body>
    <header>header</header>
     <nav></nav>
@@ -47,7 +47,7 @@
                     </div>
                     
                     
-                <div>
+                </div>
                   
                     
 

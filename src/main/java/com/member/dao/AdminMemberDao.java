@@ -12,4 +12,7 @@ public interface AdminMemberDao {
 	//회원 목록 페이징
 	public int memberListCount();
 	
+	//회원 상태 변경
+	public int changeStatus(String email, int status);
+	
 }

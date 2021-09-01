@@ -11,4 +11,6 @@ public interface AdminMemberBiz {
 	public List<MemberDto> memberList(int pageNum);
 	//회원 목록 페이징
 	public pagingDto memberListPaging(int pageNum);
+	//회원 상태 변경
+	public int changeStatus(String email, int status);
 }

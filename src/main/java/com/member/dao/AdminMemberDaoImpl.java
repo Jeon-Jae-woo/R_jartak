@@ -41,4 +41,15 @@ public class AdminMemberDaoImpl implements AdminMemberDao {
 		return count;
 	}
 
+	//회원 상태 변경
+	@Override
+	public int changeStatus(String email, int status) {
+		int result = 0;
+		Map<String,Object> changeMap = new HashMap<String, Object>();
+		changeMap.put("email", email);
+		changeMap.put("status", status);
+		result = sqlSession.update(NAMESPACE+"changeStatus", changeMap);
+		return result;
+	}
+
 }

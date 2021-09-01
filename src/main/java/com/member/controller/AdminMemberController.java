@@ -32,6 +32,7 @@ public class AdminMemberController {
 	//회원목록
 	@RequestMapping(value = "/adminMemberList", method = RequestMethod.GET)
 	public String adminMemberList(Model model,@RequestParam("pageNum")int pageNum) {
+		logger.info("[ADMIN MEMBERLIST CONTROLLER]");
 		
 		List<MemberDto> memberlist = adminbiz.memberList(pageNum);
 		pagingDto paging = adminbiz.memberListPaging(pageNum);
@@ -39,7 +40,30 @@ public class AdminMemberController {
 		model.addAttribute("memberlist", memberlist);
 		model.addAttribute("paging", paging);
 		
-		return "adminPage";
+		return "adminMemberList";
+	}
+	
+	//회원 상태변경
+	@RequestMapping(value="/adminChangeStatus", method=RequestMethod.POST)
+	public String adminChangeStatus(Model model, @RequestParam("email")String email, @RequestParam("status")int status,
+			@RequestParam("pageNum")int pageNum) {
+		
+		if(status == 0) {
+			model.addAttribute("msg", "상태를 선택해주세요");
+			model.addAttribute("url", "adminMemberList?pageNum="+pageNum);
+			return "alert";
+		}
+		
+		int result = adminbiz.changeStatus(email, status);
+		
+		if(result>0) {
+			model.addAttribute("msg", "변경되었습니다");
+			model.addAttribute("url", "adminMemberList?pageNum="+pageNum);	
+		}else {
+			model.addAttribute("msg", "실패했습니다");
+			model.addAttribute("url", "adminMemberList?pageNum="+pageNum);	
+		}
+		return "alert";
 	}
 	
 	

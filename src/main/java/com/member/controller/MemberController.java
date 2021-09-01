@@ -78,8 +78,6 @@ public class MemberController {
 		return "alert";
 	}
 	
-	
-	
 	@RequestMapping("/mypage.do")
 	public String mypage(Model model,String email) {
 		
@@ -87,5 +85,90 @@ public class MemberController {
 		return "mypage_personal_information";
 	}
 	
+	@RequestMapping("/mypage_quit.do")
+	public String mypage_quit() {
+		
+		return "mypage_personal_quit";
+	}
+	
+	@RequestMapping("/mypage_msg_receive.do")
+	public String msg_receive() {
+		return "mypage_message_receive";
+	}
+	
+	@RequestMapping("/mypage_msg_send.do")
+	public String msg_send() {
+		return "mypage_message_send";
+	}
+	
+	
 
+	@RequestMapping("/mypage_interest.do")
+	public String mypage_interest() {
+		
+		return "mypage_interest";
+		
+	}
+	
+	@RequestMapping("/mypage_bankAcc.do")
+	public String mypage_bankAcc() {
+		
+		return "mypage_bankAccount";
+		
+	}
+	
+	@RequestMapping("/mypage_buy.do")
+	public String mypage_buy(String money) {
+		if(money.equals("end")) {
+			return "mypage_buy_end";
+		}else if(money.equals("failure")) {
+			return "mypage_buy_failure";
+		}else if(money.equals("ing")) {
+			return "mypage_buy_ing";
+		}else{
+			return "mypage_buy_trading";
+		}
+	}
+	
+	@RequestMapping("/mypage_sale.do")
+	public String mypage_sale(String sale) {
+		if(sale.equals("end")) {
+			return "mypage_sale_end";
+		}else if(sale.equals("failure")) {
+			return "mypage_sale_failure";
+		}else if(sale.equals("ing")) {
+			return "mypage_sale_ing";
+		}else{
+			return "mypage_sale_trading";
+		}
+	}
+	
+	@RequestMapping("/mypage_emoney.do")
+	public String mypage_emoney(String emoney) {
+		if(emoney.equals("main")) {
+			return "mypage_emoney_main";
+		}else if(emoney.equals("charge")) {
+			return "mypage_emoney_charge";
+		}else {
+			return "mypage_emoney_withdrawal";
+		}
+	}
+	
+	@RequestMapping("/mypage_grade.do")
+	public String mypage_grade(String grade) {
+		return "mypage_grade";
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

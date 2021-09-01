@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mypage/mypage_peronal.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mypage/mypage_personal_quit.css">
 <body>
    <header>header</header>
     <nav></nav>
@@ -16,20 +16,17 @@
         
         <div id="navi" name="navi">
             <div id="navi_text">
-            <a href="#">활동</a>
-            <a href="#">메시지</a>
-            <a href="#">계정</a>
+            <a href="mypage_interest.do">활동</a>
+            <a href="mypage_msg_receive.do">메시지</a>
+            <a href="mypage.do?email=kh@kh.co.kr" style="font-weight:bold ">계정</a>
              </div>
         </div>
         
         <div id="grid">
             <div id="left-grid">
-                <a href="#">관심상품</a>
-                <a href="#">구매관리</a>
-                <a href="#">판매관리</a>
-                <a href="#">e머니관리</a>
-                <a href="#">계좌관리</a>
-                <a href="#">등급관리</a>
+              
+            	<a href="mypage.do?email=kh@kh.co.kr">개인정보관리</a>
+                <a href="mypage_quit.do" style="background-color: lightseagreen;">회원탈퇴</a>
             </div>    
             <div id="main">
                 
@@ -50,7 +47,7 @@
                     </div>
                     
                     
-                <div>
+                </div>
                   
                     
 

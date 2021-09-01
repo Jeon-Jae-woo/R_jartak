@@ -14,22 +14,24 @@
     <section>
         <h1 style="margin-left: 5px;">마이페이지</h1>
         
-        <div id="navi">
+   <div id="navi" >
             <div id="navi_text">
-            <a href="#">활동</a>
-            <a href="#">메시지</a>
-            <a href="#">계정</a>
+            <a href="mypage_interest.do" style="font-weight:bold">활동</a>
+            <a href="mypage_msg_receive.do" >메시지</a>
+            <a href="mypage.do?email=kh@kh.co.kr">계정</a>
              </div>
         </div>
         
         <div id="grid">
             <div id="left-grid">
-                <a href="#">관심상품</a>
-                <a href="#">구매관리</a>
-                <a href="#">판매관리</a>
-                <a href="#">e머니관리</a>
-                <a href="#">계좌관리</a>
-                <a href="#">등급관리</a>
+                           <a href="mypage_interest.do">관심상품</a>
+                <a href="mypage_buy.do?money=end">구매관리</a>
+                <a href="mypage_sale.do?sale=end">판매관리</a>
+                <a href="mypage_emoney.do?emoney=main" style="background-color: lightseagreen;">e머니관리</a>
+                <a href="mypage_bankAcc.do">계좌관리</a>
+                <a href="mypage_grade.do">등급관리</a>
+        
+        
             </div>
         
             <div id="main">
@@ -76,7 +78,7 @@
                               </table>
                                 <div class="buttons" style="margin-left: 200px;">
                                     <input type="submit" value="충전신청">
-                                    <input type="button" name="" value="취소"  onclick="">
+                                    <input type="button" name="" value="취소"  onclick="location.href='mypage_emoney.do?emoney=main'">
                                 </div>
 
                             </form>

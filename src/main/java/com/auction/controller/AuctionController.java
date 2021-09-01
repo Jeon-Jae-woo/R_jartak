@@ -27,4 +27,9 @@ public class AuctionController {
 		return "list";
 	}
 	
+	@RequestMapping("/streaming")
+	public String streaming() {
+		return "streaming";
+	}
+	
 }

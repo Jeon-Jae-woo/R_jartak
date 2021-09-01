@@ -13,5 +13,11 @@
 		WHERE EMAIL= #{email} AND PASSWORD=#{password}
 	</select>
 	
+	<select id="grade" parameterType="memberRankDto" resultType="memberRankDto">
+		SELECT RANK_NO, RANK_NAME, RATING_AMOUNT
+		FROM MEMBER_RANK
+		WHERE RANK_NO= #{rank_no}
+	</select>
+	
 </mapper>
  

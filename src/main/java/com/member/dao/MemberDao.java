@@ -1,6 +1,7 @@
 package com.member.dao;
 
 import com.member.dto.MemberDto;
+import com.member.dto.MemberRankDto;
 
 public interface MemberDao {
 
@@ -11,4 +12,5 @@ public interface MemberDao {
 
 	public MemberDto selectOne(String email);
 
+	public MemberRankDto rank(int rank_no);
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="report">
+	
+	
+	<select id="reportList" parameterType="HashMap" resultType="reportDto">
+		SELECT REPORT_NO, NICKNAME, TARGET_NICKNAME, REPORT_TYPE, REPORT_CONTENT, CREATED_AT, UPDATED_AT, REPORT_TITLE
+			FROM(
+    			SELECT ROWNUM AS RNUM, REPORT_NO, NICKNAME, TARGET_NICKNAME, REPORT_TYPE, REPORT_CONTENT, CREATED_AT, UPDATED_AT, REPORT_TITLE
+   				 FROM(
+        			SELECT REPORT_NO, NICKNAME, TARGET_NICKNAME, REPORT_TYPE, REPORT_CONTENT, CREATED_AT, UPDATED_AT, REPORT_TITLE
+       				FROM REPORT ORDER BY CREATED_AT DESC)
+   			WHERE ROWNUM<![CDATA[ < ]]>#{endRow})
+		WHERE RNUM>=#{startRow}
+	</select>
+	
+	<select id="reportCount" resultType="int">
+		SELECT COUNT(*) FROM REPORT
+	</select>
+	
+	<select id="reportdetail" parameterType="int" resultType="reportDto">
+		SELECT REPORT_NO, NICKNAME, TARGET_NICKNAME, REPORT_TYPE, REPORT_CONTENT, CREATED_AT, UPDATED_AT, REPORT_TITLE
+		FROM REPORT
+		WHERE REPORT_NO=#{report_no}
+	</select>
+	
+	
+	<delete id="deletereport" parameterType="int">
+		DELETE FROM REPORT WHERE REPORT_NO=#{report_no}
+	</delete>
+	
+	
+</mapper>

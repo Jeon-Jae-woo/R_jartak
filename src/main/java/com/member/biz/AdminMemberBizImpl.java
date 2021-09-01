@@ -40,5 +40,12 @@ public class AdminMemberBizImpl implements AdminMemberBiz {
 		paging.pagination();
 		return paging;
 	}
+	
+	//회원 상태 변경
+	@Override
+	public int changeStatus(String email, int status) {
+		int result = admindao.changeStatus(email, status);
+		return result;
+	}
 
 }

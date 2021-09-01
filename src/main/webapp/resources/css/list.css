@@ -85,7 +85,7 @@ ul{
 .searchBox{
 	float: left;
 	margin-left: 100px;
-	input 포커스
+	/*input 포커스*/
 	
 	}
 .searchText{
@@ -104,9 +104,9 @@ li p:hover,li p:link,li p:visited,li p:focus{
   
 	font-weight: bold;
 	border-bottom: 1px solid;
-}{
-	
 }
+	
+
 
 .searchBtn{
 	background: white;

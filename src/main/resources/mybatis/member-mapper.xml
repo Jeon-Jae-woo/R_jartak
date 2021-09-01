@@ -13,5 +13,10 @@
 		WHERE EMAIL= #{email} AND PASSWORD=#{password}
 	</select>
 	
+	<!-- 회원 상태 변경 -->
+	<update id="changestatus" parameterType="HashMap">
+		UPDATE MEMBER SET STATUS_NO=#{status_no} WHERE NICKNAME=#{nickname}
+	</update>
+	
 </mapper>
  

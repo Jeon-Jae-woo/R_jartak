@@ -70,10 +70,14 @@ public class MemberController {
 		return "redirect:main.do";
 	}
 	
+	//로그인 체크(인터셉터 활용)
+	@RequestMapping(value="/loginCheck", method=RequestMethod.GET)
+	public String loginCheck(Model model) {
+		model.addAttribute("msg","로그인 후 이용해주세요");
+		model.addAttribute("url","loginForm");
+		return "alert";
+	}
 	
-	
-	
-
 	@RequestMapping("/mypage.do")
 	public String mypage(Model model,String email) {
 		

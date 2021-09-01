@@ -7,6 +7,7 @@
 		<typeAlias type="com.member.dto.MemberDto" alias="memberDto"/>
 		<typeAlias type="com.member.dto.MemberStatusDto" alias="memberStatusDto"/>
 		<typeAlias type="com.board.report.dto.ReportDto" alias="reportDto"/>
+		<typeAlias type="com.amount.dto.WithdrawalDto" alias="withdrawalDto"/>
 	</typeAliases>
 	
 	<!-- mapper -->
@@ -15,6 +16,7 @@
 		<mapper resource="/mybatis/admin-mapper.xml"/>
 		<mapper resource="/mybatis/mypage-mapper.xml"/>
 		<mapper resource="/mybatis/report-mapper.xml"/>
+		<mapper resource="/mybatis/amount-mapper.xml"/>
 	</mappers>
 	
 

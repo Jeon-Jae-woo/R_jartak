@@ -72,7 +72,6 @@
 		});
 		
 	}
-
        
 	    
 </script>
@@ -92,7 +91,7 @@
             <ul id="Mul">
                 <li class="Mli" id="M_member"><a href="adminMemberList?pageNum=1">회원관리</a></li>
                 <li class="Mli" id="M_report"><a href="adminReportList?pageNum=1">신고관리</a></li>
-                <li class="Mli" id="M_withdraw"><a href="adminWithdrawList">출금관리</a></li>
+                <li class="Mli" id="M_withdraw"><a href="adminWithdrawList?pageNum=1">출금관리</a></li>
             </ul>
         </div>
 
@@ -119,7 +118,7 @@
                             </thead>
                             
                             <tbody>
-	                         <c:choose>
+	            <c:choose>
 				<c:when test="${empty reportList }">
 						<tr>
 							<td colspan="5">신고 내역이 없습니다</td>

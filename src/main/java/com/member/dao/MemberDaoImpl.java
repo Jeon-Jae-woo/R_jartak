@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.member.dto.MemberDto;
+import com.member.dto.MemberRankDto;
 
 @Repository
 public class MemberDaoImpl implements MemberDao {
@@ -40,6 +41,19 @@ public class MemberDaoImpl implements MemberDao {
 
 	}
 
+	@Override
+	public MemberRankDto rank(int rank_no) {
+		System.out.println("등급확인");
+		MemberRankDto dto = new MemberRankDto();
+		try {
+			dto = sqlSession.selectOne(MEMBER_NAMESAPCE+"grade",rank_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return dto;
+	}
+		
 	//회원 상태 변경
 	@Override
 	public int ChangeStatus(String nickname, int status_no) {

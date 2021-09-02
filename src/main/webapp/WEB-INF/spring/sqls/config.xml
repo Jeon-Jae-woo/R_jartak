@@ -6,6 +6,7 @@
 	<typeAliases>
 		<typeAlias type="com.member.dto.MemberDto" alias="memberDto"/>
 		<typeAlias type="com.member.dto.MemberStatusDto" alias="memberStatusDto"/>
+		<typeAlias type="com.member.dto.MemberRankDto" alias="memberRankDto"/>
 		<typeAlias type="com.board.report.dto.ReportDto" alias="reportDto"/>
 		<typeAlias type="com.amount.dto.WithdrawalDto" alias="withdrawalDto"/>
 	</typeAliases>

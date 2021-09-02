@@ -39,7 +39,7 @@
             display: flex;
             flex-direction: column ;
             margin-top: 50px;
-
+			height: 68px;
         }
        
         #contents{
@@ -82,3 +82,11 @@
             vertical-align: top;
             border-bottom: 1px solid #ccc;
         }
+        form{
+            display: flex;
+            flex-direction: column ;
+            margin-top: 50px;
+            margin-left: 200px;
+
+        }
+

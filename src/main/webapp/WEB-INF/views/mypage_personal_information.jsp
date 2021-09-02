@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mypage/mypage_peronal_quit.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mypage/mypage_personal.css">
 <body>
    <header>header</header>
     <nav></nav>
@@ -16,15 +16,15 @@
         
         <div id="navi" name="navi">
             <div id="navi_text">
-            <a href="mypage_interest.do">활동</a>
-            <a href="mypage_msg_receive.do">메시지</a>
-            <a href="mypage.do?email=kh@kh.co.kr" style="font-weight:bold ">계정</a>
+	            <a href="mypage_interest.do">활동</a>
+	            <a href="mypage_msg_receive.do">메시지</a>
+	            <a href="mypage.do?email=kh@kh.co.kr" style="font-weight:bold ">계정</a>
              </div>
         </div>
         
         <div id="grid">
             <div id="left-grid">
-                <a href="mypage.do?email=kh@kh.co.kr" style="background-color: lightseagreen;">개인정보관리</a>
+                <a href="mypage.do?email=kh@kh.co.kr" style="background-color: lightseagreen; " >개인정보관리</a>
                 <a href="mypage_quit.do">회원탈퇴</a>
              
             </div>    
@@ -35,7 +35,7 @@
                     <div class="content">
                        <h4 style="margin-left: 10px; ">기본정보입력</h4>
                        <div class="grade-content">
-                           <form action="">
+                           <form action="#">
 
                             <table class="type05">
                                 <tr>
@@ -97,10 +97,9 @@
                     </div>
                     
                     
-                <div>
+                </div>
                   
                     
-
          
                   
             </div>    

@@ -78,7 +78,7 @@
                               </table>
                                 <div class="buttons" style="margin-left: 200px;">
                                     <input type="submit" value="충전신청">
-                                    <input type="button" name="" value="취소"  onclick="">
+                                    <input type="button" name="" value="취소"  onclick="location.href='mypage_emoney.do?emoney=main'">
                                 </div>
 
                             </form>

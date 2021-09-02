@@ -37,7 +37,9 @@
                 
                 <div id=contents>
 
+
                     <div class="content">
+
                        <h4>회원등급</h4>
                        <div class="grade-content">
                         
@@ -46,9 +48,11 @@
                             <div style="border-left: black solid 1px; height: 50px; padding-left: 50px;">
                                 <div>거래횟수 : 0회</div>
                                 <div>거래총액 : ${dto.tx_amount }원</div>
-                            </div>
-                       </div>
+
+                       <h4>거래등급</h4>
+                      
                     </div>
+
 
                     <div class="item">
                        

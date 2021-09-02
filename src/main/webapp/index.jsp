@@ -9,7 +9,7 @@
 <script type="text/javascript">
 	function report(){
 		//세션 및 디테일 페이지에서 유저 아이디를 얻어오고 넘겨줘야 함, controller로 처리되도록 수정 필요
-		window.open("reportForm", "신고", "width=500px, height=500px");
+		window.open("reportForm.log", "신고", "width=500px, height=500px");
 	}
 </script>
 
@@ -22,7 +22,7 @@
 	<button onclick="report();">신고하기</button>
 	
 
-	<a href="main.do">메인테스트</a>
+	<a href="main.do">메.인테스트</a>z
 	<a href="main2.do">메인2테스트</a>
 	
 	
@@ -35,6 +35,11 @@
 	<a href="productAdd.do">경매등록테스트</a>
 
 	<a href="list.do">리스트페이지테스트</a>
+
+
+	<a href="streaming.do">스트리밍페이지테스트</a>
+	
+	
 	
 	<a href="mypage.do?email=kh@kh.co.kr">마이페이지</a>
 

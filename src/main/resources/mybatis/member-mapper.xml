@@ -13,5 +13,25 @@
 		WHERE EMAIL= #{email} AND PASSWORD=#{password}
 	</select>
 	
+	<!-- 회원가입 -->
+	<insert id="join" parameterType="memberDto">
+		INSERT INTO MEMBER VALUES(
+		#{email},
+		#{nickname},
+		#{password},
+		#{gender},
+		#{name},
+		#{birth},
+		SYSDATE,
+		SYSDATE,
+		#{address},
+		#{address_detail},
+		0,
+		0,
+		1,
+		1,
+		1,
+		)
+	</insert>
 </mapper>
  

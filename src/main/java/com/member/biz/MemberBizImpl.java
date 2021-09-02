@@ -29,5 +29,10 @@ public class MemberBizImpl implements MemberBiz {
 
 	}
 
+	@Override
+	public int insert(MemberDto dto) {
+		return memberdao.insert(dto);
+	}
+
 	
 }

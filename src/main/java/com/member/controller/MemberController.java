@@ -1,5 +1,6 @@
 package com.member.controller;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -154,8 +155,20 @@ public class MemberController {
 	public String mypage_grade(String grade) {
 		return "mypage_grade";
 	}
-
 	
+	@ResponseBody
+	@RequestMapping("/update_info.do")
+	public String update_Info(MemberDto dto,Model model) {
+		logger.info("update res");
+		int res = memberbiz.updateInfo(dto);
+		String resultMsg = "";
+		if(res>0) {
+			resultMsg = "<script>alert('success');location.href='mypage.do?email="+dto.getEmail()+"'</script>";
+		}else {
+			resultMsg = "<script>alert('fail');location.href='mypage.do?email="+dto.getEmail()+"'</script>";
+		}
+		return resultMsg;
+	}
 	
 	
 	

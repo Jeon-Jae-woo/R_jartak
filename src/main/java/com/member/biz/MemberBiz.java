@@ -7,4 +7,6 @@ public interface MemberBiz {
 	 public MemberDto login(MemberDto reqMember);
 
 	 public MemberDto selectOne(String email);
+	 
+	 public int updateInfo(MemberDto dto);
 }

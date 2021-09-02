@@ -11,4 +11,6 @@ public interface MemberDao {
 
 	public MemberDto selectOne(String email);
 
+	public int updateInfo(MemberDto dto);
+
 }

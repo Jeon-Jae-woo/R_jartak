@@ -28,5 +28,10 @@
  		FROM MEMBER
  		WHERE EMAIL = trim(#{email})
   	</select>
-  
+  	
+  	<update id="update" parameterType="memberDto">
+  		UPDATE MEMBER
+  		SET NICKNAME=#{nickname}, PASSWORD=#{password}, ADDRESS=#{address}, ADDRESS_DETAIL=#{address_detail}
+  		WHERE EMAIL=#{email}
+  	</update>
   </mapper>

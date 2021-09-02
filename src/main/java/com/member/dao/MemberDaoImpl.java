@@ -37,4 +37,17 @@ public class MemberDaoImpl implements MemberDao {
 
 	}
 
+	@Override
+	public int updateInfo(MemberDto dto) {
+		int res = 0;
+		try {
+			res = sqlSession.update(MYPAGE_NAMESPACE+"update",dto);
+		} catch (Exception e) {
+			System.out.println("[error] : update");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
 }

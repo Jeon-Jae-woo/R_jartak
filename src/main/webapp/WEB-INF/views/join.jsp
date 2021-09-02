@@ -10,7 +10,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>join</title>
+<!-- daum 도로명 api -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -115,16 +119,13 @@
 	
 	var address = $('#addressDetail');
 	
-	//id 중복확인
+	
 	$(document).ready(function() { 
 	var address = $('#addressDetail');
-	
+	//email 중복확인
 	
 	
 	});
-
-
-
 
 
 </script>
@@ -135,7 +136,7 @@
 	
 	<div id="joinBody">
 		<div>
-			<form action="" method="post">
+			<form action="join.do" id="usercheck" name="member" method="post">
 				<div class="loginForm">
 					<h2>회원가입</h2>
 					<div id="">

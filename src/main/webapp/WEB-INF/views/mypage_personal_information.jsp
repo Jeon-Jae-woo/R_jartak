@@ -30,10 +30,6 @@ $(function(){
 
 });
 
-function updateInfo(){
-	
-	
-}
 
 
 function execPostCode() {
@@ -112,7 +108,7 @@ function execPostCode() {
                     <div class="content">
                        <h4 style="margin-left: 10px; ">기본정보입력</h4>
                        <div class="grade-content">
-                           <form action="update_info.do">
+                           <form action="update_info.do" method="get">
 
                             <table class="type05">
                                 <tr>
@@ -134,7 +130,6 @@ function execPostCode() {
                                 <tr>
                                     <th>비밀번호확인*</th>
                                     <td>
-<!--                                         <input type="password" id="user_pw2" name="user_pw2"> -->
 										<div><input type="password"  id="pwd2" class="form-control" value="${dto.password }" required></div>
 										 <div class="alert-success" id="alert-success">비밀번호가 일치합니다.</div>
 										 <div class="alert-success" id="alert-wrong">비밀번호가 일치하지 않습니다.</div>

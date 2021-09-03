@@ -34,4 +34,9 @@
   		SET NICKNAME=#{nickname}, PASSWORD=#{password}, ADDRESS=#{address}, ADDRESS_DETAIL=#{address_detail}
   		WHERE EMAIL=#{email}
   	</update>
+  	
+  	<delete id="deleteInfo" parameterType="String">
+  		DELETE FROM MEMBER
+  		WHERE EMAIL=#{email}
+  	</delete>
   </mapper>

@@ -12,4 +12,6 @@ public interface MemberBiz {
 	 public int updateInfo(MemberDto dto);
 	 
 	 public MemberRankDto rank(int rank_no);
+	 
+	 public int deleteInfo(String email);
 }

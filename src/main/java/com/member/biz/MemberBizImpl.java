@@ -39,5 +39,10 @@ public class MemberBizImpl implements MemberBiz {
 		return memberdao.rank(rank_no);
 	}
 
+	@Override
+	public int deleteInfo(String email) {
+		return memberdao.deleteInfo(email);
+	}
+
 	
 }

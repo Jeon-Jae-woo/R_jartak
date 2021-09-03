@@ -30,8 +30,18 @@ public class MemberBizImpl implements MemberBiz {
 	}
 
 	@Override
+	public int updateInfo(MemberDto dto) {
+		return memberdao.updateInfo(dto);
+	}
+
+
 	public MemberRankDto rank(int rank_no) {
 		return memberdao.rank(rank_no);
+	}
+
+	@Override
+	public int deleteInfo(String email) {
+		return memberdao.deleteInfo(email);
 	}
 
 	

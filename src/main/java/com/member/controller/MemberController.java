@@ -1,5 +1,6 @@
 package com.member.controller;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,9 +50,7 @@ public class MemberController {
 		logger.info("LOGIN CONTROLLER");
 
 		MemberDto loginMember = memberbiz.login(reqMember);
-		
 		Map<String,Object> data = new HashMap<String, Object>();
-		
 		if(loginMember==null) {
 			data.put("status_code", HttpStatus.UNAUTHORIZED); // 401
 			return data;
@@ -80,17 +79,43 @@ public class MemberController {
 		return "alert";
 	}
 	
+	//마이페이지-회원정보조회
 	@RequestMapping("/mypage.do")
-	public String mypage(Model model,String email) {
-		
+	public String mypage(Model model,HttpSession session, HttpServletRequest request) {
+		session = request.getSession();
+		String email = (String)session.getAttribute("email");
 		model.addAttribute("dto",memberbiz.selectOne(email));
 		return "mypage_personal_information";
 	}
 	
+	//회원탈퇴페이지
 	@RequestMapping("/mypage_quit.do")
-	public String mypage_quit() {
+	public String mypage_quit(Model model, HttpSession session, HttpServletRequest request) {
+		session = request.getSession();
+		String email = (String)session.getAttribute("email");
+		MemberDto dto = memberbiz.selectOne(email);
+		model.addAttribute("dto",dto);
 		
 		return "mypage_personal_quit";
+	}
+	//회원정보삭제(탈퇴)
+	@ResponseBody
+	@RequestMapping(value="/deleteInfo.do",method=RequestMethod.GET)
+	public String delete(HttpSession session,HttpServletRequest request) {
+		logger.info("delete res");
+		session = request.getSession();
+		String email = (String)session.getAttribute("email");
+		System.out.println("email="+email);
+		int res = memberbiz.deleteInfo(email);
+		String resultMsg="";
+		if(res>0) {
+			resultMsg="<script>alert('SUCCESS!');location.href='logout'</script>";
+		}else {
+			resultMsg="<script>alert('FAIL!');location.href='mypage_quit.do?'</script>";
+
+		}
+		
+		return resultMsg;
 	}
 	
 	@RequestMapping("/mypage_msg_receive.do")
@@ -176,10 +201,23 @@ public class MemberController {
 		
 		return "mypage_grade";
 	}
+	
+	//회원정보변경
+	@ResponseBody
+	@RequestMapping(value="/update_info.do")
+	public String update_Info(MemberDto dto,Model model) {
+		logger.info("update res");
+		int res = memberbiz.updateInfo(dto);
+		String resultMsg = "";
+		if(res>0) {
+			resultMsg = "<script>alert('SUCCESS!');location.href='mypage.do?email="+dto.getEmail()+"'</script>";
+		}else {
+			resultMsg = "<script>alert('FAIL!');location.href='mypage.do?email="+dto.getEmail()+"'</script>";
+		}
+		return resultMsg;
+	}
+	
 
-	
-	
-	
 	
 	
 	

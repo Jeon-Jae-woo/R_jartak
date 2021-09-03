@@ -49,7 +49,6 @@ public class MemberController {
 	public @ResponseBody Map<String, Object> login(HttpSession session, @RequestBody MemberDto reqMember) {
 		logger.info("LOGIN CONTROLLER");
 
-		System.out.println(reqMember.getEmail()+reqMember.getPassword());
 		MemberDto loginMember = memberbiz.login(reqMember);
 		Map<String,Object> data = new HashMap<String, Object>();
 		if(loginMember==null) {
@@ -83,9 +82,8 @@ public class MemberController {
 	//마이페이지-회원정보조회
 	@RequestMapping("/mypage.do")
 	public String mypage(Model model,HttpSession session, HttpServletRequest request) {
-//		session = request.getSession();
-//		String email = (String)session.getAttribute("email");
-		String email = "1";
+		session = request.getSession();
+		String email = (String)session.getAttribute("email");
 		model.addAttribute("dto",memberbiz.selectOne(email));
 		return "mypage_personal_information";
 	}
@@ -111,9 +109,9 @@ public class MemberController {
 		int res = memberbiz.deleteInfo(email);
 		String resultMsg="";
 		if(res>0) {
-			resultMsg="<script>alert('success');location.href='main.do?'</script>";
+			resultMsg="<script>alert('SUCCESS!');location.href='logout'</script>";
 		}else {
-			resultMsg="<script>alert('fail');location.href='mypage_quit.do?'</script>";
+			resultMsg="<script>alert('FAIL!');location.href='mypage_quit.do?'</script>";
 
 		}
 		
@@ -206,15 +204,15 @@ public class MemberController {
 	
 	//회원정보변경
 	@ResponseBody
-	@RequestMapping("/update_info.do")
+	@RequestMapping(value="/update_info.do")
 	public String update_Info(MemberDto dto,Model model) {
 		logger.info("update res");
 		int res = memberbiz.updateInfo(dto);
 		String resultMsg = "";
 		if(res>0) {
-			resultMsg = "<script>alert('success');location.href='mypage.do?email="+dto.getEmail()+"'</script>";
+			resultMsg = "<script>alert('SUCCESS!');location.href='mypage.do?email="+dto.getEmail()+"'</script>";
 		}else {
-			resultMsg = "<script>alert('fail');location.href='mypage.do?email="+dto.getEmail()+"'</script>";
+			resultMsg = "<script>alert('FAIL!');location.href='mypage.do?email="+dto.getEmail()+"'</script>";
 		}
 		return resultMsg;
 	}

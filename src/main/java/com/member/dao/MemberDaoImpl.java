@@ -21,7 +21,6 @@ public class MemberDaoImpl implements MemberDao {
 		MemberDto loginMember = null;
 		
 		loginMember = sqlSession.selectOne(MEMBER_NAMESAPCE+"login", reqMember);
-		System.out.println("dao에서의 확인"+reqMember.getEmail());
 		return loginMember;
 
 	}

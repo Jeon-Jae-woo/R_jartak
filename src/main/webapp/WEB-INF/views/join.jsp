@@ -124,6 +124,202 @@
 	var address = $('#addressDetail');
 	//email 중복확인
 	
+	$('form').on('submit',function(){
+		var inval_Arr = new Array(8).fill(false);
+		if(($('#password').val()==($('passwordVer').val()))
+				&& pwJ.test($('password').val())){
+			inval_Arr[1] = true;
+		}else{
+			inval_Arr[1] = false;
+			alert('비밀번호를 입력하세요');
+			return false;
+		}
+	//이름 정규식
+	if(nameJ.test($('#name').val())){
+		inval_Arr[2] = true;
+		
+	}else{
+		inval_Arr[2] = false;
+		alert('이름을 확인하세요');
+		return false;
+		
+	}
+	//생일 정규식
+	if(birthJ){
+		console.log(birthJ);
+		inval_Arr[3] = true;
+	}else{
+		inval_Arr[3] = false;
+		alert('생년월일을 확인하세요');
+		return false;
+		
+	}
+	//성별
+	if(member.gender[0].checkde==false&&member.gender[1].checked==false){
+		inval.Arr[4] = false;
+		alert('성별을 확인하세요');
+		return false;
+	}else{
+		inval_Arr[4] = true;
+	}
+	//주소 확인
+	if(address.val() == ''){
+		inval_val[5] = false;
+		alert('주소를 확인하세요');
+		return false;
+	}else{
+		inval_Arr[5] = true;
+	
+	
+	//전체유효성
+	var validAll =true;
+	for(var i=0;i < inval_Arr.length;i++){
+		validAll = false;
+	}
+	}
+	if(validAll=true){
+		alert('저희와 함께해주셔서 감사합니다');
+	}else{
+		alert('정보를 다시 확인하세요');
+	}
+	
+	});
+	
+	//비밀번호 
+	$('#password').blur(function(){
+		if(pwJ.test($('#password').val())){
+			console.log('true');
+			$('#pw_check').text('');
+		}else{
+			console.log('false');
+			$('#pw_check').text('4~12자의 숫자, 문자로만 사용 가능합니다');
+			$('#pw_check').css('color','red');
+		}
+		
+	});
+	
+	//비밀번호 일치 확인
+	$('#passwordVer').blur(function(){
+		if($('#password').val()!=$(this).val()){
+			$('#pw2_check').text('비밀번호가 일치하지 않습니다');
+			$('#pw2_check').css('color','red');
+		}else{
+			$('#pw2_check').text('');
+		}
+	});
+	
+	//이름에 특수문자x
+	$('#name').blur(function(){
+		if(nameJ.test($(this).val())){
+			console.log(nameJ.test($(this).val()));
+			$('#name_check').text('');
+		}else{
+			$('#name_check').text('한글2~4자 이내로 입력하세요 (특수기호, 공백 사용 불가)');
+			$('#name_check').css('color','red');
+		}
+	});
+	$('#email').blur(function(){
+		if(mailJ.test($(this).val())){
+			$('#email_check').text('');
+		}else{
+			$('#email_check').text('이메일 양식을 확인해주세요');
+			$('#email_check').css('color','red');
+		}
+	});
+	$("#email").blur(function(){
+		if(mailJ.test($(this).val())){
+			$("#email_check").text('');
+		}else{
+			$('#email_check').text('이메일 양식을 확인해주세요');
+			$('#email_check').css('color','red');
+		}
+	});
+	
+	//생일 유효성 검사
+	var birthJ = false;
+	
+	//생년월일 유요성검사
+	$('#birth').blur(function(){
+		var dateStr = $(this).val();
+		var year = Number(dateStr.substr(0,4));//년도0~4자리까지
+		var month = Number(dateStr.substr(4,2));//4에서 2자리 (월)
+		var day = Number(dateStr.substr(6,2)); //6에서 2자리 (일)
+		var today = new Date();//날짜 변수 선언
+		var yearNow = todat.FullYear(); //올해 연도 
+		
+		if(dateStr.length <= 8){
+			if(year>yearNow || year<1900){
+				
+				$('#birth_check').text('생년월일을 확인해주세요');
+				$('#birth_check').css('color','red');
+			}
+			else if(month<1 ||month>12){
+				$('#birth_check').text('생년월일을 확인해주세요');
+				$('#birth_check').css('color','red');
+			}else if(day <1 || day > 31){
+				$('#birth_check').text('생년월일을 확인해주세요');
+				$('#birth_check').css('color','red');
+			}else if((month==4||month==6||month==9||month==11)&&day==31)			
+				$('#birth_check').text('생년월일을 확인해주세요');
+				$('#birth_check').css('color','red');
+			}else if(month==2){
+				var ispleap = (year%4 == 0 && (year%100!=0||year%400==0));
+			
+				if(day>29 || (day==29&&!ispeap)){
+					$('#birth_check').text('생년월일을 확인해주세요');
+					$('#birth_check').css('color','red');
+				}else{
+					$('#birth_check').text('');
+					birthJ = true;
+				}
+			}else{
+				$('#birth_check').text('생년월일을 확인해주세요');
+				$('#birth_check').css('color','red');
+			}
+			
+			$('phone').blur(function(){
+				if(phoneJ.test($(this).val())){
+					console.log(nameJ.test($(this).val()));
+					$("phone_check").text('');
+				}else{
+					$('#phone_check').text('휴대폰번호를 확인해주세요');
+					$('#phone_check').css('color','red');
+				}
+			});
+		
+	});
+	
+	function execPostCode(){
+		new daum.Postcode({
+			oncompleat: function(data){
+				var fullRoadAddr = data.roadAddress;
+				var extraRoadAddr = '';
+				
+				if(data.bname !== '' && /[동/로/가]$/g.test(data.bname)){
+					extraRoadAddr += data.bname;
+				}
+				if(data.buildingName !== '' && data.apartment === 'Y'){
+					extraRoadAddr +=(extraRoadAddr !== '' ? ','+data.buildingName : data.buildingName);
+				}
+				if(fullRoadAddr !== ''){
+					fullRoadAddr += extraRoadAddr;
+				}
+				
+				console.log(data.zonecode);
+				console.log(fullRoadAddr);
+				
+				$("[name=oddress]").val(data.zonecode);
+				$("[name=address]").val(fullRoadAddr);
+				
+				document.getElementById('oaddress').value = data.zonecode;
+				document.getElementById('address').value = fullRoadAddr;
+				
+			}
+		}).open();
+	}
+	
+	
+	
 	
 	});
 

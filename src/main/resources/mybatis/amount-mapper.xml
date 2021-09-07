@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="amount">
+	
+	<select id="withdrawallist" parameterType="HashMap" resultType="withdrawalDto">
+		SELECT WITHDRAWAL_NO, ACCOUNT_NO, NICKNAME, AMOUNT, WITHDRAWAL_STATUS, CREATED_AT, UPDATED_AT
+		FROM(
+		    SELECT ROWNUM AS RNUM, WITHDRAWAL_NO, ACCOUNT_NO, NICKNAME, AMOUNT, WITHDRAWAL_STATUS, CREATED_AT, UPDATED_AT
+		    FROM(
+		        SELECT WITHDRAWAL_NO, ACCOUNT_NO, NICKNAME, AMOUNT, WITHDRAWAL_STATUS, CREATED_AT, UPDATED_AT
+		        FROM WITHDRAWAL ORDER BY CREATED_AT DESC)
+		    WHERE ROWNUM<![CDATA[ < ]]>#{endRow})
+		WHERE RNUM>=#{startRow}
+	</select>
+	
+	<select id="withdrawalcount" resultType="int">
+		SELECT COUNT(*) FROM WITHDRAWAL
+	</select>
+	
+	<update id="withprocessing" parameterType="HashMap">
+		UPDATE WITHDRAWAL SET WITHDRAWAL_STATUS=#{status} WHERE WITHDRAWAL_NO=#{with_no}
+	</update>
+	
+</mapper>
+ 

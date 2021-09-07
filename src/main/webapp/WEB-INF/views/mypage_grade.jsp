@@ -39,19 +39,20 @@
 
 
                     <div class="content">
-                       <h4>거래등급</h4>
+
+                       <h4>회원등급</h4>
                        <div class="grade-content">
                         
                             <img src="image/general.png">
-                            <span>ooo님의 거래등급은 일반입니다.</span>
+                            <span>${dto.nickname }님의 회원등급은 ${rankDto.rank_name }입니다.</span>
                             <div style="border-left: black solid 1px; height: 50px; padding-left: 50px;">
                                 <div>거래횟수 : 0회</div>
-                                <div>거래총액 : 0원</div>
-                            </div>
-                       </div>
+                                <div>거래총액 : ${dto.tx_amount }원</div>
+
+                       <h4>거래등급</h4>
+                      
                     </div>
 
-       
 
                     <div class="item">
                        

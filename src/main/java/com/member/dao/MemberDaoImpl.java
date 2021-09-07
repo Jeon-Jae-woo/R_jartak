@@ -1,10 +1,14 @@
 package com.member.dao;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.member.dto.MemberDto;
+import com.member.dto.MemberRankDto;
 
 @Repository
 public class MemberDaoImpl implements MemberDao {
@@ -17,7 +21,6 @@ public class MemberDaoImpl implements MemberDao {
 		MemberDto loginMember = null;
 		
 		loginMember = sqlSession.selectOne(MEMBER_NAMESAPCE+"login", reqMember);
-		
 		return loginMember;
 
 	}
@@ -52,5 +55,54 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	
+
+	@Override
+	public int updateInfo(MemberDto dto) {
+		int res = 0;
+		try {
+			res = sqlSession.update(MYPAGE_NAMESPACE+"update",dto);
+		} catch (Exception e) {
+			System.out.println("[error] : update");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+	public MemberRankDto rank(int rank_no) {
+		System.out.println("등급확인");
+		MemberRankDto dto = new MemberRankDto();
+		try {
+			dto = sqlSession.selectOne(MEMBER_NAMESAPCE+"grade",rank_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return dto;
+	}
+		
+	//회원 상태 변경
+	@Override
+	public int ChangeStatus(String nickname, int status_no) {
+		int result = 0;
+		Map<String,Object> data = new HashMap<String, Object>();
+		data.put("nickname", nickname);
+		data.put("status_no", status_no);
+		result = sqlSession.update(MEMBER_NAMESAPCE+"changestatus", data);
+		return result;
+	}
+
+	@Override
+	public int deleteInfo(String email) {
+		int res = 0;
+		System.out.println("[email]:"+email);
+		try {
+			res = sqlSession.delete(MYPAGE_NAMESPACE+"deleteInfo", email);
+		} catch (Exception e) {
+			System.out.println("[error] : delete");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
 
 }

@@ -185,7 +185,7 @@
 					<a class="side_a" href="logout">로그아웃</a>
 				<!-- 로그인했을 경우 -->
 				<% } else{  %>
-					<a class="side_a" href="">마이페이지</a>
+					<a class="side_a" href="mypage.do?email=user01@final.com">마이페이지</a>
 					<a class="side_a" href="logout">로그아웃</a>
 			<% } %>
 				</div>

@@ -8,23 +8,21 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+public class LoginInterceptor implements HandlerInterceptor {
 
-public class AdminInterceptor implements HandlerInterceptor {
-
-	Logger logger = LoggerFactory.getLogger(AdminInterceptor.class);
-
+	Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		//logger가 적용이 안됨 이유는 모름
-		logger.info("[ADMIN INTERCEPTOR]");
+		logger.info("[LOGIN INTERCEPTOR]");
 		
-		System.out.println("admin interceptor");
-		if(request.getSession().getAttribute("email")!=null && (Integer)request.getSession().getAttribute("level_no")==1 ) {
-				return true;
+		System.out.println("login interceptor");
+		if(request.getSession().getAttribute("email") != null) {
+			return true;
 		}
 		
+		response.sendRedirect("loginCheck");
 		return false;
 	}
 

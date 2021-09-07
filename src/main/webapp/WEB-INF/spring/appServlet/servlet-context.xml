@@ -24,11 +24,17 @@
 	</beans:bean>
 	
 	<beans:bean id="adminInterceptor" class="com.interceptor.AdminInterceptor"/>
+	<beans:bean id="loginInterceptor" class="com.interceptor.LoginInterceptor"/>
+	
 	
 	<interceptors>
 		<interceptor>
 			<mapping path="/admin*"></mapping>
 			<beans:ref bean="adminInterceptor" />
+		</interceptor>
+		<interceptor>
+			<mapping path="/*.log"></mapping>
+			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
 	</interceptors>	
 

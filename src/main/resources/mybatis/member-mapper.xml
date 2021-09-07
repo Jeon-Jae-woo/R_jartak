@@ -47,7 +47,11 @@
 		UPDATE MEMBER SET STATUS_NO=#{status_no} WHERE NICKNAME=#{nickname}
 	</update>
 
+<<<<<<< HEAD
 	
 
+=======
+ 
+>>>>>>> d5a96583d3c5190101c177487d6d66adbfd1fc69
 </mapper>
  

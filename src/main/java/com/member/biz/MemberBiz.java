@@ -17,5 +17,9 @@ public interface MemberBiz {
 	 public MemberRankDto rank(int rank_no);
 	 
 	 public int deleteInfo(String email);
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> d5a96583d3c5190101c177487d6d66adbfd1fc69
 }

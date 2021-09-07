@@ -30,10 +30,16 @@ public class MemberBizImpl implements MemberBiz {
 	}
 
 	@Override
+<<<<<<< HEAD
 
 	public int insert(MemberDto dto) {
 		return memberdao.insert(dto);
 	}
+=======
+	public int insert(MemberDto dto) {
+		return memberdao.insert(dto);
+
+>>>>>>> d5a96583d3c5190101c177487d6d66adbfd1fc69
 	public int updateInfo(MemberDto dto) {
 		return memberdao.updateInfo(dto);
 	}

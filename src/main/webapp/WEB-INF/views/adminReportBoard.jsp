@@ -72,7 +72,8 @@
 		});
 		
 	}
-       
+	
+	//window.setTimeout('window.location.reload()', 5000);    
 	    
 </script>
 <link href="resources/css/adminpage.css" rel="stylesheet"/>

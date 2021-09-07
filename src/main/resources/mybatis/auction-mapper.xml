@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="auction">
+
+	<resultMap type="auctionDto" id="auctionlist">
+		<result column="AUCTION_NO" property="auction_no"/>
+		<result column="AUCTION_TYPE_NO" property="auction_type_no"/>
+		<result column="NICKNAME" property="nickname"/>
+		<result column="AUCTION_STATUS_NO" property="auction_status_no"/>
+		<result column="PRODUCT_NAME" property="product_name"/>
+		<result column="AUCTION_TITLE" property="auction_title"/>
+		<result column="PRODUCT_PRICE" property="product_price"/>
+		<result column="BIDDING_UNIT" property="bidding_unit"/>
+		<result column="PRODUCT_IMG" property="product_img"/>
+		<result column="AUCTION_HITS" property="auction_hits"/>
+		<result column="END_DATE" property="remainingTime" typeHandler="com.util.StringTimeTypeHandler"/>	
+	</resultMap>
+
+	<insert id="insertProduct" parameterType="auctionDto">
+		INSERT INTO AUCTION 
+		VALUES(AUCTION_SEQ.NEXTVAL, #{auction_type_no},
+		 #{nickname}, 1, #{product_name}, #{auction_title}, #{auction_content}, #{product_price},
+		 #{bidding_unit}, SYSDATE, TO_DATE(#{endDateStr},'YYYY-MM-DD HH24:MI:SS'),0, #{product_img})
+	</insert>
+
+	<select id="productList" parameterType="HashMap" resultMap="auctionlist">
+		SELECT AUCTION_NO, AUCTION_TYPE_NO, NICKNAME, AUCTION_STATUS_NO, PRODUCT_NAME, AUCTION_TITLE, PRODUCT_PRICE, BIDDING_UNIT, 
+        	PRODUCT_IMG, AUCTION_HITS,END_DATE
+		FROM(
+			SELECT ROWNUM AS RNUM,AUCTION_NO, AUCTION_TYPE_NO, NICKNAME, AUCTION_STATUS_NO, PRODUCT_NAME, AUCTION_TITLE, PRODUCT_PRICE, BIDDING_UNIT, 
+        	PRODUCT_IMG, AUCTION_HITS,END_DATE
+			FROM(
+				SELECT AUCTION_NO, AUCTION_TYPE_NO, NICKNAME, AUCTION_STATUS_NO, PRODUCT_NAME, AUCTION_TITLE, PRODUCT_PRICE, BIDDING_UNIT, 
+        		PRODUCT_IMG, AUCTION_HITS,END_DATE
+				FROM AUCTION WHERE AUCTION_TYPE_NO=#{auctionType})
+			WHERE ROWNUM<![CDATA[ < ]]>#{endRow})
+		WHERE RNUM>=#{startRow}
+	
+	</select>	
+
+</mapper>

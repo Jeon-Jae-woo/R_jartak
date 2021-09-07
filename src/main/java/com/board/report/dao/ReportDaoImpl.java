@@ -45,6 +45,8 @@ public class ReportDaoImpl implements ReportDao {
 	public ReportDto ReportSelectOne(int report_no) {
 		ReportDto reportDetail;
 		reportDetail = sqlSession.selectOne(NAMESPACE+"reportdetail", report_no);
+		
+		
 		return reportDetail;
 	}
 

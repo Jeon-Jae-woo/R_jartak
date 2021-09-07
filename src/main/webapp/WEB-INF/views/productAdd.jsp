@@ -44,7 +44,7 @@
 	<!-- 로그인 유무 확인 -->
 	
 	<!-- 정보 -->
-    <form action="" method="post" enctype="multipart/form-data" id="check">
+    <form action="productAdd.log" method="post" enctype="multipart/form-data" id="check">
     <input type="hidden" name="id" value="${id }">
     <div class="container">
 
@@ -62,7 +62,7 @@
                     <img src="" alt="" id="imgPreview">
                 </div>
                 <div class="file-div ">
-                    <input class="form-control" type="file" name="file" id="imageupload" onchange="getImage(this.value);">
+                    <input class="form-control" type="file" name="uploadImg" id="imageupload" onchange="getImage(this.value);">
                 </div>
             </div>
             
@@ -77,18 +77,28 @@
             <div class="content_title">
                가격입력:
                 <br>
-                <input type="text" class="form-control" name="title" placeholder="시작가격을 입력하세요" id="pdt_name">
+                <input type="text" class="form-control" name="productPrice" placeholder="시작가격을 입력하세요" id="pdt_name">
             </div>
             <div class="content_title">
                입찰단위:
                 <br>
-                <input type="text" class="form-control" name="title" placeholder="입찰단위을 입력하세요" id="pdt_name">
+                <input type="text" class="form-control" name="biddingUnit" placeholder="입찰단위을 입력하세요" id="pdt_name">         
             </div>
-
+            <div class="content_title">
+            <div class="content_title">
+               상품이름:
+                <br>
+                <input type="text" class="form-control" name="productName" placeholder="상품이름을 입력하세요" id="pdt_name">         
+            </div>
+            <div class="content_title">
+               경매 종료 시간:
+                <br>
+                <input type="date" class="form-control" name="endDate"  id="pdt_name"> 
+                <input type="time" class="form-control" name="endTime"  id="pdt_name">           
+            </div>
             <hr>
 
             <div class="content_info">
-                
                 
                 <div>
                     <label for="" class="form-label">즉시구매</label>
@@ -99,10 +109,10 @@
                         
                     </select>
                     <label for="" class="form-label">입찰방식</label>
-                    <select name="bidding" id="bidding" class="form-select">
+                    <select name="auctionType" id="bidding" class="form-select">
                         <option value="" selected>선택하세요</option>
-                        <option value="일반경매">일반경매</option>
-                        <option value="블라인드경매">블라인드경매</option>
+                        <option value="1">일반경매</option>
+                        <option value="2">블라인드경매</option>
                         
                     </select>
                     <label for="" class="form-label">배송방법</label>
@@ -127,7 +137,9 @@
             </div>
         </div>
 
-        
+        <div>
+        	<textarea rows="20" cols="40" name="tempContent"></textarea>
+        </div>
         <!-- web_edotor -->
         <div class="web_editor">
             <div class="product_detail_info">
@@ -142,6 +154,7 @@
                 
                 CKEDITOR.replace( 'ckeditor' ,
                                 {height: 700});
+                UPLOADCARE_PUBLIC_KEY = 'b0d4d56a64e1f511c63f';
                 
             </script>
             

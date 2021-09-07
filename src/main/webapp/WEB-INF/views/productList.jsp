@@ -36,12 +36,10 @@
 <body>
 
 	<!-- header 추가 -->
-
+	<%@ include file="header.jsp"  %> 
 
 <div class="container">
     <!-- header 영역 -->
-
-   
 <!-- navigation 영역 -->
   <div class="navigation">
   
@@ -84,16 +82,13 @@
     <div class="content-product">
         <!-- 첫번째 줄 제품 -->
         <div class="product_list">
-        
-        
 
-				
 						<!-- 여기부터 쭉 반복문 코딩 -->
         
 				            <div class="product_item">
 				                <a href="product.do?command=detail&ptno=${ptdto.product_no }" class="item_inner">
 				                    <div class="product">
-				                        <img class="product_img" src="upload/${ptdto.ptimg_name }${ptdto.ptimg_type}">
+				                        <img class="product_img" src="resources/product/${ptdto.ptimg_name }${ptdto.ptimg_type}">
 				                    </div>
 				                    <div class="title">
 				                        <div class="브랜드">
@@ -112,19 +107,18 @@
 				                <a href="#" class="btn_heart" id="ptno${ptdto.product_no }" onclick="likeProduct('${id}','${ptdto.product_no }');">
 				                </a>
 				            </div>
-				            
-				            
-				            
-				            
-
+              
   </div>
 </div>
 </div>
+				 <div>
+				 	<a href="productAddForm.log">경매 등록</a>
+				 </div>  
 </div>
 
+	<%@ include file="footer.jsp" %>
 </body>
-		<br><br><br><br><br><br><br><br>
-	     <!-- footer 추가 -->
+	     
 
 </html>
 

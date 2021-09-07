@@ -9,9 +9,13 @@ public interface MemberBiz {
 
 	 public MemberDto selectOne(String email);
 	 
+
+	 public int insert(MemberDto dto);
+
 	 public int updateInfo(MemberDto dto);
 	 
 	 public MemberRankDto rank(int rank_no);
 	 
 	 public int deleteInfo(String email);
+ 
 }

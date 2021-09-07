@@ -44,6 +44,20 @@ public class MemberController {
 		return "join";
 	}
 	
+	//회원가입
+	@RequestMapping(value = "/join", method = RequestMethod.GET)
+	public String join(MemberDto dto) {
+		int res = memberbiz.insert(dto);
+		
+		if(res>0) {
+			return "redirect:loginForm";
+		}else {
+			return "redirect:joinForm";
+		}
+		
+		
+	}
+	
 	//로그인
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public @ResponseBody Map<String, Object> login(HttpSession session, @RequestBody MemberDto reqMember) {

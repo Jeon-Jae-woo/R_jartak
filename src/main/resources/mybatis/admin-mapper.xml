@@ -21,6 +21,7 @@
 		<collection property="memberStatus" resultMap="memberStatus"></collection>
 	</resultMap>
 	
+	
 	<select id="memberlist" parameterType="HashMap" resultMap="memberJoinStatus">
 		SELECT EMAIL, NICKNAME, NAME, CREATED_AT, AMOUNT, TX_AMOUNT, STATUS_NO, STATUS_NAME
 		FROM(
@@ -37,6 +38,11 @@
 	<select id="memberlistCount" resultType="int">
 		SELECT COUNT(*) FROM MEMBER
 	</select>
+	
+	<update id="changeStatus" parameterType="HashMap">
+		UPDATE MEMBER SET STATUS_NO=#{status} WHERE EMAIL=#{email} 
+	</update>
+	
 	
 </mapper>
  

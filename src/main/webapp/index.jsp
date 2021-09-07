@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,7 +10,7 @@
 <script type="text/javascript">
 	function report(){
 		//세션 및 디테일 페이지에서 유저 아이디를 얻어오고 넘겨줘야 함, controller로 처리되도록 수정 필요
-		window.open("reportForm", "신고", "width=500px, height=500px");
+		window.open("reportForm.log", "신고", "width=500px, height=500px");
 	}
 </script>
 
@@ -41,7 +42,7 @@
 	
 	
 	
-	<a href="mypage.do?email=kh@kh.co.kr">마이페이지</a>
+	<a href="mypage.do?">마이페이지</a>
 
 </body>
 </html>

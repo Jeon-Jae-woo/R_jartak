@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.member.dao.MemberDao;
 import com.member.dto.MemberDto;
-
+import com.member.dto.MemberRankDto;
 import com.member.dao.MemberDao;
 import com.member.dto.MemberDto;
 
@@ -30,8 +30,23 @@ public class MemberBizImpl implements MemberBiz {
 	}
 
 	@Override
+
 	public int insert(MemberDto dto) {
 		return memberdao.insert(dto);
+	}
+	public int updateInfo(MemberDto dto) {
+		return memberdao.updateInfo(dto);
+	}
+
+
+	public MemberRankDto rank(int rank_no) {
+		return memberdao.rank(rank_no);
+	}
+
+	@Override
+	public int deleteInfo(String email) {
+		return memberdao.deleteInfo(email);
+
 	}
 
 	

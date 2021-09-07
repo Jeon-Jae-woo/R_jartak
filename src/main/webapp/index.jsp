@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -41,10 +42,9 @@
 	
 	
 	
-	<a href="mypage.do?email=kh@kh.co.kr">마이페이지</a>
-	
-	
 	<a href="dateTest">테스트경매날짜</a>
+
+	<a href="mypage.do?">마이페이지</a>
 
 </body>
 </html>

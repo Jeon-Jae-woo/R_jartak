@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -72,7 +72,8 @@
 		});
 		
 	}
-       
+	
+	//window.setTimeout('window.location.reload()', 5000);    
 	    
 </script>
 <link href="resources/css/adminpage.css" rel="stylesheet"/>

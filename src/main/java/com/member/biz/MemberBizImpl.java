@@ -33,7 +33,8 @@ public class MemberBizImpl implements MemberBiz {
 	public int insert(MemberDto dto) {
 		return memberdao.insert(dto);
 	}
-	
+
+	@Override
 	public int updateInfo(MemberDto dto) {
 		return memberdao.updateInfo(dto);
 	}

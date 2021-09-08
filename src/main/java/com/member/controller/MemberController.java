@@ -176,6 +176,8 @@ public class MemberController {
 		
 		return "mypage_grade";
 	}
+	
+	
 
 	
 	

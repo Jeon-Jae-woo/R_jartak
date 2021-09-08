@@ -42,6 +42,8 @@
 	
 	
 	<a href="mypage.do?email=kh@kh.co.kr">마이페이지</a>
+	
+	<a href="message_test.do">메시지 테스트</a>
 
 </body>
 </html>

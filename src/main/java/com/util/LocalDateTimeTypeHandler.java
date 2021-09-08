@@ -25,6 +25,7 @@ public class LocalDateTimeTypeHandler extends BaseTypeHandler<LocalDateTime> {
 			throws SQLException {
 	}
 	
+	//LocalDateTime으로 변환하고 반환
 	@Override
 	public LocalDateTime getNullableResult(ResultSet rs, String columnName) throws SQLException {
 		Timestamp sqlTimestamp = rs.getTimestamp(columnName);

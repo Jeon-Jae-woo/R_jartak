@@ -29,6 +29,10 @@ public class UtilFileUpload {
 			byte[] bytes = uploadfile.getBytes();
 			path = request.getSession().getServletContext().getRealPath(uploadPath);
 			
+			if(! new File(uploadPath).exists()) {
+				new File(uploadPath).mkdirs();
+			}
+			//System.out.println(request.getSession().getServletContext().getRealPath(uploadPath));
 			File file = new File(path, fileName);
 			
 			out = new FileOutputStream(file);

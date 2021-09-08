@@ -13,12 +13,15 @@
 		<typeAlias type="com.board.report.dto.ReportDto" alias="reportDto"/>
 		<typeAlias type="com.amount.dto.WithdrawalDto" alias="withdrawalDto"/>
 		<typeAlias type="com.auction.dto.AuctionDto" alias="auctionDto"/>
+		<typeAlias type="com.auction.dto.AuctionStatusDto" alias="auctionStatusDto"/>
+		<typeAlias type="com.auction.dto.AuctionTypeDto" alias="auctionTypeDto"/>
 		<typeAlias type="com.util.LocalDateTimeTypeHandler" alias="LocalDateTimeTypeHandler"/>
+		<typeAlias type="com.util.StringTimeTypeHandler" alias="StringTimeTypeHandler"/>
+		<typeAlias type="com.util.IntegerTimeTypeHandler" alias="IntegerTimeTypeHandler"/>
 	</typeAliases>
 	
 	<typeHandlers>
 		<typeHandler handler="com.util.LocalDateTimeTypeHandler"/>
-		<typeHandler handler="com.util.StringTimeTypeHandler"/>
 	</typeHandlers>
 	
 	<!-- mapper -->

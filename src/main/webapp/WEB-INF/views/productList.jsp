@@ -41,6 +41,7 @@
 <div class="container">
     <!-- header 영역 -->
 <!-- navigation 영역 -->
+<!--
   <div class="navigation">
   
     <div class="navi-category">
@@ -73,7 +74,7 @@
        
      	
   </div>
-
+-->
 
   
   <!-- main (content)영역 -->
@@ -83,37 +84,46 @@
         <!-- 첫번째 줄 제품 -->
         <div class="product_list">
 
-						<!-- 여기부터 쭉 반복문 코딩 -->
-        
-				            <div class="product_item">
-				                <a href="product.do?command=detail&ptno=${ptdto.product_no }" class="item_inner">
+						<!-- 여기부터 쭉 반복문 코딩 -->		         
+				    <c:choose>
+						<c:when test="${empty productList }">
+							<div>등록된 게시글이 없습니다</div>
+						</c:when>
+						<c:otherwise>
+							<c:forEach var="list" items="${productList}">
+							<div>
+							</div>
+								<div class="product_item">
+				                <a href="productDetail?auction_no=${list.auction_no}" class="item_inner">
 				                    <div class="product">
-				                        <img class="product_img" src="resources/product/${ptdto.ptimg_name }${ptdto.ptimg_type}">
+				                        <img class="product_img" src="resources/product/${list.product_img}">
 				                    </div>
 				                    <div class="title">
 				                        <div class="브랜드">
-				                            <p>product_title</p>
+				                            <p>${list.auction_title }</p>
 				                        </div>
-				                        <div class="productId">김유저1</div>
+				                        <div class="productId">${list.nickname}</div>
 				                    </div>
 				                    <div class="price">
 				                        <div class="amount">
-				                            <b class="num">4000</b>
+				                            <b class="num">${list.product_price }</b>
 				                        <span class="won"><b>원</b></span>
 				                        </div>
-				                        <div class="time">남은시간 00:00</div>
+				                        <div class="time">남은 시간: ${list.remainingTime }</div>
 				                    </div>
 				                </a>
-				                <a href="#" class="btn_heart" id="ptno${ptdto.product_no }" onclick="likeProduct('${id}','${ptdto.product_no }');">
-				                </a>
-				            </div>
-              
+				              
+				            	</div>
+							</c:forEach>
+				</c:otherwise>
+				</c:choose>            
   </div>
 </div>
-</div>
-				 <div>
+ 				 <div>
 				 	<a href="productAddForm.log">경매 등록</a>
 				 </div>  
+</div>
+				
 </div>
 
 	<%@ include file="footer.jsp" %>

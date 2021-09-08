@@ -39,6 +39,28 @@ public class AuctionDaoImpl implements AuctionDao {
 		
 		return productlist;
 	}
+
+	//경매 단일 조회
+	@Override
+	public AuctionDto selectProductDetail(int auction_no) {
+		AuctionDto productDetail = sqlSession.selectOne(NAMESPACE+"productDetail", auction_no);
+		return productDetail;
+	}
+
+	//경매 시간 종료(단일)
+	@Override
+	public int auctionTimeOver(int auction_no) {
+		int result = sqlSession.update(NAMESPACE+"timeOver", auction_no);
+		return result;
+	}
+
+	//경매 시간 종료(리스트)
+	@Override
+	public int auctionTimeOverList() {
+		int result = 0;
+		result = sqlSession.update(NAMESPACE+"timeOverList");	
+		return result;
+	}
 	
 	
 	

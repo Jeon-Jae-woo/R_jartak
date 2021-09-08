@@ -29,7 +29,6 @@ public class StringTimeTypeHandler extends BaseTypeHandler<String> {
 	//남은 시간 계산, 일,시,분 으로 리턴
 	@Override
 	public String getNullableResult(ResultSet rs, String columnName) throws SQLException {
-		System.out.println("String 핸들러");
 		Timestamp sqlTimestamp = rs.getTimestamp(columnName);
 		Date date = new Date(sqlTimestamp.getTime());
 		

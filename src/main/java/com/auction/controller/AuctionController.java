@@ -1,15 +1,22 @@
 package com.auction.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -28,22 +35,25 @@ public class AuctionController {
 	private AuctionBiz auctionbiz;
 	
 	
-	@RequestMapping("/test2")
-	public String test() {
-		return "home";
-	}
-	
-	
+	//경매 디테일
 	@RequestMapping("/productDetail")
-	public String product() {
+	public String product(Model model, @RequestParam("auction_no")int auction_no) {
+		logger.info("[PRODUCT DETAIL]");
+		
+		AuctionDto productDetail = auctionbiz.productDetailBiz(auction_no);
+		model.addAttribute("productDetail", productDetail);
 		return "product";
 	}
 	
+	//경매 리스트
 	@RequestMapping("/productlist")
-	public String list(Model model, @RequestParam("pageNum")int pageNum, @RequestParam("auctionType")int auctionType) {
+	public String list(HttpServletRequest request,Model model, @RequestParam("pageNum")int pageNum, @RequestParam("type")int auctionType) {
 		
-		List<AuctionDto> productList = auctionbiz.selectProductListBiz(pageNum, auctionType);
-		
+		int result = auctionbiz.TimeOutListBiz();
+		List<AuctionDto> productList = null;
+		if(result>0) {
+			productList = auctionbiz.selectProductListBiz(pageNum, auctionType);
+		}
 		model.addAttribute("productList", productList);
 		
 		return "productList";
@@ -61,7 +71,7 @@ public class AuctionController {
 	public String productAdd(Model model, MultipartHttpServletRequest request, 
 			@RequestParam("uploadImg")MultipartFile uploadFile,
 			@RequestParam("title")String title, @RequestParam("productName")String productName,
-			@RequestParam("tempContent")String content, @RequestParam("productPrice")int productPrice,
+			@RequestParam("content")String content, @RequestParam("productPrice")int productPrice,
 			@RequestParam("biddingUnit")int biddingUnit, @RequestParam("auctionType")int auctionType,
 			@RequestParam("endDate")String endDate, @RequestParam("endTime")String endTime
 			) {
@@ -71,7 +81,7 @@ public class AuctionController {
 		//날짜 계산
 		String dateTime = endDate + " " + endTime + ":00";
 		//파일업로드
-		String fileName = utilFileUpload.fileUpload(request, uploadFile, "/resources/product/");
+		String fileName = utilFileUpload.fileUpload(request, uploadFile, "resources/product");
 		//상품 dto
 		AuctionDto auction = new AuctionDto();
 		auction.setAuction_title(title);
@@ -85,17 +95,39 @@ public class AuctionController {
 		auction.setEndDateStr(dateTime);
 		auction.setProduct_img(fileName);
 		
+		System.out.println("content: " + content);
 		
 		int result = auctionbiz.insertProductBiz(auction);
 		
+		
+		model.addAttribute("pageNum",1);
+		model.addAttribute("type",auctionType);
 		if(result>0) {
 			model.addAttribute("msg","경매가 등록되었습니다");
 			model.addAttribute("url", "productlist");
-			return "alert";
+			return "auctionAlert";
 		}else {
 			model.addAttribute("msg","경매 등록에 실패했습니다");
 			model.addAttribute("url", "productAddForm.log");
-			return "alert";
+			return "auctionAlert";
+		}
+		
+	}
+	
+	//경매 종료 컨트롤러
+	@RequestMapping(value="/timeOut", method= RequestMethod.POST)
+	public @ResponseBody Map<String, Object> timeOut(@RequestBody Map<String,Object> auctionData){
+		
+		System.out.println("실행");
+		int result = auctionbiz.TimeOutBiz(auctionData);
+		
+		Map<String,Object> data = new HashMap<String, Object>();
+		if(result>0) {	
+			data.put("status", HttpStatus.OK);
+			return data;
+		}else {
+			data.put("status", HttpStatus.BAD_REQUEST);
+			return data;
 		}
 		
 	}

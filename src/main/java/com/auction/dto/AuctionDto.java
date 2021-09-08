@@ -19,10 +19,14 @@ public class AuctionDto {
 	private String remainingTime;
 	//종료날짜 필드(디테일 전용, 초로 계산해서 보내줌)
 	private int remainingSeconds;
-	//날짜 String
+	//종료 날짜 String
 	private String endDateStr;
+	//시작 날짜 String
+	private String createDateStr;
 	//이미지
 	private String product_img;
+	//현재 가격
+	private int current_price;
 	
 	//JOIN시에 활용
 	private AuctionStatusDto auctionStatus;
@@ -36,7 +40,7 @@ public class AuctionDto {
 	public AuctionDto(int auction_no, int auction_type_no, String nickname, int auction_status_no, String product_name,
 			String auction_title, String auction_content, int product_price, int bidding_unit, LocalDateTime endDate,
 			LocalDateTime created_at, int auction_hits, String remainingTime, int remainingSeconds, String endDateStr,
-			String product_img, AuctionStatusDto auctionStatus, AuctionTypeDto auctionType) {
+			String product_img, AuctionStatusDto auctionStatus, AuctionTypeDto auctionType, String createDateStr, int current_price) {
 		super();
 		this.auction_no = auction_no;
 		this.auction_type_no = auction_type_no;
@@ -56,10 +60,26 @@ public class AuctionDto {
 		this.product_img = product_img;
 		this.auctionStatus = auctionStatus;
 		this.auctionType = auctionType;
+		this.createDateStr = createDateStr;
+		this.current_price = current_price;
 	}
 
-	
-	
+	public int getCurrent_price() {
+		return current_price;
+	}
+
+	public void setCurrent_price(int current_price) {
+		this.current_price = current_price;
+	}
+
+	public String getCreateDateStr() {
+		return createDateStr;
+	}
+
+	public void setCreateDateStr(String createDateStr) {
+		this.createDateStr = createDateStr;
+	}
+
 	public int getAuction_no() {
 		return auction_no;
 	}

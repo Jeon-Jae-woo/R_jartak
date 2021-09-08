@@ -116,7 +116,35 @@
 				            	</div>
 							</c:forEach>
 				</c:otherwise>
-				</c:choose>            
+				</c:choose>
+				
+			<nav class="pull-bottom">
+			<c:set var="pageNum" value="${paging.pageNum }"/>
+			<c:set var="startPage" value="${paging.startPage}"/>
+			<c:set var="endPage" value="${paging.endPage}"/>
+			<c:set var="totalPage" value="${paging.totalPage}"/>
+			<c:set var="itemCount" value="${paging.itemCount}"/>
+				<ul class="pagination">
+					<li>
+			      		<a href="productlist?pageNum=1&type=${auctionType}" aria-label="Previous">
+			        	<span aria-hidden="true">&laquo;</span>
+			      		</a>
+			    	</li>
+					<c:forEach var="item" varStatus="status" begin="${ startPage }" end="${ endPage }" step="1">
+                		<c:if test="${ pageNum == item }">
+                    		<li><a href="productlist?pageNum=1&type=${auctionType }">${ item }</a></li>
+                		</c:if>
+                		<c:if test="${ pageNum != item }">
+		 					<li><a href="productlist?pageNum=${ item }&type=${auctionType}">${ item }</a></li>
+                		</c:if>
+            		</c:forEach>
+            		<li>
+			      		<a href="productlist?pageNum=${totalPage }&type=${auctionType}" aria-label="Next">
+			        	<span aria-hidden="true">&raquo;</span>
+			      		</a>
+			    	</li>
+				</ul>
+			</nav>         
   </div>
 </div>
  				 <div>

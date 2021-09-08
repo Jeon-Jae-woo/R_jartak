@@ -87,5 +87,12 @@
 	<update id="timeOver" parameterType="int">
 		UPDATE AUCTION SET AUCTION_STATUS_NO=3 WHERE AUCTION_NO=#{auction_no}
 	</update>
+	
+	<select id="porductlistCount" parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM AUCTION WHERE AUCTION_TYPE_NO=#{auctionType} AND AUCTION_STATUS_NO=1
+	</select>
+	
+	
+	
 
 </mapper>

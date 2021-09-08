@@ -61,6 +61,13 @@ public class AuctionDaoImpl implements AuctionDao {
 		result = sqlSession.update(NAMESPACE+"timeOverList");	
 		return result;
 	}
+
+	//경매 리스트 카운트
+	@Override
+	public int productListCount(int auctionType) {
+		int count = sqlSession.selectOne(NAMESPACE+"porductlistCount", auctionType);
+		return count;
+	}
 	
 	
 	

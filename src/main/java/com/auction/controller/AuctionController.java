@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.auction.biz.AuctionBiz;
 import com.auction.dto.AuctionDto;
 import com.util.UtilFileUpload;
+import com.util.pagingDto;
 
 @Controller
 public class AuctionController {
@@ -54,7 +55,10 @@ public class AuctionController {
 		if(result>0) {
 			productList = auctionbiz.selectProductListBiz(pageNum, auctionType);
 		}
+		pagingDto paging = auctionbiz.productListCountBiz(pageNum, auctionType);
+		model.addAttribute("paging", paging);
 		model.addAttribute("productList", productList);
+		model.addAttribute("auctionType", auctionType);
 		
 		return "productList";
 	}

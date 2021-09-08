@@ -21,7 +21,6 @@ public class MemberDaoImpl implements MemberDao {
 		MemberDto loginMember = null;
 		
 		loginMember = sqlSession.selectOne(MEMBER_NAMESAPCE+"login", reqMember);
-		
 		return loginMember;
 
 	}
@@ -40,8 +39,35 @@ public class MemberDaoImpl implements MemberDao {
 		return dto;
 
 	}
+	
+	//회원가입
+	@Override
+	public int insert(MemberDto dto) {
+		int res = 0;
+		
+		try {
+			res= sqlSession.insert(MEMBER_NAMESAPCE+"insert",dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+	
+	
 
 	@Override
+	public int updateInfo(MemberDto dto) {
+		int res = 0;
+		try {
+			res = sqlSession.update(MYPAGE_NAMESPACE+"update",dto);
+		} catch (Exception e) {
+			System.out.println("[error] : update");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
 	public MemberRankDto rank(int rank_no) {
 		System.out.println("등급확인");
 		MemberRankDto dto = new MemberRankDto();
@@ -63,6 +89,20 @@ public class MemberDaoImpl implements MemberDao {
 		data.put("status_no", status_no);
 		result = sqlSession.update(MEMBER_NAMESAPCE+"changestatus", data);
 		return result;
+	}
+
+	@Override
+	public int deleteInfo(String email) {
+		int res = 0;
+		System.out.println("[email]:"+email);
+		try {
+			res = sqlSession.delete(MYPAGE_NAMESPACE+"deleteInfo", email);
+		} catch (Exception e) {
+			System.out.println("[error] : delete");
+			e.printStackTrace();
+		}
+		
+		return res;
 	}
 
 }

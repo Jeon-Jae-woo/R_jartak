@@ -14,6 +14,28 @@
 	</select>
 	
 
+	<!-- 회원가입 -->
+	<insert id="join" parameterType="memberDto">
+		INSERT INTO MEMBER VALUES(
+		#{email},
+		#{nickname},
+		#{password},
+		#{gender},
+		#{name},
+		#{birth},
+		SYSDATE,
+		SYSDATE,
+		#{address},
+		#{address_detail},
+		0,
+		0,
+		1,
+		1,
+		1,
+		)
+	</insert>
+
+
 	<select id="grade" parameterType="memberRankDto" resultType="memberRankDto">
 		SELECT RANK_NO, RANK_NAME, RATING_AMOUNT
 		FROM MEMBER_RANK
@@ -25,6 +47,6 @@
 		UPDATE MEMBER SET STATUS_NO=#{status_no} WHERE NICKNAME=#{nickname}
 	</update>
 
-	
+ 
 </mapper>
  

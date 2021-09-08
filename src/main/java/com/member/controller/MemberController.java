@@ -215,6 +215,7 @@ public class MemberController {
 		
 		return "mypage_grade";
 	}
+
 	
 	//회원정보변경
 	@ResponseBody

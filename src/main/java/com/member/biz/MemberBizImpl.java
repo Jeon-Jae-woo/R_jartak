@@ -32,7 +32,7 @@ public class MemberBizImpl implements MemberBiz {
 	@Override
 	public int insert(MemberDto dto) {
 		return memberdao.insert(dto);
-
+	}
 	public int updateInfo(MemberDto dto) {
 		return memberdao.updateInfo(dto);
 	}

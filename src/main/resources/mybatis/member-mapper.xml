@@ -15,7 +15,7 @@
 	
 
 	<!-- 회원가입 -->
-	<insert id="join" parameterType="memberDto">
+	<insert id="insert" parameterType="memberDto">
 		INSERT INTO MEMBER VALUES(
 		#{email},
 		#{nickname},
@@ -29,9 +29,11 @@
 		#{address_detail},
 		0,
 		0,
+		3,
 		1,
-		1,
-		1,
+		0,
+		#{address_detail2}
+		
 		)
 	</insert>
 

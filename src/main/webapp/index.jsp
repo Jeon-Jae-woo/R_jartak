@@ -23,7 +23,7 @@
 	<button onclick="report();">신고하기</button>
 	
 
-	<a href="main.do">메.인테스트</a>z
+	<a href="main.do">메.인테스트</a>
 	<a href="main2.do">메인2테스트</a>
 	
 	
@@ -44,5 +44,10 @@
 	
 	<a href="mypage.do?">마이페이지</a>
 
+
+	
+	
+
+	<a href="join.do?">회원가입</a>
 </body>
 </html>

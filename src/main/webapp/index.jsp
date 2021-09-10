@@ -33,21 +33,29 @@
 
 	<a href="product.do">경매테스트</a>
 	
-	<a href="productAdd.do">경매등록테스트</a>
+	<a href="productAddForm.log">경매등록테스트</a>
 
-	<a href="list.do">리스트페이지테스트</a>
+	<a href="productlist">리스트페이지테스트</a>
 
 
 	<a href="streaming.do">스트리밍페이지테스트</a>
 	
 	
+	<a href="dateTest">테스트경매날짜</a>
+
+
+	<a href="mypage.do?email=kh@kh.co.kr">마이페이지</a>
 	
+	<a href="message_test.do">메시지 테스트</a>
+
 	<a href="mypage.do?">마이페이지</a>
+
 
 
 	
 	
 
 	<a href="join.do?">회원가입</a>
+
 </body>
 </html>

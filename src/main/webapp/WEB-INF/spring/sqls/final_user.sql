@@ -29,6 +29,11 @@ SELECT * FROM member_rank;
 INSERT INTO MEMBER
 VALUES('user01@final.com','USER01','password','M','사용자','20210901','20210901','20210901','주소','상세주소',0,0,3,1,0);
 
+INSERT INTO MEMBER
+VALUES('user02@final.com','USER02','password','F','사용자2','20210902','20210902','20210902','주소','상세주소',0,0,3,1,0);
+
 UPDATE MEMBER SET RANK_NO = 3 WHERE NICKNAME = 'USER01';
+
+SELECT * FROM MESSAGE;
 
 commit;

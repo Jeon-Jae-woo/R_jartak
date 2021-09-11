@@ -12,6 +12,8 @@ public interface MemberDao {
 	public MemberDto login(MemberDto reqMember);
 
 	public MemberDto selectOne(String email);
+	
+	public int insert(MemberDto dto);
 
 	public int updateInfo(MemberDto dto);
 	

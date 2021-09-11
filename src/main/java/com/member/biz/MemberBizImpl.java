@@ -31,6 +31,11 @@ public class MemberBizImpl implements MemberBiz {
 	}
 
 	@Override
+	public int insert(MemberDto dto) {
+		return memberdao.insert(dto);
+	}
+
+	@Override
 	public int updateInfo(MemberDto dto) {
 		return memberdao.updateInfo(dto);
 	}
@@ -43,6 +48,7 @@ public class MemberBizImpl implements MemberBiz {
 	@Override
 	public int deleteInfo(String email) {
 		return memberdao.deleteInfo(email);
+
 	}
 
 	@Override

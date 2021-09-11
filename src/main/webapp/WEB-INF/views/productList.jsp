@@ -36,13 +36,12 @@
 <body>
 
 	<!-- header 추가 -->
-
+	<%@ include file="header.jsp"  %> 
 
 <div class="container">
     <!-- header 영역 -->
-
-   
 <!-- navigation 영역 -->
+<!--
   <div class="navigation">
   
     <div class="navi-category">
@@ -75,7 +74,7 @@
        
      	
   </div>
-
+-->
 
   
   <!-- main (content)영역 -->
@@ -84,47 +83,80 @@
     <div class="content-product">
         <!-- 첫번째 줄 제품 -->
         <div class="product_list">
-        
-        
 
-				
-						<!-- 여기부터 쭉 반복문 코딩 -->
-        
-				            <div class="product_item">
-				                <a href="product.do?command=detail&ptno=${ptdto.product_no }" class="item_inner">
+						<!-- 여기부터 쭉 반복문 코딩 -->		         
+				    <c:choose>
+						<c:when test="${empty productList }">
+							<div>등록된 게시글이 없습니다</div>
+						</c:when>
+						<c:otherwise>
+							<c:forEach var="list" items="${productList}">
+							<div>
+							</div>
+								<div class="product_item">
+				                <a href="productDetail?auction_no=${list.auction_no}" class="item_inner">
 				                    <div class="product">
-				                        <img class="product_img" src="upload/${ptdto.ptimg_name }${ptdto.ptimg_type}">
+				                        <img class="product_img" src="resources/product/${list.product_img}">
 				                    </div>
 				                    <div class="title">
 				                        <div class="브랜드">
-				                            <p>product_title</p>
+				                            <p>${list.auction_title }</p>
 				                        </div>
-				                        <div class="productId">김유저1</div>
+				                        <div class="productId">${list.nickname}</div>
 				                    </div>
 				                    <div class="price">
 				                        <div class="amount">
-				                            <b class="num">4000</b>
+				                            <b class="num">${list.product_price }</b>
 				                        <span class="won"><b>원</b></span>
 				                        </div>
-				                        <div class="time">남은시간 00:00</div>
+				                        <div class="time">남은 시간: ${list.remainingTime }</div>
 				                    </div>
 				                </a>
-				                <a href="#" class="btn_heart" id="ptno${ptdto.product_no }" onclick="likeProduct('${id}','${ptdto.product_no }');">
-				                </a>
-				            </div>
-				            
-				            
-				            
-				            
-
+				              
+				            	</div>
+							</c:forEach>
+				</c:otherwise>
+				</c:choose>
+				
+			<nav class="pull-bottom">
+			<c:set var="pageNum" value="${paging.pageNum }"/>
+			<c:set var="startPage" value="${paging.startPage}"/>
+			<c:set var="endPage" value="${paging.endPage}"/>
+			<c:set var="totalPage" value="${paging.totalPage}"/>
+			<c:set var="itemCount" value="${paging.itemCount}"/>
+				<ul class="pagination">
+					<li>
+			      		<a href="productlist?pageNum=1&type=${auctionType}" aria-label="Previous">
+			        	<span aria-hidden="true">&laquo;</span>
+			      		</a>
+			    	</li>
+					<c:forEach var="item" varStatus="status" begin="${ startPage }" end="${ endPage }" step="1">
+                		<c:if test="${ pageNum == item }">
+                    		<li><a href="productlist?pageNum=1&type=${auctionType }">${ item }</a></li>
+                		</c:if>
+                		<c:if test="${ pageNum != item }">
+		 					<li><a href="productlist?pageNum=${ item }&type=${auctionType}">${ item }</a></li>
+                		</c:if>
+            		</c:forEach>
+            		<li>
+			      		<a href="productlist?pageNum=${totalPage }&type=${auctionType}" aria-label="Next">
+			        	<span aria-hidden="true">&raquo;</span>
+			      		</a>
+			    	</li>
+				</ul>
+			</nav>         
   </div>
 </div>
+ 				 <div>
+				 	<a href="productAddForm.log">경매 등록</a>
+				 </div>  
 </div>
+				
 </div>
 
+	<%@ include file="footer.jsp" %>
 </body>
-		<br><br><br><br><br><br><br><br>
-	     <!-- footer 추가 -->
+	     
 
 </html>
 

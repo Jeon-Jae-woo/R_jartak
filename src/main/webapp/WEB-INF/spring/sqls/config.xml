@@ -2,7 +2,10 @@
 <!DOCTYPE configuration
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+
 <configuration>
+
 	<typeAliases>
 		<typeAlias type="com.member.dto.MemberDto" alias="memberDto"/>
 		<typeAlias type="com.member.dto.MemberStatusDto" alias="memberStatusDto"/>
@@ -10,7 +13,17 @@
 		<typeAlias type="com.board.report.dto.ReportDto" alias="reportDto"/>
 		<typeAlias type="com.amount.dto.WithdrawalDto" alias="withdrawalDto"/>
 		<typeAlias type="com.amount.dto.BankAccountDto" alias="bankAccountDto"/>
+		<typeAlias type="com.auction.dto.AuctionDto" alias="auctionDto"/>
+		<typeAlias type="com.auction.dto.AuctionStatusDto" alias="auctionStatusDto"/>
+		<typeAlias type="com.auction.dto.AuctionTypeDto" alias="auctionTypeDto"/>
+		<typeAlias type="com.util.LocalDateTimeTypeHandler" alias="LocalDateTimeTypeHandler"/>
+		<typeAlias type="com.util.StringTimeTypeHandler" alias="StringTimeTypeHandler"/>
+		<typeAlias type="com.util.IntegerTimeTypeHandler" alias="IntegerTimeTypeHandler"/>
 	</typeAliases>
+	
+	<typeHandlers>
+		<typeHandler handler="com.util.LocalDateTimeTypeHandler"/>
+	</typeHandlers>
 	
 	<!-- mapper -->
 	<mappers>
@@ -19,7 +32,9 @@
 		<mapper resource="/mybatis/mypage-mapper.xml"/>
 		<mapper resource="/mybatis/report-mapper.xml"/>
 		<mapper resource="/mybatis/amount-mapper.xml"/>
+		<mapper resource="/mybatis/auction-mapper.xml"/>
 	</mappers>
 	
+
 
 </configuration>

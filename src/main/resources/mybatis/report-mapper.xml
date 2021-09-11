@@ -5,8 +5,18 @@
  
 <mapper namespace="report">
 	
+	<resultMap type="reportDto" id="reportMap">
+		<result column="REPORT_NO" property="report_no"/>
+		<result column="NICKNAME" property="nickname" />
+		<result column="TARGET_NICKNAME" property="target_nickname" />
+		<result column="REPORT_TYPE" property="report_type" />
+		<result column="REPORT_CONTENT" property="report_content" />
+		<result column="CREATED_AT" property="created_at" typeHandler="com.util.LocalDateTimeTypeHandler" />
+		<result column="UPDATED_AT" property="updated_at" typeHandler="com.util.LocalDateTimeTypeHandler" />
+		<result column="REPORT_TITLE" property="report_title" />
+	</resultMap>
 	
-	<select id="reportList" parameterType="HashMap" resultType="reportDto">
+	<select id="reportList" parameterType="HashMap" resultMap="reportMap">
 		SELECT REPORT_NO, NICKNAME, TARGET_NICKNAME, REPORT_TYPE, REPORT_CONTENT, CREATED_AT, UPDATED_AT, REPORT_TITLE
 			FROM(
     			SELECT ROWNUM AS RNUM, REPORT_NO, NICKNAME, TARGET_NICKNAME, REPORT_TYPE, REPORT_CONTENT, CREATED_AT, UPDATED_AT, REPORT_TITLE
@@ -21,7 +31,7 @@
 		SELECT COUNT(*) FROM REPORT
 	</select>
 	
-	<select id="reportdetail" parameterType="int" resultType="reportDto">
+	<select id="reportdetail" parameterType="int" resultMap="reportMap">
 		SELECT REPORT_NO, NICKNAME, TARGET_NICKNAME, REPORT_TYPE, REPORT_CONTENT, CREATED_AT, UPDATED_AT, REPORT_TITLE
 		FROM REPORT
 		WHERE REPORT_NO=#{report_no}

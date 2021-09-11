@@ -10,6 +10,9 @@ public interface MemberBiz {
 
 	 public MemberDto selectOne(String email);
 	 
+
+	 public int insert(MemberDto dto);
+
 	 public int updateInfo(MemberDto dto);
 	 
 	 public int updateInfo_Emoney(MemberDto dto);
@@ -21,4 +24,5 @@ public interface MemberBiz {
 	 public int insertBank(BankAccountDto bankacc);
 	 
 	 
+ 
 }

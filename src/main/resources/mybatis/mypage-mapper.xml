@@ -39,4 +39,19 @@
   		DELETE FROM MEMBER
   		WHERE EMAIL=#{email}
   	</delete>
+  	
+  	<update id="updateInfoEmoney" parameterType="memberDto">
+  		UPDATE MEMBER
+  		SET AMOUNT = #{amount}
+  	</update>
+  	
+  	
+  	<insert id="insertBank" parameterType="bankAccountDto">
+  		INSERT INTO ACCOUNT 
+  		VALUES(
+  		 ACCOUNT_SEQ.NEXTVAL,#{nickname}, 
+  		 #{bank_no}, 
+  		 #{account_number}
+  		)
+  	</insert>
   </mapper>

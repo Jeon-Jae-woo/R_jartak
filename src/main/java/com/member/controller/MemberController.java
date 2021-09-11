@@ -2,14 +2,17 @@ package com.member.controller;
 
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.amount.biz.AmountBiz;
+import com.amount.dto.BankAccountDto;
 import com.member.biz.MemberBiz;
 import com.member.dto.MemberDto;
 import com.member.dto.MemberRankDto;
@@ -29,6 +34,9 @@ public class MemberController {
 	
 	@Autowired
 	private MemberBiz memberbiz;
+	@Autowired
+	private AmountBiz amountbiz;
+	
 	
 	//로그인 폼 전환
 	@RequestMapping(value="/loginForm", method=RequestMethod.GET)
@@ -78,7 +86,8 @@ public class MemberController {
 		model.addAttribute("url","loginForm");
 		return "alert";
 	}
-	
+
+// --------------  마이페이지 관련------------------------------- 
 	//마이페이지-회원정보조회
 	@RequestMapping("/mypage.do")
 	public String mypage(Model model,HttpSession session, HttpServletRequest request) {
@@ -88,48 +97,9 @@ public class MemberController {
 		return "mypage_personal_information";
 	}
 	
-	//회원탈퇴페이지
-	@RequestMapping("/mypage_quit.do")
-	public String mypage_quit(Model model, HttpSession session, HttpServletRequest request) {
-		session = request.getSession();
-		String email = (String)session.getAttribute("email");
-		MemberDto dto = memberbiz.selectOne(email);
-		model.addAttribute("dto",dto);
-		
-		return "mypage_personal_quit";
-	}
-	//회원정보삭제(탈퇴)
-	@ResponseBody
-	@RequestMapping(value="/deleteInfo.do",method=RequestMethod.GET)
-	public String delete(HttpSession session,HttpServletRequest request) {
-		logger.info("delete res");
-		session = request.getSession();
-		String email = (String)session.getAttribute("email");
-		System.out.println("email="+email);
-		int res = memberbiz.deleteInfo(email);
-		String resultMsg="";
-		if(res>0) {
-			resultMsg="<script>alert('SUCCESS!');location.href='logout'</script>";
-		}else {
-			resultMsg="<script>alert('FAIL!');location.href='mypage_quit.do?'</script>";
 
-		}
-		
-		return resultMsg;
-	}
 	
-	@RequestMapping("/mypage_msg_receive.do")
-	public String msg_receive() {
-		return "mypage_message_receive";
-	}
-	
-	@RequestMapping("/mypage_msg_send.do")
-	public String msg_send() {
-		return "mypage_message_send";
-	}
-	
-	
-
+	//활동-관심상품으로 이동
 	@RequestMapping("/mypage_interest.do")
 	public String mypage_interest() {
 		
@@ -137,6 +107,7 @@ public class MemberController {
 		
 	}
 	
+	//활동-계좌관리로 이동
 	@RequestMapping("/mypage_bankAcc.do")
 	public String mypage_bankAcc() {
 		
@@ -144,6 +115,30 @@ public class MemberController {
 		
 	}
 	
+	//활동-계좌등록기능
+	@RequestMapping("/insertBankAcc.do")
+	public String insertBank(HttpSession session, HttpServletRequest request, String used_bankname,String bank_account) {
+		session = request.getSession();
+		
+		String nickname = (String)session.getAttribute("nickname");
+		System.out.println("used_bankname:"+used_bankname);
+		String account_number = amountbiz.getBankNo(used_bankname);
+		System.out.println(account_number);
+		BankAccountDto bankacc = new BankAccountDto();
+		bankacc.setNickname(nickname);
+		bankacc.setBank_no(account_number);
+		bankacc.setAccount_number(bank_account);
+		int res = memberbiz.insertBank(bankacc);
+		if(res>0) {
+			System.out.println("성공");
+		}else {
+			System.out.println("실패");
+		}
+		
+		return "mypage_bankAccount";
+	}
+	
+	//활동 -구매관리로이동
 	@RequestMapping("/mypage_buy.do")
 	public String mypage_buy(String money) {
 		if(money.equals("end")) {
@@ -157,6 +152,7 @@ public class MemberController {
 		}
 	}
 	
+	//활동-판매페이지이동
 	@RequestMapping("/mypage_sale.do")
 	public String mypage_sale(String sale) {
 		if(sale.equals("end")) {
@@ -170,8 +166,31 @@ public class MemberController {
 		}
 	}
 	
+	//활동-마이페이지-이머니페이지로 이동
 	@RequestMapping("/mypage_emoney.do")
-	public String mypage_emoney(String emoney) {
+	public String mypage_emoney(Model model,HttpSession session,HttpServletRequest request,String emoney) {
+		session = request.getSession();
+		String email = (String)session.getAttribute("email");
+		MemberDto dto = memberbiz.selectOne(email);
+		
+		String nickname= (String) session.getAttribute("nickname");
+		List<BankAccountDto> AccountNoList = amountbiz.getAccountNo(nickname);
+//		System.out.println("AccountNoList.get(1)"+AccountNoList.get(1).toString());
+//		String[] BankNo = new String[AccountNoList.size()];
+//		for(int i= 0; i<AccountNoList.size();i++) {
+//			BankNo[i] = AccountNoList.get(i).getAccount_number();
+//		}
+//		System.out.println(BankNo[0]+BankNo[1]+BankNo[2]);
+		
+//		HashMap<Integer,BankAccount> map = new HashMap<>();
+//		for(int i=0;i<AccountNoList.size();i++) {
+//			map.put(i,AccountNoList.get(i));
+//		}
+//		
+//		System.out.println("map.get(1)=\n"+map.get(1).getAccount_no());
+		
+		model.addAttribute("dto",dto);
+		model.addAttribute("AccountNoList",AccountNoList);
 		if(emoney.equals("main")) {
 			return "mypage_emoney_main";
 		}else if(emoney.equals("charge")) {
@@ -181,6 +200,21 @@ public class MemberController {
 		}
 	}
 	
+	//활동-이머니 충전
+	@RequestMapping(value="/charge.do",method=RequestMethod.GET)
+	@ResponseBody
+	public int charge_emoney(MemberDto dto) {
+		System.out.println("결제금액: "+dto.getAmount()+"email :"+dto.getEmail());		
+		int ChargeEmoney = dto.getAmount();//충전금액
+		int beforeEmoney = (memberbiz.selectOne(dto.getEmail())).getAmount();//현재보유금액
+		int newEmoney = beforeEmoney+ChargeEmoney;//새로운 보유금액 = 현재보유금액 + 충전금액
+		dto.setAmount(newEmoney);//새로운 보유금액을 dto에 저장
+		
+		int res = memberbiz.updateInfo_Emoney(dto);//저장한 금액을 업데이트
+		return res;
+	}
+	
+	//활동-등급관리
 	@RequestMapping("/mypage_grade.do")
 	public String mypage_grade(String grade,HttpServletRequest request,Model model) {
 		HttpSession session = request.getSession();
@@ -202,7 +236,21 @@ public class MemberController {
 		return "mypage_grade";
 	}
 	
-	//회원정보변경
+
+	
+	//메시지-받은메시지로 이동
+	@RequestMapping("/mypage_msg_receive.do")
+	public String msg_receive() {
+		return "mypage_message_receive";
+	}
+	//메시지-보낸메시지로 이동
+	@RequestMapping("/mypage_msg_send.do")
+	public String msg_send() {
+		return "mypage_message_send";
+	}
+	
+	
+	//계정-회원정보변경
 	@ResponseBody
 	@RequestMapping(value="/update_info.do")
 	public String update_Info(MemberDto dto,Model model) {
@@ -216,6 +264,39 @@ public class MemberController {
 		}
 		return resultMsg;
 	}
+	
+	
+	
+	//계정-회원탈퇴페이지
+	@RequestMapping("/mypage_quit.do")
+	public String mypage_quit(Model model, HttpSession session, HttpServletRequest request) {
+		session = request.getSession();
+		String email = (String)session.getAttribute("email");
+		MemberDto dto = memberbiz.selectOne(email);
+		model.addAttribute("dto",dto);
+		
+		return "mypage_personal_quit";
+	}
+	//계정-회원정보삭제(탈퇴)
+	@ResponseBody
+	@RequestMapping(value="/deleteInfo.do",method=RequestMethod.GET)
+	public String delete(HttpSession session,HttpServletRequest request) {
+		logger.info("delete res");
+		session = request.getSession();
+		String email = (String)session.getAttribute("email");
+		System.out.println("email="+email);
+		int res = memberbiz.deleteInfo(email);
+		String resultMsg="";
+		if(res>0) {
+			resultMsg="<script>alert('SUCCESS!');location.href='logout'</script>";
+		}else {
+			resultMsg="<script>alert('FAIL!');location.href='mypage_quit.do?'</script>";
+
+		}
+		
+		return resultMsg;
+	}
+// --------------여기까지  마이페이지 관련------------------------------- 
 	
 
 	

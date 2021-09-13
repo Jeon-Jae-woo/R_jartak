@@ -1,11 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+
+	function withdrawalInfo(){
+		var requiredInfo = $("#bank_info option:selected").text();
+		if( requiredInfo== "" || requiredInfo==null){
+			alert("계좌를 등록해주세요");
+			return;
+		}
+		var withdrawal_amount = $("#withdrawal_amount").val();
+		var account_no = $("#bank_info option:selected").val();
+		var nickname = $("#nickname").val();
+		console.log("withdrawal_amount="+withdrawal_amount+"account_no="+account_no+"nickname="+nickname);
+ 		location.href="insertWithdrawal?withdrawal_amount="+withdrawal_amount+"&account_no="+account_no+"&nickname="+nickname;
+	}
+</script>
 </head>
+
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mypage/mypage_emoney_withdrawal.css">
 
 <body>
@@ -41,38 +60,52 @@
                        <h5 style="margin-left:30px; margin-bottom: 0px; ">출금</h5>
 
                        <div class="grade-content" style="margin-left: 20px;">
-                           <form action="">
 
                             <table class="type05">
                                 <tr>
                                   <th scope="row">e머니 잔액</th>
                                   <td>
-                                        <span>0원</span>
+                                        <span>${dto.amount}원</span>
                                   </td>
                                 </tr>
                                 <tr>
                                   <th scope="row">출금액</th>
-                                  <td><input type="text" id="bank_account" name="banck_account" value=""></td>
+                                  <td><input type="text" id="withdrawal_amount" name="withdrawal_amount"></td>
                                 </tr>
-                                <tr>
-                                  <th scope="row">은행명</th>
-                                  <td>
-                                    <select name="banck_name">
-                                        <option value="shinhan">신한은행</option>
-                                        <option value="kuk">국민은행</option>
-                                        <option value="woori">우리은행</option>
-
-                                    </select>
-                                  </td>
-                                </tr>
+                                
+                                <c:choose>
+                                    <c:when test="${empty AccountNoList}">
+                                 		<tr>
+                                 			<td colspan="2">계좌번호가 없습니다. 등록 후 이용해 주세요</td>
+                                 		</tr>   				
+                                    </c:when>
+                                    <c:otherwise>
+                                    	
+                                    		 <tr>
+				                                  <th scope="row">출금계좌</th>
+				                                  <td>
+				                                  	<input type="hidden" id="nickname" value="${dto.nickname}">
+				                                    <select name="bank_info" id="bank_info">
+				                                    	<c:forEach items="${AccountNoList}" var="list">
+				                                        	<option value="${list.account_no}">은행코드 : ${list.bank_no} 계좌번호: ${list.account_number} </option>
+				                                    	</c:forEach>
+				                                    </select>
+				                                  </td>
+			                                </tr>
+                                    	
+                                    </c:otherwise>
+                                    
+                                    
+                                </c:choose>
+                                
+                             
                                
                               </table>
                                 <div class="buttons" style="margin-left: 200px;">
-                                    <input type="submit" value="출금신청">
+                                    <input type="submit" value="출금신청" onclick="withdrawalInfo();">
                                     <input type="button" name="" value="취소"  onclick="location.href='mypage_emoney.do?emoney=main'">
                                 </div>
 
-                            </form>
                         </div>
 
                        

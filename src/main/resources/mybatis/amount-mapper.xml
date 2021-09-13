@@ -24,5 +24,25 @@
 		UPDATE WITHDRAWAL SET WITHDRAWAL_STATUS=#{status} WHERE WITHDRAWAL_NO=#{with_no}
 	</update>
 	
+	<select id="getBankNo" parameterType="String" resultType="String">
+		SELECT BANK_NO
+		FROM BANK_CODE
+		WHERE BANK_NAME=trim(#{bankName})
+	</select>
+	
+	<select id="getAccountNo" parameterType="String" resultType="bankAccountDto">
+		SELECT ACCOUNT_NO,ACCOUNT_NUMBER,BANK_NO
+		FROM ACCOUNT
+		WHERE NICKNAME=#{nickname}
+	</select>
+	
+	<insert id="insertWithdrawal" parameterType="HashMap">
+		 INSERT INTO WITHDRAWAL
+		 VALUES(
+		 	WITHDRAWAL_SEQ.NEXTVAL,#{account_no},#{nickname},#{withdrawal_amount},'대기'
+		 )		 
+	
+	</insert>
+	
 </mapper>
  

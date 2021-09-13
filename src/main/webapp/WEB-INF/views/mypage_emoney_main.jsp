@@ -44,7 +44,7 @@
                                 </div>
 
                                 <div style="float: right; margin-top: 20px; margin-right: 20px;">
-                                    0원<button onclick="location.href='mypage_emoney.do?emoney=charge'">충전</a></button>
+                                    ${dto.amount}원<button onclick="location.href='mypage_emoney.do?emoney=charge'">충전</a></button>
                                 </div>
                             </div>
 
@@ -57,7 +57,7 @@
                                 </div>
 
                                 <div style="float: right; margin-top: 20px; margin-right: 20px;">
-                                    0원<button onclick="location.href='mypage_emoney.do?emoney=withdrawal'">출금</button>
+                                    ${dto.amount}원<button onclick="location.href='mypage_emoney.do?emoney=withdrawal'">출금</button>
                                 </div>
                             </div>
                         </div>

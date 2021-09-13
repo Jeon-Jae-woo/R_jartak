@@ -134,41 +134,4 @@ a,a:hover,a:link,a:visited,a:focus{
   }
 
   
-  /* naver_blog -----------------------------------------------------------*/
-
-  .naver_blog{
-
-  }
-
-  .naver_blog_title{
-    font-size: 30px;
-    text-align: center;
-    font-weight: 400;
-  }
-
-  .naver_blog_info{
-    margin: 100px;
-  }
-
-  .bloggername{
-    font-weight: 100;
-    font-size: 12px;
-
-  }
-
-  .blog_title{
-    font-weight: 450;
-    font-size: 20px;
-  }
-
-  .blog_info{
-    font-weight: 200;
-    font-size: 14px;
-  }
-
-  .postdate{
-    font-weight: 100;
-    font-size: 10px;
-
-
-  }
+ 

@@ -34,6 +34,7 @@ public class MemberBizImpl implements MemberBiz {
 		return memberdao.insert(dto);
 	}
 
+
 	@Override
 	public int updateInfo(MemberDto dto) {
 		return memberdao.updateInfo(dto);

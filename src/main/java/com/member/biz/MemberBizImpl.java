@@ -53,6 +53,11 @@ public class MemberBizImpl implements MemberBiz {
 	}
 
 	@Override
+	public MemberDto selectOneNickBiz(String nickname) {
+		MemberDto dto = memberdao.selectOneNick(nickname);
+		return dto;
+	}
+	
 	public int updateInfo_Emoney(MemberDto dto) {
 		return memberdao.updateInfo_Emoney(dto) ;
 	}

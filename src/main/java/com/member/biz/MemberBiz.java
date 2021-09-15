@@ -21,8 +21,11 @@ public interface MemberBiz {
 	 
 	 public int deleteInfo(String email);
 	 
+	 //닉네임 회원 조회
+	 public MemberDto selectOneNickBiz(String nickname);
+
 	 public int insertBank(BankAccountDto bankacc);
 	 
-	 
+
  
 }

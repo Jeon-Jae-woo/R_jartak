@@ -27,6 +27,9 @@ public class AuctionDto {
 	private String product_img;
 	//현재 가격
 	private int current_price;
+
+	private String high_bidder;
+	
 	
 	//JOIN시에 활용
 	private AuctionStatusDto auctionStatus;
@@ -40,7 +43,7 @@ public class AuctionDto {
 	public AuctionDto(int auction_no, int auction_type_no, String nickname, int auction_status_no, String product_name,
 			String auction_title, String auction_content, int product_price, int bidding_unit, LocalDateTime endDate,
 			LocalDateTime created_at, int auction_hits, String remainingTime, int remainingSeconds, String endDateStr,
-			String product_img, AuctionStatusDto auctionStatus, AuctionTypeDto auctionType, String createDateStr, int current_price) {
+			String product_img, AuctionStatusDto auctionStatus, AuctionTypeDto auctionType, String createDateStr, int current_price, String high_bidder) {
 		super();
 		this.auction_no = auction_no;
 		this.auction_type_no = auction_type_no;
@@ -62,6 +65,15 @@ public class AuctionDto {
 		this.auctionType = auctionType;
 		this.createDateStr = createDateStr;
 		this.current_price = current_price;
+		this.high_bidder = high_bidder;
+	}
+
+	public String getHigh_bidder() {
+		return high_bidder;
+	}
+
+	public void setHigh_bidder(String high_bidder) {
+		this.high_bidder = high_bidder;
 	}
 
 	public int getCurrent_price() {

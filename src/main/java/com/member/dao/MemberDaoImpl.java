@@ -107,6 +107,12 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
+	public MemberDto selectOneNick(String nickname) {
+		MemberDto dto = sqlSession.selectOne(MEMBER_NAMESAPCE+"selectOneNick", nickname);
+		return dto;
+	}
+
+
 	public int updateInfo_Emoney(MemberDto dto) {
 		int res = 0;
 		try {
@@ -124,7 +130,6 @@ public class MemberDaoImpl implements MemberDao {
 		res = sqlSession.insert(MYPAGE_NAMESPACE+"insertBank",bankacc);
 		return res;
 	}
-
 
 
 }

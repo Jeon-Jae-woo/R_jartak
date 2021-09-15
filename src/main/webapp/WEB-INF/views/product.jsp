@@ -41,7 +41,7 @@
 		var startPrice = '${productDetail.product_price}';
 		document.getElementById("startPrice").innerHTML = "<b>시작가</b> : " + startPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + "원";
 		var biddingUnit = '${productDetail.bidding_unit}';
-		document.getElementById("startPrice").innerHTML = "<b>입찰가</b> : " + biddingUnit.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + "원";
+		document.getElementById("startPrice").innerHTML = "<b>입찰 단위</b> : " + biddingUnit.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + "원";
 		
 		if(product_status==1){
 			var x = setInterval(function(){
@@ -103,6 +103,63 @@
 			}
 		});
 	}
+	
+	//입찰 처리
+	function bids(){
+		//경매 번호, 현재 가격, 입찰 단위
+		var auction_no = '${productDetail.auction_no }';
+		var current_price = parseInt('${productDetail.current_price}');
+		var biddingUnit = parseInt('${productDetail.bidding_unit}');
+		
+		//입찰 금액
+		var bid_price = parseInt(document.getElementById("bidPrice").value);
+		
+		//입찰 금액보다 낮은 금액인 경우 처리하지 않음
+		if((current_price+biddingUnit) > bid_price){
+			alert("입찰가능 금액보다 적은 금액을 입력하셨습니다");
+			return;
+		}
+		//입찰 단위 체크
+		var temp = current_price - bid_price;
+		if(temp%biddingUnit != 0){
+			alert("입찰단위 금액에 맞지 않습니다");
+			return;
+		}
+		
+		var bidsData = {
+				"auction_no":auction_no,
+				"current_price":current_price,
+				"bid_price":bid_price
+		};
+		
+		var bidParsing = bid_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + "원";
+		if(confirm(bidParsing + " 금액에 입찰 하시겠습니까?") == true){
+			$.ajax({
+				type:"POST",
+				url:"bid",
+				data:JSON.stringify(bidsData),
+				contentType:"application/json",
+				dataType:"json",
+				success:function(data){
+					if(data.status == 'UNAUTHORIZED'){
+						alert("로그인 후 이용해주세요");
+						document.location.href = "loginForm";
+					}else{
+						alert(data.message);
+						window.location.reload();
+					}
+				},
+				error:function(){
+					alert("서버 에러");
+				}
+			});
+		}else{
+			return false;
+		}
+		
+
+		
+	}
 
 </script>
     <title>상품</title>
@@ -138,7 +195,7 @@
                         <hr>
                         <div class="userinfo">
                             <p><b>판매자ID</b> : ${productDetail.nickname } </p>
-                            <p> silver<b>등급</b> </p>
+                            <p> ${rank.rank_name} <b>등급</b> </p>
                             
                         </div>
                         <hr>
@@ -147,20 +204,20 @@
                         <p id="startPrice"></p>
                         <p id="biddingUnit"></p>
                         <p><b>즉시구매</b> : ?</p>
-                        <p><b>최고입찰자</b> : ?</p>
+                        <p><b>최고입찰자</b> : ${productDetail.high_bidder }</p>
                         <p><b>입찰방식</b> : ${productDetail.auctionType.auction_type_name } 경매</p>
                         <p><b>입찰 수</b> : ? <input type="button" value="경매기록보고 > "></p>
                         <hr>
                        	<p><b>배송방법</b> : ?</p>
-                        
+                        <p><b>입찰 :  </b><input id="bidPrice" type="number" placeholder="입찰 금액을 적어주세요"/> 원</p>
                     </div>
                 </div>
             	<div class="state">
             	
             			<div class="btns">
                         
-                        
-                    	<button type="button" class="btn btn-primary btn-lg" onclick="location.href=''" >입찰하기</button>
+                     
+                    	<button type="button" class="btn btn-primary btn-lg" onclick="bids();" >입찰하기</button>
                     	<button type="button" class="btn btn-secondary btn-lg" onclick="location.href=''">방송보기</button>
                     	
                     	</div>

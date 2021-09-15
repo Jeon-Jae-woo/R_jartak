@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="bids">
+	
+	<!-- 입찰 조회 -->
+	<select id="selectOne" parameterType="HashMap" resultType="bidsDto">
+		SELECT BID_NO, NICKNAME, AUCTION_NO, BID_PRICE, BIDDING_TIME
+		FROM BIDS
+		WHERE (NICKNAME = #{nickname}) AND (AUCTION_NO = #{auction_no})
+	</select>
+	
+	<!-- 회원 금액 갱신( 입찰자 - )  -->
+	<update id="minusUpdateAmount" parameterType="HashMap">
+		UPDATE MEMBER SET AMOUNT = (AMOUNT - #{bid_price}) WHERE NICKNAME = #{nickname}
+	</update>
+	<!-- 회원 금액 갱신( 최고 입찰자 + ) -->
+	<update id="plusUpdateAmount">
+		UPDATE MEMBER SET AMOUNT = (AMOUNT + #{bid_price}) WHERE NICKNAME = #{nickname}
+	</update>
+	
+	<!-- 최초 입찰 등록 -->
+	<insert id="firstInsert" parameterType="HashMap">
+		INSERT INTO BIDS VALUES(BIDS_SEQ.NEXTVAL, #{nickname}, #{auction_no}, #{bid_price}, SYSDATE)
+	</insert>
+	
+	<!-- 등록된 입찰 갱신 -->
+	<update id="updateBids" parameterType="HashMap">
+		UPDATE BIDS SET BID_PRICE = #{bid_price}, BIDDING_TIME = SYSDATE
+		WHERE AUCTION_NO = #{auction_no} AND NICKNAME = #{nickname}
+	</update>
+	
+	<!-- 경매 현재가 및 최고 입찰자 갱신 -->
+	<update id="auctionUpdate" parameterType="HashMap">
+		UPDATE AUCTION SET CURRENT_PRICE = #{current_price}, HIGH_BIDDER=#{nickname} WHERE AUCTION_NO = #{auction_no}
+	</update>
+	
+</mapper>
+
+
+

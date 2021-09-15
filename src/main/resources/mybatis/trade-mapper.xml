@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="trade">
+	
+	<insert id="tradeInsert" parameterType="tradeDto">
+		INSERT INTO TRADE 
+		VALUES(TRADE_SEQ.NEXTVAL, 1, #{bid_no}, #{auction_no}, #{bidder_nickname}, #{seller}, #{final_bid_price})
+	</insert>
+	
+	
+</mapper>

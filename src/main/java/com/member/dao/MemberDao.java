@@ -18,8 +18,10 @@ public interface MemberDao {
 
 	public MemberRankDto rank(int rank_no);
 
-	//회원 상태 변경, nickname으로 찾고 변경, 이메일로 필요하면 오버로딩
+	//회원 상태 변경, nickname으로 찾고 변경
 	public int ChangeStatus(String nickname, int status_no);
 
 	public int deleteInfo(String email);
+	
+	public MemberDto selectOneNick(String nickname);
 }

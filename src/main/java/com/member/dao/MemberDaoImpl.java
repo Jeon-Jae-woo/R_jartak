@@ -105,4 +105,10 @@ public class MemberDaoImpl implements MemberDao {
 		return res;
 	}
 
+	@Override
+	public MemberDto selectOneNick(String nickname) {
+		MemberDto dto = sqlSession.selectOne(MEMBER_NAMESAPCE+"selectOneNick", nickname);
+		return dto;
+	}
+
 }

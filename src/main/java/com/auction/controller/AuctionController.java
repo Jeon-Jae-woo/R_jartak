@@ -22,6 +22,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.auction.biz.AuctionBiz;
 import com.auction.dto.AuctionDto;
+import com.member.biz.MemberBiz;
+import com.member.dto.MemberDto;
+import com.member.dto.MemberRankDto;
 import com.util.UtilFileUpload;
 import com.util.pagingDto;
 
@@ -34,7 +37,8 @@ public class AuctionController {
 	private UtilFileUpload utilFileUpload;
 	@Autowired
 	private AuctionBiz auctionbiz;
-	
+	@Autowired
+	private MemberBiz memberbiz;
 	
 	//경매 디테일
 	@RequestMapping("/productDetail")
@@ -43,6 +47,11 @@ public class AuctionController {
 		
 		AuctionDto productDetail = auctionbiz.productDetailBiz(auction_no);
 		model.addAttribute("productDetail", productDetail);
+		
+		MemberDto member = memberbiz.selectOneNickBiz(productDetail.getNickname());
+		MemberRankDto rank = memberbiz.rank(member.getRank_no());
+		model.addAttribute("rank", rank);
+		
 		return "product";
 	}
 	
@@ -122,7 +131,6 @@ public class AuctionController {
 	@RequestMapping(value="/timeOut", method= RequestMethod.POST)
 	public @ResponseBody Map<String, Object> timeOut(@RequestBody Map<String,Object> auctionData){
 		
-		System.out.println("실행");
 		int result = auctionbiz.TimeOutBiz(auctionData);
 		
 		Map<String,Object> data = new HashMap<String, Object>();

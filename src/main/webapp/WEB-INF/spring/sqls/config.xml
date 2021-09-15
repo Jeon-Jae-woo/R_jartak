@@ -15,9 +15,13 @@
 		<typeAlias type="com.auction.dto.AuctionDto" alias="auctionDto"/>
 		<typeAlias type="com.auction.dto.AuctionStatusDto" alias="auctionStatusDto"/>
 		<typeAlias type="com.auction.dto.AuctionTypeDto" alias="auctionTypeDto"/>
+		<typeAlias type="com.bids.dto.BidsDto" alias="bidsDto"/>
+		<typeAlias type="com.trade.dto.TradeDto" alias="tradeDto"/>
+		
 		<typeAlias type="com.util.LocalDateTimeTypeHandler" alias="LocalDateTimeTypeHandler"/>
 		<typeAlias type="com.util.StringTimeTypeHandler" alias="StringTimeTypeHandler"/>
 		<typeAlias type="com.util.IntegerTimeTypeHandler" alias="IntegerTimeTypeHandler"/>
+		
 	</typeAliases>
 	
 	<typeHandlers>
@@ -32,6 +36,9 @@
 		<mapper resource="/mybatis/report-mapper.xml"/>
 		<mapper resource="/mybatis/amount-mapper.xml"/>
 		<mapper resource="/mybatis/auction-mapper.xml"/>
+		<mapper resource="/mybatis/bids-mapper.xml"/>
+		<mapper resource="/mybatis/trade-mapper.xml"/>
+		
 	</mappers>
 	
 

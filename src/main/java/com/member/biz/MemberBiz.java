@@ -17,5 +17,8 @@ public interface MemberBiz {
 	 public MemberRankDto rank(int rank_no);
 	 
 	 public int deleteInfo(String email);
+	 
+	 //닉네임 회원 조회
+	 public MemberDto selectOneNickBiz(String nickname);
  
 }

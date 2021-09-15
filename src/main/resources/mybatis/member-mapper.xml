@@ -47,6 +47,16 @@
 		UPDATE MEMBER SET STATUS_NO=#{status_no} WHERE NICKNAME=#{nickname}
 	</update>
 
+	<!-- 회원 닉네임으로 조회 -->
+  	<select id="selectOneNick" parameterType="String" resultType="memberDto">
+ 		SELECT EMAIL,NICKNAME,PASSWORD,GENDER,NAME,BIRTH,CREATED_AT,UPDATED_AT,ADDRESS,ADDRESS_DETAIL,AMOUNT,TX_AMOUNT,LEVEL_NO,STATUS_NO,RANK_NO
+ 		FROM MEMBER
+ 		WHERE NICKNAME = #{nickname}
+  	</select>
+ 
+ 	
+ 
+ 
  
 </mapper>
  

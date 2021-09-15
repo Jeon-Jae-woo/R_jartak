@@ -12,6 +12,7 @@
 		<typeAlias type="com.member.dto.MemberRankDto" alias="memberRankDto"/>
 		<typeAlias type="com.board.report.dto.ReportDto" alias="reportDto"/>
 		<typeAlias type="com.amount.dto.WithdrawalDto" alias="withdrawalDto"/>
+		<typeAlias type="com.amount.dto.BankAccountDto" alias="bankAccountDto"/>
 		<typeAlias type="com.auction.dto.AuctionDto" alias="auctionDto"/>
 		<typeAlias type="com.auction.dto.AuctionStatusDto" alias="auctionStatusDto"/>
 		<typeAlias type="com.auction.dto.AuctionTypeDto" alias="auctionTypeDto"/>

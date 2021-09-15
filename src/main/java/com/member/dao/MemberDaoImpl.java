@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.amount.dto.BankAccountDto;
 import com.member.dto.MemberDto;
 import com.member.dto.MemberRankDto;
 
@@ -110,5 +111,25 @@ public class MemberDaoImpl implements MemberDao {
 		MemberDto dto = sqlSession.selectOne(MEMBER_NAMESAPCE+"selectOneNick", nickname);
 		return dto;
 	}
+
+
+	public int updateInfo_Emoney(MemberDto dto) {
+		int res = 0;
+		try {
+			res = sqlSession.update(MYPAGE_NAMESPACE+"updateInfoEmoney",dto);
+		} catch (Exception e) {
+			System.out.println("[error:updateInfo_Emoney] @dao ");
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public int insertBank(BankAccountDto bankacc) {
+		int res = 0;
+		res = sqlSession.insert(MYPAGE_NAMESPACE+"insertBank",bankacc);
+		return res;
+	}
+
 
 }

@@ -202,8 +202,8 @@
 			</div>
 			<div class="header_nav">
 				<ul class="header_ul">
-					<li><a href="">일반경매</a></li>
-					<li><a href="">블라인드 경매</a></li>
+					<li><a href="productlist?pageNum=1&type=1">일반경매</a></li>
+					<li><a href="productlist?pageNum=1&type=2">블라인드 경매</a></li>
 					<li><a href="">마감임박</a></li>
 					<li><a href="">인기경매</a></li>
 				</ul>

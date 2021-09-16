@@ -1,5 +1,7 @@
 package com.board.report.dto;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class ReportDto {
@@ -8,8 +10,8 @@ public class ReportDto {
 	private String target_nickname;
 	private String report_type;
 	private String report_content;
-	private Date created_at;
-	private Date updated_at;
+	private LocalDateTime created_at;
+	private LocalDateTime updated_at;
 	private String report_title;
 	
 	public ReportDto() {
@@ -18,7 +20,7 @@ public class ReportDto {
 	}
 
 	public ReportDto(int report_no, String nickname, String target_nickname, String report_type, String report_content,
-			Date created_at, Date updated_at, String report_title) {
+			LocalDateTime created_at, LocalDateTime updated_at, String report_title) {
 		super();
 		this.report_no = report_no;
 		this.nickname = nickname;
@@ -29,6 +31,7 @@ public class ReportDto {
 		this.updated_at = updated_at;
 		this.report_title = report_title;
 	}
+
 
 	public int getReport_no() {
 		return report_no;
@@ -70,19 +73,19 @@ public class ReportDto {
 		this.report_content = report_content;
 	}
 
-	public Date getCreated_at() {
+	public LocalDateTime getCreated_at() {
 		return created_at;
 	}
 
-	public void setCreated_at(Date created_at) {
+	public void setCreated_at(LocalDateTime created_at) {
 		this.created_at = created_at;
 	}
 
-	public Date getUpdated_at() {
+	public LocalDateTime getUpdated_at() {
 		return updated_at;
 	}
 
-	public void setUpdated_at(Date updated_at) {
+	public void setUpdated_at(LocalDateTime updated_at) {
 		this.updated_at = updated_at;
 	}
 
@@ -93,6 +96,6 @@ public class ReportDto {
 	public void setReport_title(String report_title) {
 		this.report_title = report_title;
 	}
-	
+
 	
 }

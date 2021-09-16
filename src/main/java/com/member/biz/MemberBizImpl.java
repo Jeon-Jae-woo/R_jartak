@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.amount.dto.BankAccountDto;
 import com.member.dao.MemberDao;
 import com.member.dto.MemberDto;
 import com.member.dto.MemberRankDto;
@@ -33,6 +34,9 @@ public class MemberBizImpl implements MemberBiz {
 	public int insert(MemberDto dto) {
 		return memberdao.insert(dto);
 	}
+
+
+	@Override
 	public int updateInfo(MemberDto dto) {
 		return memberdao.updateInfo(dto);
 	}
@@ -46,6 +50,22 @@ public class MemberBizImpl implements MemberBiz {
 	public int deleteInfo(String email) {
 		return memberdao.deleteInfo(email);
 
+	}
+
+	@Override
+	public MemberDto selectOneNickBiz(String nickname) {
+		MemberDto dto = memberdao.selectOneNick(nickname);
+		return dto;
+	}
+	
+	public int updateInfo_Emoney(MemberDto dto) {
+		return memberdao.updateInfo_Emoney(dto) ;
+	}
+
+	@Override
+	public int insertBank(BankAccountDto bankacc) {
+		
+		return memberdao.insertBank(bankacc);
 	}
 
 	

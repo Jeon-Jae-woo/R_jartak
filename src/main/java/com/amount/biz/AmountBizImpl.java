@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.amount.dao.AmountDao;
+import com.amount.dto.BankAccountDto;
 import com.amount.dto.WithdrawalDto;
 import com.util.pagingDto;
 
@@ -42,6 +43,23 @@ public class AmountBizImpl implements AmountBiz {
 	public int WithdrawalProcessing(Map<String, Object> withInfo) {
 		int result = amountdao.WithdrawalProcessing(withInfo);
 		return result;
+	}
+	
+	//마이페이지에서 쓰임
+	@Override
+	public String getBankNo(String bankName) {
+		return amountdao.getBankNo(bankName);
+	}
+
+	//마이페이지에서 쓰임
+	@Override
+	public List<BankAccountDto> getAccountNo(String nickname) {
+		return amountdao.getAccountNo(nickname);
+	}
+
+	@Override
+	public int insertWithdrawal(String[] str) {
+		return amountdao.insertWithdrawal(str);
 	}
 
 }

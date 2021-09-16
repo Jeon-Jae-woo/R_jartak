@@ -38,4 +38,29 @@
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	
+
+	<!-- gmail설정 -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> 
+	     <property name="host" value="smtp.gmail.com" />
+	     <property name="port" value="587" />
+	 <property name="username" value="xian931231@gmail.com"/> 
+	 <property name="password" value="bwhlgosqzegynwis"/> 
+	 <!-- 보안연결 TLS과 관련된 설정 -->
+	     <property name="javaMailProperties">
+	    <props>
+	      <prop key="mail.smtp.auth">true</prop>
+	      <prop key="mail.smtp.starttls.enable">true</prop>
+	      
+	    </props>
+	     </property>
+	</bean>
+
+
+	<!-- MultipartResolver --> <!-- 파일 용량은 10MB로 제한 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	    <property name="maxUploadSize" value="100000000"/>  
+	    <property name="maxInMemorySize" value="100000000"/>
+	</bean>
+	
+
 </beans>

@@ -15,7 +15,7 @@
 	
 
 	<!-- 회원가입 -->
-	<insert id="join" parameterType="memberDto">
+	<insert id="insert" parameterType="memberDto">
 		INSERT INTO MEMBER VALUES(
 		#{email},
 		#{nickname},
@@ -29,9 +29,11 @@
 		#{address_detail},
 		0,
 		0,
+		3,
 		1,
-		1,
-		1,
+		0,
+		#{address_detail2}
+		
 		)
 	</insert>
 
@@ -47,6 +49,16 @@
 		UPDATE MEMBER SET STATUS_NO=#{status_no} WHERE NICKNAME=#{nickname}
 	</update>
 
+	<!-- 회원 닉네임으로 조회 -->
+  	<select id="selectOneNick" parameterType="String" resultType="memberDto">
+ 		SELECT EMAIL,NICKNAME,PASSWORD,GENDER,NAME,BIRTH,CREATED_AT,UPDATED_AT,ADDRESS,ADDRESS_DETAIL,AMOUNT,TX_AMOUNT,LEVEL_NO,STATUS_NO,RANK_NO
+ 		FROM MEMBER
+ 		WHERE NICKNAME = #{nickname}
+  	</select>
+ 
+ 	
+ 
+ 
  
 </mapper>
  

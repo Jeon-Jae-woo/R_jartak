@@ -232,8 +232,11 @@ public class MemberController {
 		return resultMsg;
 	}
 	
+	@RequestMapping("/message_test.do")
+	public String message_test() {
 
-	
+		return "message_test";
+	}
 	
 	
 	

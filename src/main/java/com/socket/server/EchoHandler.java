@@ -2,8 +2,10 @@ package com.socket.server;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,77 +14,42 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import com.basic.dao.MessageMapper;
 
-
+@RequestMapping("/echo")
 public class EchoHandler extends TextWebSocketHandler {
-    
-    
-    private static List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();
-    
-    @Autowired
-    private MessageMapper messageMapper;
-    
-    
-//    Map<String,WebSocketSession> us ers = new HashMap<>();
-    
-    @Override
-    public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		/* 해당 부분이 수정되야할 부분 messageMapper쪽 에러.. */
-		
-		  String user_name = searchUserName(session); sessionList.add(session);
-		  session.sendMessage(new
-		  TextMessage("recMs :"+messageMapper.countMessageView(user_name)));
-		 
-		 
-    	
-    	/*
-		 * String user_name = searchUserName(session); for(WebSocketSession sess :
-		 * sessionList) { sess.sendMessage(new TextMessage(user_name+"님이 접속했습니다.")); }
-		 * sessionList.add(session);
-		 */
-    }
-    
-    @Override
-    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-        String user_name= searchUserName(session);
- 
-        
-//        //사용자가 접속중인지 아닌지
-//        WebSocketSession chatwritingSession =users.get("user_name");
-//        if(chatwritingSession != null) {
-//            TextMessage textMessage = new TextMessage(user_name+ " 님이 메세지를 보냈습니다.");
-//            chatwritingSession.sendMessage(textMessage);
-//        }
-        for(WebSocketSession sess: sessionList) {
-            sess.sendMessage(new TextMessage(user_name+": "+message.getPayload()));
-        }
-    }
-    
-    @Override
-    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-        String user_name = searchUserName(session);
-        System.out.println("연결 끊어짐");
-        for(WebSocketSession sess : sessionList) {
-            sess.sendMessage(new TextMessage(user_name+"님의 연결이 끊어졌습니다."));
-        }
-        sessionList.remove(session);
-    }
-    
-    public String searchUserName(WebSocketSession session)throws Exception {
-        String user_name;
-        Map<String, Object> map;
-        map = session.getAttributes();
-        user_name = (String) map.get("user_name");
-        return user_name;
-    }
-    
-    
-    @RequestMapping("/message_test.do")
-    public String message_test() {
-    	return "message_test";
-    }
-    
-    
-}
 
+	// 세션 리스트
+	private List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();
+
+	private static Logger logger = LoggerFactory.getLogger(EchoHandler.class);
+
+	// 클라이언트가 연결 되었을 때 실행
+	@Override
+	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+		sessionList.add(session);
+		logger.info("{} 연결됨", session.getId());
+	}
+
+	// 클라이언트가 웹소켓 서버로 메시지를 전송했을 때 실행
+	@Override
+    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+        logger.info("{}로 부터 {} 받음", session.getId(), message.getPayload());
+        //모든 유저에게 메세지 출력
+        for(WebSocketSession sess : sessionList){
+            sess.sendMessage(new TextMessage(message.getPayload()));
+        }
+	}
+
+	// 클라이언트 연결을 끊었을 때 실행
+	@Override
+	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+		sessionList.remove(session);
+		logger.info("{} 연결 끊김.", session.getId());
+	}
+	
+
+
+	
+
+
+}

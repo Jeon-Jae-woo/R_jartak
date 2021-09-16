@@ -44,15 +44,27 @@
 	
 	<tx:annotation-driven/>
 	<!-- 웹 소켓핸들러 -->
-	<!--
-	<websocket:handlers allowed-origins="http://localhost:8787">
+
+	<beans:bean id="echoHandler" class="com.socket.server.EchoHandler" />
+	
+	<websocket:handlers>
+		<websocket:mapping handler="echoHandler" path="/echo" />
+
+	
+	<!-- <websocket:handlers allowed-origins="http://localhost:8787">
 		<websocket:mapping handler="echoHandler" path="/echo"/>
+
 		<websocket:handshake-interceptors>
 			<beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor" />
 		</websocket:handshake-interceptors>
 		<websocket:sockjs/>
 	</websocket:handlers>
+
+
+
 	<beans:bean id="echoHandler" class="com.socket.server.EchoHandler" />
-	-->
+	
+ 	-->
+ 	</websocket:handlers>
 	
 </beans:beans>

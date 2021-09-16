@@ -338,6 +338,39 @@ public class MemberController {
 		return "message_test";
 	}
 	
+	//회원탈퇴페이지
+		@RequestMapping("/mypage_quit.do")
+		public String mypage_quit(Model model, HttpSession session, HttpServletRequest request) {
+			session = request.getSession();
+			String email = (String)session.getAttribute("email");
+			MemberDto dto = memberbiz.selectOne(email);
+			model.addAttribute("dto",dto);
+
+			return "mypage_personal_quit";
+		}
+		//회원정보삭제(탈퇴)
+		@ResponseBody
+		@RequestMapping(value="/deleteInfo.do",method=RequestMethod.GET)
+		public String delete(HttpSession session,HttpServletRequest request) {
+			logger.info("delete res");
+			session = request.getSession();
+			String email = (String)session.getAttribute("email");
+			System.out.println("email="+email);
+			int res = memberbiz.deleteInfo(email);
+			String resultMsg="";
+			if(res>0) {
+				resultMsg="<script>alert('SUCCESS!');location.href='logout'</script>";
+			}else {
+				resultMsg="<script>alert('FAIL!');location.href='mypage_quit.do?'</script>";
+
+			}
+
+			return resultMsg;
+		}
+
+	
+	
+	
 	
 	
 	

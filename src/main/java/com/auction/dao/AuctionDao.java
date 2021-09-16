@@ -3,6 +3,7 @@ package com.auction.dao;
 import java.util.List;
 
 import com.auction.dto.AuctionDto;
+import com.trade.dto.TradeDto;
 
 public interface AuctionDao {
 	String NAMESPACE = "auction.";
@@ -24,6 +25,9 @@ public interface AuctionDao {
 
 	//경매 종료 갱신(리스트)
 	public int auctionTimeOverList();
+	
+	//거래 테이블에 등록될 정보 반환
+	public List<TradeDto> AuctionHighBidderList();
 	
 	
 	

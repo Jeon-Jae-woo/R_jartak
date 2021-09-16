@@ -61,7 +61,7 @@ public class BidsBizImpl implements BidsBiz {
 		String result = "서버 에러 발생";
 		try {
 			BidsDto bidsDetail = bidsdao.BidsSelectOne(nickname, auction_no);
-			int bidPrice = (int) data.get("bid_price"); 
+			int bidPrice = Integer.parseInt(data.get("bid_price").toString()); 
 			
 			int memberUpdateResult = 0;
 			int bidsResult = 0;

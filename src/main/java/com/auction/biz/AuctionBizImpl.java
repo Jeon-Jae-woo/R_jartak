@@ -48,9 +48,33 @@ public class AuctionBizImpl implements AuctionBiz {
 		return productDetail;
 	}
 
+	//경매 종료 리스트
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public int TimeOutListBiz() {
 		int result = auctiondao.auctionTimeOverList();
+		List<TradeDto> bidderList;
+		
+		try {
+			if(result <= 0) {
+				throw new Exception("시간 업데이트 실패");
+			}
+			//경매, 최고 입찰자 리스트
+			bidderList = auctiondao.AuctionHighBidderList();
+			
+			if(!bidderList.isEmpty()) {
+				int insertResult = tradedao.InsertListTrade(bidderList);
+				if(insertResult < 0) {
+					throw new Exception("거래 리스트 오류");
+				}
+			}
+		}catch(Exception e) {
+			//rollback
+			e.printStackTrace();
+			TransactionAspectSupport.currentTransactionStatus().isRollbackOnly();
+		}
+		
+		
 		return result;
 	}
 
@@ -63,9 +87,10 @@ public class AuctionBizImpl implements AuctionBiz {
 			int auction_no = Integer.parseInt(data.get("auction_no").toString());
 			result = auctiondao.auctionTimeOver(auction_no);
 			
-			if(result < 0) {
+			if(result <= 0) {
 				throw new Exception("경매 종료 상태 변경 실패");
 			}
+			
 			AuctionDto auction = auctiondao.selectProductDetail(auction_no);
 			
 			if(!auction.getHigh_bidder().equals("입찰자가 없습니다")) {
@@ -76,7 +101,7 @@ public class AuctionBizImpl implements AuctionBiz {
 								auction.getHigh_bidder(), auction.getNickname(), bidsDetail.getBid_price());
 				
 				int tradeResult = tradedao.InsertTrade(tradeDetail);
-				
+				System.out.println("insert 성공?");
 				if(tradeResult < 0) {
 					throw new Exception("거래 등록 실패");
 				}
@@ -89,7 +114,7 @@ public class AuctionBizImpl implements AuctionBiz {
 			TransactionAspectSupport.currentTransactionStatus().isRollbackOnly();
 		}
 			
-			
+		System.out.println(result);
 		return result;
 	}
 

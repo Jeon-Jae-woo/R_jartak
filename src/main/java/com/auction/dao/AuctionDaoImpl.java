@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.auction.dto.AuctionDto;
+import com.trade.dto.TradeDto;
 
 @Repository
 public class AuctionDaoImpl implements AuctionDao {
@@ -62,7 +63,6 @@ public class AuctionDaoImpl implements AuctionDao {
 	public int auctionTimeOverList() {
 		int result = 0;
 		result = sqlSession.update(NAMESPACE+"timeOverList");	
-		//수정에 성공한 result count 체크
 		
 		return result;
 	}
@@ -72,6 +72,13 @@ public class AuctionDaoImpl implements AuctionDao {
 	public int productListCount(int auctionType) {
 		int count = sqlSession.selectOne(NAMESPACE+"porductlistCount", auctionType);
 		return count;
+	}
+
+	//거래 테이블에 등록될 정보 반환
+	@Override
+	public List<TradeDto> AuctionHighBidderList() {
+		List<TradeDto> bidderList = sqlSession.selectList(NAMESPACE+"auctionListTrade");
+		return bidderList;
 	}
 	
 	

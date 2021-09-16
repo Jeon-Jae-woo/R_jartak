@@ -108,10 +108,7 @@ public class AuctionController {
 		auction.setEndDateStr(dateTime);
 		auction.setProduct_img(fileName);
 		
-		System.out.println("content: " + content);
-		
 		int result = auctionbiz.insertProductBiz(auction);
-		
 		
 		model.addAttribute("pageNum",1);
 		model.addAttribute("type",auctionType);
@@ -135,9 +132,11 @@ public class AuctionController {
 		
 		Map<String,Object> data = new HashMap<String, Object>();
 		if(result>0) {	
+			System.out.println("ok");
 			data.put("status", HttpStatus.OK);
 			return data;
 		}else {
+			System.out.println("bad");
 			data.put("status", HttpStatus.BAD_REQUEST);
 			return data;
 		}

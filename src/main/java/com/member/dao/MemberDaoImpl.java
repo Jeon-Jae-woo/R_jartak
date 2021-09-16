@@ -70,7 +70,6 @@ public class MemberDaoImpl implements MemberDao {
 		return res;
 	}
 	public MemberRankDto rank(int rank_no) {
-		System.out.println("등급확인");
 		MemberRankDto dto = new MemberRankDto();
 		try {
 			dto = sqlSession.selectOne(MEMBER_NAMESAPCE+"grade",rank_no);

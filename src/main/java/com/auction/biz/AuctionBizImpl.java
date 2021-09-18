@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.auction.dao.AuctionDao;
 import com.auction.dto.AuctionDto;
+import com.auction.dto.auction_interestedDto;
 import com.util.pagingDto;
 
 @Service
@@ -34,6 +35,7 @@ public class AuctionBizImpl implements AuctionBiz {
 		return productList;
 	}
 
+	
 	@Override
 	public AuctionDto productDetailBiz(int auction_no) {
 		AuctionDto productDetail = auctiondao.selectProductDetail(auction_no);
@@ -62,6 +64,40 @@ public class AuctionBizImpl implements AuctionBiz {
 		paging.pagination();
 		return paging;
 		
+	}
+	
+
+	@Override
+	public int insertInterested(auction_interestedDto dto) {
+		
+		return auctiondao.insertInterested(dto);
+	}
+
+	@Override
+	public List<AuctionDto> selectInterestedListBiz(int pageNum,String buy_nickname) {
+		return auctiondao.selectInterestedList(pageNum,buy_nickname);
+	}
+
+	@Override
+	public pagingDto interestedListCountBiz(int pageNum) {
+		paging.setPageNum(pageNum);
+		int size = 0;
+		size = auctiondao.interestedListCount();
+		paging.setTotalCount(size);
+		paging.pagination();
+		return paging;
+		
+		}
+
+	@Override
+	public auction_interestedDto interestedListChk(int auction_no, String buy_nickname) {
+		return auctiondao.interestedListChk(auction_no, buy_nickname);
+	}
+	
+	public List<AuctionDto> MyProductListBiz(Map<String,int[]> map){
+		List<AuctionDto> productList = null;
+		productList = auctiondao.MyProductList(map);
+		return productList;
 	}
 
 }

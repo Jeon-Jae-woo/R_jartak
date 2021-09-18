@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace = "bids">
+  	<resultMap type="bidsDto" id="bidsMap">
+  		<result property="bid_no" column="BID_NO"/>
+  		<result property="nickname" column="NICKNAME"/>
+  		<result property="auction_no" column="AUCTION_NO"/>
+  		<result property="auction_status_no" column="AUCTION_STATUS_NO"/>
+  		<result property="bid_price" column="BID_PRICE"/>
+  	
+  	</resultMap>	
+  	
+  	
+  	
+  	<select id="selectList" parameterType="String" resultMap="bidsMap">
+ 		SELECT BID_NO, NICKNAME,AUCTION_NO,AUCTION_STATUS_NO,BID_PRICE
+  	 	FROM BIDS
+  	 	WHERE AUCTION_STATUS_NO=1 AND NICKNAME=#{nickname}
+  	
+  	</select>
+  	
+  
+  	
+  	
+  </mapper>

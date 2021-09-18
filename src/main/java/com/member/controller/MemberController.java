@@ -19,13 +19,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.amount.biz.AmountBiz;
 import com.amount.dto.BankAccountDto;
+import com.auction.biz.AuctionBiz;
+import com.auction.dto.AuctionDto;
+import com.bids.biz.BidsBiz;
+import com.bids.dto.BidsDto;
 import com.member.biz.MemberBiz;
 import com.member.dto.MemberDto;
 import com.member.dto.MemberRankDto;
+import com.util.pagingDto;
 
 @Controller
 public class MemberController {
@@ -36,6 +42,10 @@ public class MemberController {
 	private MemberBiz memberbiz;
 	@Autowired
 	private AmountBiz amountbiz;
+	@Autowired
+	private AuctionBiz auctionbiz;
+	@Autowired
+	private BidsBiz bidsbiz;
 	
 	
 	//로그인 폼 전환
@@ -114,12 +124,31 @@ public class MemberController {
 
 	
 	//활동-관심상품으로 이동
-	@RequestMapping("/mypage_interest.do")
-	public String mypage_interest() {
-		
-		return "mypage_interest";
-		
-	}
+//	@RequestMapping("/mypage_interest.do")
+//	public String mypage_interest() {
+//		
+//		
+//		return "mypage_interest";
+//		
+//	}
+	//관심상품목록출력
+			@RequestMapping("/mypage_interest.do")
+			public String interestedlist(HttpSession session, HttpServletRequest request,Model model, @RequestParam("pageNum")int pageNum) {
+				session = request.getSession();
+				
+				String buy_nickname = (String)session.getAttribute("nickname");
+				int result = auctionbiz.TimeOutListBiz();
+				List<AuctionDto> productList = null;
+				if(result>0) {
+					productList = auctionbiz.selectInterestedListBiz(pageNum,buy_nickname);
+				}
+				pagingDto paging = auctionbiz.interestedListCountBiz(pageNum);
+				model.addAttribute("paging", paging);
+				model.addAttribute("productList", productList);
+				
+				return "mypage_interest";
+			}
+			
 	
 	//활동-계좌관리로 이동
 	@RequestMapping("/mypage_bankAcc.do")
@@ -133,8 +162,8 @@ public class MemberController {
 	@RequestMapping("/insertBankAcc.do")
 	public String insertBank(HttpSession session, HttpServletRequest request, String used_bankname,String bank_account) {
 		session = request.getSession();
-		
 		String nickname = (String)session.getAttribute("nickname");
+				
 		System.out.println("used_bankname:"+used_bankname);
 		String account_number = amountbiz.getBankNo(used_bankname);
 		System.out.println(account_number);
@@ -154,12 +183,29 @@ public class MemberController {
 	
 	//활동 -구매관리로이동
 	@RequestMapping("/mypage_buy.do")
-	public String mypage_buy(String money) {
+	public String mypage_buy(Model model,String money,HttpSession session,HttpServletRequest request) {
+		session = request.getSession();
+		String nickname = (String)session.getAttribute("nickname");
+		
+		List<BidsDto> list = null;
+
 		if(money.equals("end")) {
 			return "mypage_buy_end";
 		}else if(money.equals("failure")) {
 			return "mypage_buy_failure";
 		}else if(money.equals("ing")) {
+			int auction_stat = 1;
+			list = bidsbiz.bidList(nickname);
+			int[] Arr = new int[list.size()];
+			Map<String,int[]> map = new HashMap<>();
+			for(int i=0; i<list.size();i++) {
+				Arr[i] = list.get(i).getAuction_no();
+			}
+			map.put("Auction_no", Arr);
+			
+			List<AuctionDto> productlist = auctionbiz.MyProductListBiz(map);
+			model.addAttribute("productlist", productlist);
+			
 			return "mypage_buy_ing";
 		}else{
 			return "mypage_buy_trading";
@@ -189,19 +235,7 @@ public class MemberController {
 		
 		String nickname= (String) session.getAttribute("nickname");
 		List<BankAccountDto> AccountNoList = amountbiz.getAccountNo(nickname);
-//		System.out.println("AccountNoList.get(1)"+AccountNoList.get(1).toString());
-//		String[] BankNo = new String[AccountNoList.size()];
-//		for(int i= 0; i<AccountNoList.size();i++) {
-//			BankNo[i] = AccountNoList.get(i).getAccount_number();
-//		}
-//		System.out.println(BankNo[0]+BankNo[1]+BankNo[2]);
-		
-//		HashMap<Integer,BankAccount> map = new HashMap<>();
-//		for(int i=0;i<AccountNoList.size();i++) {
-//			map.put(i,AccountNoList.get(i));
-//		}
-//		
-//		System.out.println("map.get(1)=\n"+map.get(1).getAccount_no());
+
 		
 		model.addAttribute("dto",dto);
 		model.addAttribute("AccountNoList",AccountNoList);

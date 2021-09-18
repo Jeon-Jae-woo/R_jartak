@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.auction.dto.AuctionDto;
 import com.auction.dto.auction_interestedDto;
+import com.trade.dto.TradeDto;
 
 public interface AuctionDao {
 	String NAMESPACE = "auction.";
@@ -37,6 +38,10 @@ public interface AuctionDao {
 	//마이페이지의 구매관리에서 쓰이는
 	public List<AuctionDto> MyProductList(Map<String,int[]> map);
 
+	
+	//거래 테이블에 등록될 정보 반환
+	public List<TradeDto> AuctionHighBidderList();
+	
 	
 	
 }

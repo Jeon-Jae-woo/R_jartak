@@ -49,5 +49,11 @@
 	<a href="mypage.do?">마이페이지</a>
 
 
+
+	
+	
+
+	<a href="join.do?">회원가입</a>
+
 </body>
 </html>

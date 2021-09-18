@@ -25,6 +25,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.auction.biz.AuctionBiz;
 import com.auction.dto.AuctionDto;
 import com.auction.dto.auction_interestedDto;
+import com.member.biz.MemberBiz;
+import com.member.dto.MemberDto;
+import com.member.dto.MemberRankDto;
 import com.util.UtilFileUpload;
 import com.util.pagingDto;
 
@@ -37,7 +40,8 @@ public class AuctionController {
 	private UtilFileUpload utilFileUpload;
 	@Autowired
 	private AuctionBiz auctionbiz;
-	
+	@Autowired
+	private MemberBiz memberbiz;
 	
 	//경매 디테일
 	@RequestMapping("/productDetail")
@@ -46,6 +50,11 @@ public class AuctionController {
 		
 		AuctionDto productDetail = auctionbiz.productDetailBiz(auction_no);
 		model.addAttribute("productDetail", productDetail);
+		
+		MemberDto member = memberbiz.selectOneNickBiz(productDetail.getNickname());
+		MemberRankDto rank = memberbiz.rank(member.getRank_no());
+		model.addAttribute("rank", rank);
+		
 		return "product";
 	}
 	
@@ -102,10 +111,7 @@ public class AuctionController {
 		auction.setEndDateStr(dateTime);
 		auction.setProduct_img(fileName);
 		
-		System.out.println("content: " + content);
-		
 		int result = auctionbiz.insertProductBiz(auction);
-		
 		
 		model.addAttribute("pageNum",1);
 		model.addAttribute("type",auctionType);
@@ -125,14 +131,15 @@ public class AuctionController {
 	@RequestMapping(value="/timeOut", method= RequestMethod.POST)
 	public @ResponseBody Map<String, Object> timeOut(@RequestBody Map<String,Object> auctionData){
 		
-		System.out.println("실행");
 		int result = auctionbiz.TimeOutBiz(auctionData);
 		
 		Map<String,Object> data = new HashMap<String, Object>();
 		if(result>0) {	
+			System.out.println("ok");
 			data.put("status", HttpStatus.OK);
 			return data;
 		}else {
+			System.out.println("bad");
 			data.put("status", HttpStatus.BAD_REQUEST);
 			return data;
 		}

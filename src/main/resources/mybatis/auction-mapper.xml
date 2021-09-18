@@ -42,20 +42,22 @@
 		<result column="PRODUCT_IMG" property="product_img"/>
 		<result column="CURRENT_PRICE" property="current_price"/>
 		<result column="END_DATE" property="remainingSeconds" typeHandler="IntegerTimeTypeHandler"/>
+		<result column="HIGH_BIDDER" property="high_bidder"/>
 		
 		<collection property="auctionStatus" resultMap="auctionStatus"/>
 		<collection property="auctionType" resultMap="auctionType"/>
 		
 	</resultMap>
-	
-	
+
+	<!-- 경매 등록 -->
 	<insert id="insertProduct" parameterType="auctionDto">
 		INSERT INTO AUCTION 
 		VALUES(AUCTION_SEQ.NEXTVAL, #{auction_type_no},
 		 #{nickname}, 1, #{product_name}, #{auction_title}, #{auction_content}, #{product_price},
-		 #{bidding_unit}, SYSDATE, TO_DATE(#{endDateStr},'YYYY-MM-DD HH24:MI:SS'),0, #{product_img}, #{product_price})
+		 #{bidding_unit}, SYSDATE, TO_DATE(#{endDateStr},'YYYY-MM-DD HH24:MI:SS'),0, #{product_img}, #{product_price}, null)
 	</insert>
 
+	<!-- 경매 리스트  -->
 	<select id="productList" parameterType="HashMap" resultMap="auctionlist">
 		SELECT AUCTION_NO, AUCTION_TYPE_NO, NICKNAME, AUCTION_STATUS_NO, AUCTION_TITLE, PRODUCT_PRICE, 
         	PRODUCT_IMG, AUCTION_HITS,END_DATE
@@ -70,25 +72,38 @@
 		WHERE RNUM>=#{startRow}
 	</select>	
 	
+	<!-- 경매 디테일 -->
 	<select id="productDetail" parameterType="int" resultMap="auctionDetail">
 		SELECT AUCTION_NO, AT.AUCTION_TYPE_NO, NICKNAME, AST.AUCTION_STATUS_NO, PRODUCT_NAME,
 			AUCTION_TITLE, AUCTION_CONTENT, PRODUCT_PRICE, BIDDING_UNIT, TO_CHAR(CREATED_AT,'YYYY/MM/DD HH24:MI:SS') AS CREATE_STR, 
 			TO_CHAR(END_DATE, 'YYYY/MM/DD HH24:MI:SS') AS END_STR, 
-			AUCTION_HITS, PRODUCT_IMG, CURRENT_PRICE, AST.AUCTION_STATUS_NAME, AT.AUCTION_TYPE_NAME, END_DATE
+			AUCTION_HITS, PRODUCT_IMG, CURRENT_PRICE, AST.AUCTION_STATUS_NAME, AT.AUCTION_TYPE_NAME, END_DATE, HIGH_BIDDER
 		FROM AUCTION A
 		JOIN AUCTION_STATUS AST ON(A.AUCTION_STATUS_NO=AST.AUCTION_STATUS_NO)
 		JOIN AUCTION_TYPE AT ON(A.AUCTION_TYPE_NO=AT.AUCTION_TYPE_NO)
 		WHERE AUCTION_NO=#{auction_no}
 	</select>
 
+	<!-- 시간 종료 리스트  -->
 	<update id="timeOverList">
-		UPDATE AUCTION SET AUCTION_STATUS_NO=3 WHERE SYSDATE > END_DATE
-	</update>
-
-	<update id="timeOver" parameterType="int">
-		UPDATE AUCTION SET AUCTION_STATUS_NO=3 WHERE AUCTION_NO=#{auction_no}
+		UPDATE AUCTION SET AUCTION_STATUS_NO=3 WHERE SYSDATE >= END_DATE
 	</update>
 	
+	<!-- 시간 종료 단일  -->
+	<update id="timeOver" parameterType="int">
+		UPDATE AUCTION SET AUCTION_STATUS_NO=3 WHERE AUCTION_NO=#{auction_no} AND (SYSDATE >= END_DATE)
+	</update>
+	
+	<!-- 경매가 종료된 리스트, 거래 테이블에 등록될 리스트 -->
+	<select id="auctionListTrade" resultType="tradeDto">
+		SELECT BID_NO, A.AUCTION_NO, HIGH_BIDDER AS BIDDER_NICKNAME, A.NICKNAME AS SELLER, B.BID_PRICE AS FINAL_BID_PRICE
+		FROM AUCTION A
+		JOIN BIDS B ON(A.AUCTION_NO=B.AUCTION_NO)
+		WHERE (AUCTION_STATUS_NO=3) AND (HIGH_BIDDER IS NOT NULL) 
+		AND (NOT A.AUCTION_NO IN(SELECT AUCTION_NO FROM TRADE)) AND (HIGH_BIDDER = B.NICKNAME)
+	</select>
+	
+	<!-- 리스트 카운트 -->
 	<select id="porductlistCount" parameterType="int" resultType="int">
 		SELECT COUNT(*) FROM AUCTION WHERE AUCTION_TYPE_NO=#{auctionType} AND AUCTION_STATUS_NO=1
 	</select>

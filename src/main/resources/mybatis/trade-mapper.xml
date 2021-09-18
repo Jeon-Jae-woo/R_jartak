@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="trade">
+	
+	<insert id="tradeInsert" parameterType="tradeDto">
+		INSERT INTO TRADE 
+		VALUES(TRADE_SEQ.NEXTVAL, 1, #{bid_no}, #{auction_no}, #{bidder_nickname}, #{seller}, #{final_bid_price})
+	</insert>
+	
+	<!-- 리스트 -->
+	<update id="tradeInsertList" parameterType="java.util.List">
+		INSERT INTO TRADE(TRADE_NO, TRADE_STATUS_NO, BID_NO, AUCTION_NO, BIDDER_NICKNAME, SELLER, FINAL_BID_PRICE)
+		SELECT TRADE_SEQ.NEXTVAL, T.*
+			FROM(
+				<foreach collection="list" item="item" index="index"  separator="union all">
+					SELECT  1 AS TRADE_STATUS_NO,
+							#{item.bid_no} AS BID_NO,
+							#{item.auction_no} AS AUCTION_NO,
+							#{item.bidder_nickname} AS BIDDER_NICKNAME,
+							#{item.seller} AS SELLER, 
+							#{item.final_bid_price} AS FINAL_BID_PRICE
+					FROM SYS.DUAL
+				</foreach>
+			) T
+	</update>
+	
+</mapper>

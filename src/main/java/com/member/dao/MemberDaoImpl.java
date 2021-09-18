@@ -70,7 +70,6 @@ public class MemberDaoImpl implements MemberDao {
 		return res;
 	}
 	public MemberRankDto rank(int rank_no) {
-		System.out.println("등급확인");
 		MemberRankDto dto = new MemberRankDto();
 		try {
 			dto = sqlSession.selectOne(MEMBER_NAMESAPCE+"grade",rank_no);
@@ -107,6 +106,12 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
+	public MemberDto selectOneNick(String nickname) {
+		MemberDto dto = sqlSession.selectOne(MEMBER_NAMESAPCE+"selectOneNick", nickname);
+		return dto;
+	}
+
+
 	public int updateInfo_Emoney(MemberDto dto) {
 		int res = 0;
 		try {
@@ -124,7 +129,6 @@ public class MemberDaoImpl implements MemberDao {
 		res = sqlSession.insert(MYPAGE_NAMESPACE+"insertBank",bankacc);
 		return res;
 	}
-
 
 
 }

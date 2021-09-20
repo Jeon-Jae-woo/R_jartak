@@ -127,10 +127,10 @@ public class BidsBizImpl implements BidsBiz {
 	}
 	
 
-
+	//마이페이지 구매이력에서 사용
 	@Override
-	public List<BidsDto>  bidList(String nickname) {
-		return dao.bidList(nickname);
+	public List<BidsDto>  bidList(String nickname,int auction_stat) {
+		return bidsdao.bidList(nickname,auction_stat);
 	}
 
 }

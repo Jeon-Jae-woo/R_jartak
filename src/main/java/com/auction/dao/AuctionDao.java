@@ -35,13 +35,14 @@ public interface AuctionDao {
 	public int interestedListCount();
 	//관심상품중복체크
 	public auction_interestedDto interestedListChk(int auction_no,String nickname);
-	//마이페이지의 구매관리에서 쓰이는
+	//마이페이지의 구매관리-경매중
 	public List<AuctionDto> MyProductList(Map<String,int[]> map);
 
 	
 	//거래 테이블에 등록될 정보 반환
 	public List<TradeDto> AuctionHighBidderList();
-	
+
+
 	
 	
 }

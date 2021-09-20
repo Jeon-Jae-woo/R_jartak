@@ -22,7 +22,7 @@ public interface BidsDao {
 	public int AuctionCurrentUpdate(int auction_no, int current_price, String nickname);
 	
 	//마이페이지 구매이력에서쓰임
-	public List<BidsDto> bidList(String nickname);
+	public List<BidsDto> bidList(String nickname,int auction_stat);
 
 	
 	

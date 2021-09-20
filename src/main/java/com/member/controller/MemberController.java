@@ -242,12 +242,25 @@ public class MemberController {
 		List<BidsDto> list = null;
 
 		if(money.equals("end")) {
+			int auction_stat = 3;
+			list = bidsbiz.bidList(nickname,auction_stat);
+			int[] Arr = new int[list.size()];
+			Map<String,int[]> map = new HashMap<>();
+			for(int i=0; i<list.size();i++) {
+				Arr[i] = list.get(i).getAuction_no();
+				
+			}
+			map.put("Auction_no", Arr);
+			
+			List<AuctionDto> productlist = auctionbiz.MyProductListBiz(map);
+			model.addAttribute("productlist", productlist);
+			
 			return "mypage_buy_end";
 		}else if(money.equals("failure")) {
 			return "mypage_buy_failure";
 		}else if(money.equals("ing")) {
 			int auction_stat = 1;
-			list = bidsbiz.bidList(nickname);
+			list = bidsbiz.bidList(nickname,auction_stat);
 			int[] Arr = new int[list.size()];
 			Map<String,int[]> map = new HashMap<>();
 			for(int i=0; i<list.size();i++) {

@@ -90,7 +90,7 @@
                                 <tbody>
                                 <tr>
                                   <td>${list.auction_no }</td>
-                                  <td>${list.product_img}</td>
+                                  <td><img src="resources/product/${list.product_img}"></td>                                  
                                   <td>${list.auction_title}</td>
                                   <td>${list.current_price}</td>
                                   <td><a href="productDetail?auction_no=${list.auction_no}">이동</a></td>

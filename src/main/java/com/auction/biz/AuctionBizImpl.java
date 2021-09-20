@@ -165,4 +165,6 @@ public class AuctionBizImpl implements AuctionBiz {
 		return productList;
 	}
 
+
+
 }

@@ -130,6 +130,6 @@ public class AuctionDaoImpl implements AuctionDao {
 		}
 		return Myproductlist;
 	}
-	
+
 
 }

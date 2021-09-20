@@ -11,6 +11,6 @@ public interface BidsBiz {
 	public String BidProcessBiz(String nickname, Map<String,Object> data);
 	
 	//마이페이지 구매이력에서 사용
-	public List<BidsDto>  bidList(String nickname);
+	public List<BidsDto>  bidList(String nickname,int auction_stat);
 
 }

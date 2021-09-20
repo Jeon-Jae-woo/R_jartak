@@ -42,15 +42,15 @@
   		<result property="nickname" column="NICKNAME"/>
   		<result property="auction_no" column="AUCTION_NO"/>
   		<result property="auction_status_no" column="AUCTION_STATUS_NO"/>
-  		<result property="bid_price" column="BID_PRICE"/>
+  		<result property="bidding_time" column="BIDDING_TIME"/>
   	
   	</resultMap>	
 	
-	<select id="selectList" parameterType="String" resultMap="bidsMap">
- 		SELECT BID_NO, NICKNAME,AUCTION_NO,AUCTION_STATUS_NO,BID_PRICE
-  	 	FROM BIDS
-  	 	WHERE AUCTION_STATUS_NO=1 AND NICKNAME=#{nickname}
-  	
+	<select id="selectList" parameterType="auctionDto" resultMap="bidsMap">
+  		SELECT BID_NO, BIDS.NICKNAME,BIDS.AUCTION_NO,BIDDING_TIME
+  	 	FROM BIDS 
+  	 	JOIN AUCTION ON (AUCTION.AUCTION_NO=BIDS.AUCTION_NO)
+  	 	WHERE AUCTION_STATUS_NO=#{auction_status_no} AND AUCTION.NICKNAME=#{nickname}
   	</select>
   	
 	

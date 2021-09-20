@@ -1,10 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+        <!-- 인코딩 처리 -->    
+<%
+    	request.setCharacterEncoding("UTF-8");
+    %>    
+<%
+    	response.setContentType("text/html; charset=UTF-8");
+    %>       
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mypage/mypage_buy_sale.css">
 
@@ -46,44 +56,91 @@
     
                     
                     </div>
-
-                    <div class="content">
-                        <h4>경매종료 목록</h4>
+<div class="content">
+                    
+                        <h4>입찰목록</h4>
+                        <c:choose>
+	                    	<c:when test="${empty productlist }">
+	                    		<table class="type11">
+	                    			<tr>
+	                    				<td>입찰내역이 없습니다.</td>
+	                    			</tr>
+	                    		</table>
+	                    	</c:when>
+	                    	<c:otherwise>
+	                    		<c:forEach var="list" items="${productlist }">
                             <table class="type11">
                                 <thead>
                                 <tr>
-                                  <th scope="cols">구분</th>
                                   <th scope="cols">물품번호</th>
                                   <th scope="cols">이미지</th>
                                   <th scope="cols">물품명</th>
-                                  <th scope="cols">낙찰가</th>
+                                  <th scope="cols">현재가</th>
                                   <th scope="cols">입찰</th>
                                   <th scope="cols">조회</th>
                                   <th scope="cols">마감일</th>
                                   <th scope="cols">판매자</th>
-                                  <th scope="cols">입찰결과</th>
+                                  <th scope="cols">입찰순위</th>
 
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
-                                  <td>내용</td>
-                                  <td>내용</td>
-                                  <td>내용</td>
-                                  <td>내용</td>
-                                  <td>내용</td>
-                                  <td>내용</td>
-                                  <td>내용</td>
-                                  <td>내용</td>
-                                  <td>내용</td>
-                                  <td>내용</td>
+                                  <td>${list.auction_no }</td>
+                                  <td><img src="resources/product/${list.product_img}"></td>                                  
+                                  <td>${list.auction_title}</td>
+                                  <td>${list.current_price}</td>
+                                  <td><a href="productDetail?auction_no=${list.auction_no}">이동</a></td>
+                                  <td></td>
+                                  <td>${list.endDateStr}</td>
+                                  <td>${list.nickname}</td>
+                                  <td></td>
 
                                 </tr>
                               
                                 </tbody>
                               </table>
+                             </c:forEach>
+                            </c:otherwise>
+                           </c:choose>
                             
                      </div>
+<!--                     <div class="content"> -->
+<!--                         <h4>경매종료 목록</h4> -->
+<!--                             <table class="type11"> -->
+<!--                                 <thead> -->
+<!--                                 <tr> -->
+<!--                                   <th scope="cols">물품번호</th> -->
+<!--                                   <th scope="cols">이미지</th> -->
+<!--                                   <th scope="cols">물품명</th> -->
+<!--                                   <th scope="cols">낙찰가</th> -->
+<!--                                   <th scope="cols">입찰</th> -->
+<!--                                   <th scope="cols">조회</th> -->
+<!--                                   <th scope="cols">마감일</th> -->
+<!--                                   <th scope="cols">판매자</th> -->
+<!--                                   <th scope="cols">입찰결과</th> -->
+
+<!--                                 </tr> -->
+<!--                                 </thead> -->
+<!--                                 <tbody> -->
+<!--                                 <tr> -->
+<!--                                   <td>내용</td> -->
+<!--                                   <td>내용</td> -->
+<!--                                   <td>내용</td> -->
+<!--                                   <td>내용</td> -->
+<!--                                   <td>내용</td> -->
+<!--                                   <td>내용</td> -->
+<!--                                   <td>내용</td> -->
+<!--                                   <td>내용</td> -->
+<!--                                   <td>내용</td> -->
+<!--                                   <td>내용</td> -->
+
+<!--                                 </tr> -->
+                              
+<!--                                 </tbody> -->
+<!--                               </table> -->
+                            
+<!--                      </div> -->
 
                     <div class="item">
                        

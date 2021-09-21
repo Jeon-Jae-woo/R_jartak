@@ -104,6 +104,7 @@ public class BidsDaoImpl implements BidsDao {
 			System.out.println("BidDto불러오기 실패...");
 			e.printStackTrace();
 		}
+		System.out.println("bidlist_name"+bidList.get(0).getNickname());
 		return bidList;
 	}
 

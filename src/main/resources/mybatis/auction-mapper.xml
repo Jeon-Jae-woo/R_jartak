@@ -144,7 +144,7 @@
 	
 	<select id="MyproductList" parameterType="map" resultMap="auctionDetail">
 	SELECT AUCTION_NO, AUCTION_TYPE_NO, NICKNAME, AUCTION_STATUS_NO,PRODUCT_NAME, AUCTION_TITLE, PRODUCT_PRICE, 
-		AUCTION_HITS,END_DATE,CREATED_AT,PRODUCT_IMG,CURRENT_PRICE
+	 CREATED_AT,END_DATE,AUCTION_HITS,CURRENT_PRICE,PRODUCT_IMG
     FROM AUCTION
   	WHERE AUCTION_NO IN
   			<foreach item="Auction_no" collection="Auction_no" open="(" separator="," close=")">
@@ -152,6 +152,6 @@
   			</foreach>
   	</select>
   	
-
+	
 
 </mapper>

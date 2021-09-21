@@ -65,7 +65,12 @@ public class AuctionDaoImpl implements AuctionDao {
 	@Override
 	public int auctionTimeOverList() {
 		int result = 0;
-		result = sqlSession.update(NAMESPACE+"timeOverList");	
+		try {
+			result = sqlSession.update(NAMESPACE+"timeOverList");
+		} catch (Exception e) {
+			System.out.println("TimeOverList에서 db접속오류!!");
+			e.printStackTrace();
+		}	
 		
 		return result;
 	}
@@ -127,7 +132,7 @@ public class AuctionDaoImpl implements AuctionDao {
 		} catch (Exception e) {
 			System.out.println("Myproductlist에러!!@DaoImpl");
 			e.printStackTrace();
-		}
+		} 
 		return Myproductlist;
 	}
 

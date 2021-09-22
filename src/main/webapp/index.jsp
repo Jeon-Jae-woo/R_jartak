@@ -50,12 +50,13 @@
 
 	<a href="mypage.do?">마이페이지</a>
 
-
+	
 
 	
 	
 
 	<a href="join.do?">회원가입</a>
+	<a href="echo-ws.do">웹소켓</a>
 
 </body>
 </html>

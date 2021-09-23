@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <!-- 인코딩 처리 -->    
+<%
+    	request.setCharacterEncoding("UTF-8");
+    %>    
+<%
+    	response.setContentType("text/html; charset=UTF-8");
+    %>       
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,15 +24,15 @@
         
  <div id="navi" >
             <div id="navi_text">
-            <a href="mypage_interest.do" style="font-weight:bold">활동</a>
+            <a href="mypage_interest.do?pageNum=1" style="font-weight:bold">활동</a>
             <a href="mypage_msg_receive.do" >메시지</a>
-            <a href="mypage.do?email=kh@kh.co.kr">계정</a>
+            <a href="mypage.do">계정</a>
              </div>
         </div>
         
         <div id="grid">
             <div id="left-grid">
-                         <a href="mypage_interest.do">관심상품</a>
+                         <a href="mypage_interest.do?pageNum=1">관심상품</a>
                 <a href="mypage_buy.do?money=end"  style="background-color: lightseagreen;">구매관리</a>
                 <a href="mypage_sale.do?sale=end">판매관리</a>
                 <a href="mypage_emoney.do?emoney=main">e머니관리</a>
@@ -49,6 +57,16 @@
 
                     <div class="content">
                         <h4>구매거부/반품/미입금 목록</h4>
+                        <c:choose>
+	                    	<c:when test="${empty productlist }">
+	                    		<table class="type11">
+	                    			<tr>
+	                    				<td>입찰내역이 없습니다.</td>
+	                    			</tr>
+	                    		</table>
+	                    	</c:when>
+	                    	<c:otherwise>
+	                    		<c:forEach var="list" items="${productlist }" varStatus="status">
                             <table class="type11">
                                 <thead>
                                 <tr>
@@ -56,30 +74,40 @@
                                   <th scope="cols">이미지</th>
                                   <th scope="cols">물품명</th>
                                   <th scope="cols">금액정보</th>
+                                  <th scope="cols">마감일</th>
                                   <th scope="cols">판매자</th>
-                                  <th scope="cols">현재상태</th>
-                                  <th scope="cols">처리현황</th>
-                                  <th scope="cols">날짜정보</th>
-                                  <th scope="cols">관리</th>
-
+								  <th scope="cols">처리현황</th>
+								 
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
-                                  <td>내용</td>
-                                  <td>내용</td>
-                                  <td>내용</td>
-                                  <td>내용</td>
-                                  <td>내용</td>
-                                  <td>내용</td>
-                                  <td>내용</td>
-                                  <td>내용</td>
-                                  <td>내용</td>
+                                  <td><a href="productDetail?auction_no=${list.auction_no}">${list.auction_no }</a></td>
+                                  <td><img src="resources/product/${list.product_img}"></td>                                  
+                                  <td>${list.auction_title}</td>
+                                  <td>${list.current_price}</td>
+                                  <td>${list.endDateStr}</td>
+                                  <td>${list.nickname}</td>
+                                  <td>
+                                  	<c:choose>
+                                  		<c:when test=" ${tradeList[status.index].trade_status_no eq 2}">
+		                                  	<td>보류</td>
+		                                  </c:when>
+		                                  <c:otherwise>
+		                                  	<td>종료</td>
+		                                  </c:otherwise>
+                                  	</c:choose>
+                                  
+                                  </td>
 
                                 </tr>
                               
                                 </tbody>
                               </table>
+                             </c:forEach>
+                            </c:otherwise>
+                           </c:choose>
+
                             
                      </div>
 

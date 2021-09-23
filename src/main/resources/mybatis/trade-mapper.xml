@@ -27,4 +27,39 @@
 			) T
 	</update>
 	
+	<select id="tradeList" parameterType="map" resultType="tradeDto">
+	SELECT FINAL_BID_PRICE
+    FROM TRADE
+  	WHERE AUCTION_NO IN
+  			<foreach item="Auction_no" collection="Auction_no" open="(" separator="," close=")">
+  			  	#{Auction_no}
+  			</foreach>
+	</select>
+	
+	<select id="tradeListChk" parameterType="map" resultType="tradeDto">
+	SELECT FINAL_BID_PRICE
+    FROM TRADE
+  	WHERE AUCTION_NO IN
+  			<foreach item="auction_no" collection="auction_no" open="(" separator="," close=")">
+  			  	#{auction_no}
+  			</foreach>
+  		AND BIDDER_NICKNAME = 
+  			<foreach item="nickname" collection="nickname" open="(" separator="," close=")">
+  			  	#{nickname}
+  			</foreach>
+  		
+	</select>
+	
+	<select id="tradeAuctionNoList" parameterType="String" resultType="tradeDto">
+		SELECT TRADE_NO, TRADE_STATUS_NO, BID_NO, AUCTION_NO, BIDDER_NICKNAME, SELLER,FINAL_BID_PRICE
+		FROM TRADE
+		WHERE BIDDER_NICKNAME = #{nickname} AND TRADE_STATUS_NO=1
+	</select> 
+	
+	<select id="tradeAuctionNoList_fail" parameterType="String" resultType="tradeDto">
+		SELECT TRADE_NO, TRADE_STATUS_NO, BID_NO, AUCTION_NO, BIDDER_NICKNAME, SELLER,FINAL_BID_PRICE
+		FROM TRADE
+		WHERE BIDDER_NICKNAME = #{nickname} AND TRADE_STATUS_NO IN (2,3)
+	</select> 
+	
 </mapper>

@@ -216,7 +216,8 @@
             	
             			<div class="btns">
                         
-                     
+
+                    	<button type="button" class="btn btn-primary btn-lg" onclick="location.href='interested?auction_no=${productDetail.auction_no}&sell_nickname=${productDetail.nickname}'" >관심물품</button>
                     	<button type="button" class="btn btn-primary btn-lg" onclick="bids();" >입찰하기</button>
                     	<button type="button" class="btn btn-secondary btn-lg" onclick="location.href=''">방송보기</button>
                     	

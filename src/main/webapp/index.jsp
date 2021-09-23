@@ -1,4 +1,5 @@
 
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,10 +15,13 @@
 	}
 	
 	function webRTC(){
+		//room name은 경매 번호로 지정
 		window.open("http://ec2-13-124-233-131.ap-northeast-2.compute.amazonaws.com:3000?room1","web", "width=1000px, height=500px");
 	}
 	
 </script>
+
+
 
 </head>
 <body>
@@ -47,9 +51,6 @@
 	
 	
 	<a href="dateTest">테스트경매날짜</a>
-
-
-	<a href="mypage.do?email=kh@kh.co.kr">마이페이지</a>
 	
 	<a href="message_test.do">메시지 테스트</a>
 

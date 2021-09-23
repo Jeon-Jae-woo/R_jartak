@@ -95,15 +95,15 @@ function bankaccount_deal(){
         
    <div id="navi" >
             <div id="navi_text">
-            <a href="mypage_interest.do" style="font-weight:bold">활동</a>
+            <a href="mypage_interest.do?pageNum=1" style="font-weight:bold">활동</a>
             <a href="mypage_msg_receive.do" >메시지</a>
-            <a href="mypage.do?email=kh@kh.co.kr">계정</a>
+            <a href="mypage.do">계정</a>
              </div>
         </div>
         
         <div id="grid">
             <div id="left-grid">
-                           <a href="mypage_interest.do">관심상품</a>
+                           <a href="mypage_interest.do?pageNum=1">관심상품</a>
                 <a href="mypage_buy.do?money=end">구매관리</a>
                 <a href="mypage_sale.do?sale=end">판매관리</a>
                 <a href="mypage_emoney.do?emoney=main" style="background-color: lightseagreen;">e머니관리</a>

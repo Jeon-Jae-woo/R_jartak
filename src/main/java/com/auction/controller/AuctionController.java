@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,9 +20,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.auction.biz.AuctionBiz;
 import com.auction.dto.AuctionDto;
+import com.auction.dto.auction_interestedDto;
 import com.member.biz.MemberBiz;
 import com.member.dto.MemberDto;
 import com.member.dto.MemberRankDto;
@@ -149,6 +152,74 @@ public class AuctionController {
 		return "streaming";
 	}
 	
-	
-	
+	//관심상품등록
+	@RequestMapping(value="/interested")
+	public String interested(Model model,HttpSession session,HttpServletRequest request,int auction_no,String sell_nickname,RedirectAttributes redirectAttributes) {
+		logger.info("[interested auction]");
+		session = request.getSession();
+		String buy_nickname = (String)session.getAttribute("nickname");
+		auction_interestedDto dto = new auction_interestedDto();
+		dto.setInterested_auction_no(auction_no);
+		dto.setBuy_nickname(buy_nickname);
+		dto.setSell_nickname(sell_nickname);
+		auction_interestedDto selectOne = auctionbiz.interestedListChk(auction_no, buy_nickname);
+		String resultMsg = "";
+
+//		if(selectOne!=null) {
+//			resultMsg = "<script>alert('Already exist!!');location.href='productDetail?auction_no="+dto.getInterested_auction_no()+"'</script>";
+//			return resultMsg;
+//		}else{
+//		
+//		
+//		int res = auctionbiz.insertInterested(dto);
+//		
+//		redirectAttributes.addAttribute("auction_no",auction_no);
+//		return "redirect:productDetail";
+//		}
+		if(selectOne!=null) {
+			model.addAttribute("msg","이미 등록되어 있습니다.");
+			model.addAttribute("url", "productAddForm.log?auction_no="+auction_no);
+			return "auctionAlert";
+		}else {
+			int res = auctionbiz.insertInterested(dto);
+			if(res>0) {
+				model.addAttribute("msg","관심상품 등록하였습니다.");
+				model.addAttribute("url", "mypage.do");
+				return "auctionAlert";
+			}else {
+				model.addAttribute("msg","관심상품 등록실패");
+				model.addAttribute("url", "mypage.do");
+				return "auctionAlert";
+			}
+
+		}
+		
+		
+		
+	}
+	//관심상품목록출력
+//		@RequestMapping("/interestedlist")
+//		public String interestedlist(HttpSession session,HttpServletRequest request,Model model, @RequestParam("pageNum")int pageNum) {
+//			session = request.getSession();
+//			String buy_nickname = (String)session.getAttribute("nickname");
+//			
+//			int result = auctionbiz.TimeOutListBiz();
+//			List<AuctionDto> productList = null;
+//			if(result>0) {
+//				productList = auctionbiz.selectInterestedListBiz(pageNum,buy_nickname);
+//			}
+//			pagingDto paging = auctionbiz.interestedListCountBiz(pageNum);
+//			model.addAttribute("paging", paging);
+//			model.addAttribute("productList", productList);
+//			
+//			return "interestedlist";
+//		}
+		
+
+
+
+
+
+
+
 }

@@ -1,6 +1,7 @@
 package com.trade.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,43 @@ public class TradeDaoImpl implements TradeDao {
 			result = -1;
 		}
 		return result;
+	}
+	
+	//마이페이지에서 구매-거래종료에서 낙찰ㄹ가 가져오기 위한
+	@Override
+	public List<TradeDto> tradeList(Map<String, int[]> map) {
+		List<TradeDto> list = null;
+		try {
+			list = sqlSession.selectList(NAMESPACE+"tradeList",map);
+		} catch (Exception e) {
+			System.out.println("tradelist@dao에러");
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public List<TradeDto> tradeListChk(Map<String,Object> map) {
+
+		List<TradeDto> list = null;
+		list = sqlSession.selectList(NAMESPACE+"tradeListChk",map);
+		
+		
+		return list;
+	}
+
+	@Override
+	public List<TradeDto> tradeAuctionNoList(String nickname) {
+		List<TradeDto> list = null;
+		list = sqlSession.selectList(NAMESPACE+"tradeAuctionNoList",nickname);
+		return list;
+	}
+
+	@Override
+	public List<TradeDto> tradeAuctionNoList_fail(String nickname) {
+		List<TradeDto> list = null;
+		list = sqlSession.selectList(NAMESPACE+"tradeAuctionNoList_fail",nickname);
+		return list;
 	}
 
 }

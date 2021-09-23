@@ -1,5 +1,6 @@
 package com.bids.dto;
 
+
 import java.util.Date;
 
 public class BidsDto {
@@ -41,12 +42,14 @@ public class BidsDto {
 	public void setAuction_no(int auction_no) {
 		this.auction_no = auction_no;
 	}
+
 	public int getBid_price() {
 		return bid_price;
 	}
 	public void setBid_price(int bid_price) {
 		this.bid_price = bid_price;
 	}
+
 	public Date getBidding_time() {
 		return bidding_time;
 	}

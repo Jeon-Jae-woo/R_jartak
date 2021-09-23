@@ -1,5 +1,7 @@
 package com.bids.dao;
 
+import java.util.List;
+
 import com.bids.dto.BidsDto;
 
 public interface BidsDao {
@@ -19,6 +21,9 @@ public interface BidsDao {
 	//경매 현재가격 및 최고 입찰자 업데이트
 	public int AuctionCurrentUpdate(int auction_no, int current_price, String nickname);
 	
+	//마이페이지 구매이력에서쓰임
+	public List<BidsDto> bidList(String nickname,int auction_stat);
+
 	
 	
 }

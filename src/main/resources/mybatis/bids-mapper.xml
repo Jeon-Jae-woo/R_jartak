@@ -37,6 +37,23 @@
 		UPDATE AUCTION SET CURRENT_PRICE = #{current_price}, HIGH_BIDDER=#{nickname} WHERE AUCTION_NO = #{auction_no}
 	</update>
 	
+	<resultMap type="bidsDto" id="bidsMap">
+  		<result property="bid_no" column="BID_NO"/>
+  		<result property="nickname" column="NICKNAME"/>
+  		<result property="auction_no" column="AUCTION_NO"/>
+  		<result property="auction_status_no" column="AUCTION_STATUS_NO"/>
+  		<result property="bidding_time" column="BIDDING_TIME"/>
+  	
+  	</resultMap>	
+	
+	<select id="selectList" parameterType="auctionDto" resultMap="bidsMap">
+  		SELECT BID_NO, BIDS.NICKNAME,BIDS.AUCTION_NO,BIDDING_TIME
+  	 	FROM BIDS 
+  	 	JOIN AUCTION ON (AUCTION.AUCTION_NO=BIDS.AUCTION_NO)
+  	 	WHERE AUCTION_STATUS_NO=#{auction_status_no} AND BIDS.NICKNAME=#{nickname}
+  	</select>
+  	
+	
 </mapper>
 
 

@@ -12,6 +12,11 @@
 		//세션 및 디테일 페이지에서 유저 아이디를 얻어오고 넘겨줘야 함, controller로 처리되도록 수정 필요
 		window.open("reportForm.log", "신고", "width=500px, height=500px");
 	}
+	
+	function webRTC(){
+		window.open("http://ec2-13-124-233-131.ap-northeast-2.compute.amazonaws.com:3000?room1","web", "width=1000px, height=500px");
+	}
+	
 </script>
 
 </head>
@@ -51,7 +56,7 @@
 	<a href="mypage.do?">마이페이지</a>
 
 
-
+	<button onclick="webRTC();">webRTC테스트</button>
 	
 	
 

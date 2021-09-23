@@ -14,6 +14,7 @@
 		<result column="PRODUCT_PRICE" property="product_price"/>
 		<result column="PRODUCT_IMG" property="product_img"/>
 		<result column="AUCTION_HITS" property="auction_hits"/>
+		<result column="CURRENT_PRICE" property="current_price"/>
 		<result column="END_DATE" property="remainingTime" typeHandler="StringTimeTypeHandler"/>	
 	</resultMap>
 	
@@ -60,17 +61,49 @@
 	<!-- 경매 리스트  -->
 	<select id="productList" parameterType="HashMap" resultMap="auctionlist">
 		SELECT AUCTION_NO, AUCTION_TYPE_NO, NICKNAME, AUCTION_STATUS_NO, AUCTION_TITLE, PRODUCT_PRICE, 
-        	PRODUCT_IMG, AUCTION_HITS,END_DATE
+        	PRODUCT_IMG, AUCTION_HITS,END_DATE, CURRENT_PRICE
 		FROM(
 			SELECT ROWNUM AS RNUM,AUCTION_NO, AUCTION_TYPE_NO, NICKNAME, AUCTION_STATUS_NO, AUCTION_TITLE, PRODUCT_PRICE, 
-        	PRODUCT_IMG, AUCTION_HITS,END_DATE
+        	PRODUCT_IMG, AUCTION_HITS,END_DATE, CURRENT_PRICE
 			FROM(
 				SELECT AUCTION_NO, AUCTION_TYPE_NO, NICKNAME, AUCTION_STATUS_NO, AUCTION_TITLE, PRODUCT_PRICE, 
-        		PRODUCT_IMG, AUCTION_HITS,END_DATE
+        		PRODUCT_IMG, AUCTION_HITS,END_DATE, CURRENT_PRICE
 				FROM AUCTION WHERE AUCTION_TYPE_NO=#{auctionType} AND AUCTION_STATUS_NO=1)
 			WHERE ROWNUM<![CDATA[ < ]]>#{endRow})
 		WHERE RNUM>=#{startRow}
-	</select>	
+	</select>
+	
+	<!-- 마감임박 리스트 -->
+	<select id="deadlineProductList" parameterType="HashMap" resultMap="auctionlist">
+		SELECT AUCTION_NO, AUCTION_TYPE_NO, NICKNAME, AUCTION_STATUS_NO, AUCTION_TITLE, PRODUCT_PRICE, 
+	    	PRODUCT_IMG, AUCTION_HITS,END_DATE, CURRENT_PRICE
+		FROM(
+	    	SELECT ROWNUM AS RNUM,AUCTION_NO, AUCTION_TYPE_NO, NICKNAME, AUCTION_STATUS_NO, AUCTION_TITLE, PRODUCT_PRICE, 
+	    	PRODUCT_IMG, AUCTION_HITS,END_DATE, CURRENT_PRICE
+	    	FROM(
+	        	SELECT AUCTION_NO, AUCTION_TYPE_NO, NICKNAME, AUCTION_STATUS_NO, AUCTION_TITLE, PRODUCT_PRICE, 
+	        	PRODUCT_IMG, AUCTION_HITS,END_DATE, CURRENT_PRICE
+	        	FROM AUCTION WHERE AUCTION_STATUS_NO=1 AND ((SYSDATE + 1/24)<![CDATA[ > ]]>END_DATE))
+	    	WHERE ROWNUM<![CDATA[ < ]]>#{endRow})
+		WHERE RNUM>=#{startRow}
+	</select>
+	
+	<!-- 인기경매 리스트 -->
+	<select id="popularProductList" parameterType="HashMap" resultMap="auctionlist">
+		SELECT AUCTION_NO, AUCTION_TYPE_NO, NICKNAME, AUCTION_STATUS_NO, AUCTION_TITLE, PRODUCT_PRICE, 
+	    PRODUCT_IMG, AUCTION_HITS,END_DATE, CURRENT_PRICE
+			FROM(
+	    		SELECT ROWNUM AS RNUM,AUCTION_NO, AUCTION_TYPE_NO, NICKNAME, AUCTION_STATUS_NO, AUCTION_TITLE, PRODUCT_PRICE, 
+	       		PRODUCT_IMG, AUCTION_HITS,END_DATE, CURRENT_PRICE
+	        	FROM(
+	            	SELECT DISTINCT A.AUCTION_NO, A.AUCTION_TYPE_NO, A.NICKNAME, AUCTION_STATUS_NO, AUCTION_TITLE, PRODUCT_PRICE, 
+	                    PRODUCT_IMG, AUCTION_HITS,END_DATE, COUNT(*) OVER(PARTITION BY A.AUCTION_NO) AS "BIDS_COUNT", CURRENT_PRICE
+	            	FROM AUCTION A, BIDS B
+	            	WHERE A.AUCTION_NO = B.AUCTION_NO AND AUCTION_STATUS_NO=1
+	            	ORDER BY BIDS_COUNT DESC)
+	        WHERE ROWNUM<![CDATA[ < ]]>#{endRow})
+		WHERE RNUM>=#{startRow}
+	</select>
 	
 	<!-- 경매 디테일 -->
 	<select id="productDetail" parameterType="int" resultMap="auctionDetail">
@@ -108,7 +141,19 @@
 		SELECT COUNT(*) FROM AUCTION WHERE AUCTION_TYPE_NO=#{auctionType} AND AUCTION_STATUS_NO=1
 	</select>
 	
+	<!-- 마감 임박 카운트 -->
+	<select id="deadlinePorductCount" resultType="int">
+		SELECT COUNT(*) FROM AUCTION WHERE (SYSDATE+1/24>END_DATE) AND AUCTION_STATUS_NO=1
+	</select>
 	
+	<!-- 인기 경매 카운트 -->
+	<select id="popularProductCount" resultType="int">
+	SELECT COUNT(*)
+		FROM(
+	    SELECT DISTINCT A.AUCTION_NO, COUNT(*) OVER(PARTITION BY A.AUCTION_NO) AS "BIDS_COUNT"
+	    FROM AUCTION A, BIDS B
+	    WHERE A.AUCTION_NO = B.AUCTION_NO AND AUCTION_STATUS_NO=1)
+	</select>
 	
 
 </mapper>

@@ -58,13 +58,24 @@ public class AuctionController {
 	//경매 리스트
 	@RequestMapping("/productlist")
 	public String list(HttpServletRequest request,Model model, @RequestParam("pageNum")int pageNum, @RequestParam("type")int auctionType) {
-		
 		int result = auctionbiz.TimeOutListBiz();
 		List<AuctionDto> productList = null;
+		pagingDto paging = null;
 		if(result>0) {
-			productList = auctionbiz.selectProductListBiz(pageNum, auctionType);
+			//마감임박
+			if(auctionType == 3) {
+				productList = auctionbiz.DeadlineProductListBiz(pageNum);
+				paging = auctionbiz.DeadProductListCountBiz(pageNum);
+			//인기경매
+			}else if(auctionType == 4) {
+				productList = auctionbiz.PopularProductListBiz(pageNum);
+				paging = auctionbiz.PopularListCountBiz(pageNum);
+			}else {
+				productList = auctionbiz.selectProductListBiz(pageNum, auctionType);
+				paging = auctionbiz.productListCountBiz(pageNum, auctionType);
+			}
 		}
-		pagingDto paging = auctionbiz.productListCountBiz(pageNum, auctionType);
+		
 		model.addAttribute("paging", paging);
 		model.addAttribute("productList", productList);
 		model.addAttribute("auctionType", auctionType);
@@ -142,7 +153,6 @@ public class AuctionController {
 		}
 		
 	}
-	
 	
 	@RequestMapping("/streaming")
 	public String streaming() {

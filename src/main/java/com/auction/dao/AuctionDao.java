@@ -29,6 +29,14 @@ public interface AuctionDao {
 	//거래 테이블에 등록될 정보 반환
 	public List<TradeDto> AuctionHighBidderList();
 	
+	//마감 임박 -> 1시간 미만으로 남은것들..?
+	public List<AuctionDto> DeadlineProductList(int pageNum);
+	//마감 임박 경매 카운트
+	public int deadlineListCount();
 	
+	//인기 경매 -> 입찰 수 많은 순으로 정렬
+	public List<AuctionDto> PopularProductList(int pageNum);
+	//인기 경매 카운트
+	public int PopularListCount();
 	
 }

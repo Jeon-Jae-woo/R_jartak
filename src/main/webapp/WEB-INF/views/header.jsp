@@ -204,8 +204,8 @@
 				<ul class="header_ul">
 					<li><a href="productlist?pageNum=1&type=1">일반경매</a></li>
 					<li><a href="productlist?pageNum=1&type=2">블라인드 경매</a></li>
-					<li><a href="">마감임박</a></li>
-					<li><a href="">인기경매</a></li>
+					<li><a href="productlist?pageNum=1&type=3">마감임박</a></li>
+					<li><a href="productlist?pageNum=1&type=4">인기경매</a></li>
 				</ul>
 				<div><button id="myBtn" style="width:50px; height:28px;">
 						<!--<img src="resources/qs.PNG" style="width:40px; height:28px; margin-right:50px; object-fit: cover;" >-->

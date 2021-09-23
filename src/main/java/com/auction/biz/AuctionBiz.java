@@ -20,5 +20,12 @@ public interface AuctionBiz {
 	public int TimeOutListBiz();
 	//경매 종료(단일)
 	public int TimeOutBiz(Map<String,Object> data);
-
+	//마감 임박
+	public List<AuctionDto> DeadlineProductListBiz(int pageNum);
+	//마감 임박 경매 리스트 카운트
+	public pagingDto DeadProductListCountBiz(int pageNum);
+	//인기 경매
+	public List<AuctionDto> PopularProductListBiz(int pageNum);
+	//인기 경매 리스트 카운트
+	public pagingDto PopularListCountBiz(int pageNum);
 }

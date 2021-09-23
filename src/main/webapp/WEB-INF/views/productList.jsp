@@ -106,7 +106,7 @@
 				                    </div>
 				                    <div class="price">
 				                        <div class="amount">
-				                            <b class="num">${list.product_price }</b>
+				                            <b class="num">${list.current_price }</b>
 				                        <span class="won"><b>원</b></span>
 				                        </div>
 				                        <div class="time">남은 시간: ${list.remainingTime }</div>

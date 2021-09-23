@@ -51,7 +51,7 @@
     	</div>
     	
     	<div class="footer_p">
-    		<p>상호명: (주)알잘딱 &nbsp;&nbsp; 팀원: 이현우, 전재우, 구본익, 김성준, 이승현</p>
+    		<p>상호명: (주)알잘딱 &nbsp;&nbsp; 팀원: 이현우, 전재우, 구본익, 이승현</p>
     		<p>Tel: 1544-9970(KH) </p>
     		<p>주소: 서울특별시 강남구 테헤란로14길 6 남도빌딩 2F, 3F, 4F, 5F, 6F </p>
     		<p>Copyright 2021. R_jartak all rights reserved.</p>

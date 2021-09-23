@@ -18,7 +18,6 @@
 		<typeAlias type="com.auction.dto.AuctionTypeDto" alias="auctionTypeDto"/>
 		<typeAlias type="com.bids.dto.BidsDto" alias="bidsDto"/>
 		<typeAlias type="com.trade.dto.TradeDto" alias="tradeDto"/>
-		<typeAlias type="com.trade.dto.TradeUpdateDto" alias="tradeUpdateDto"/>
 		
 		<typeAlias type="com.util.LocalDateTimeTypeHandler" alias="LocalDateTimeTypeHandler"/>
 		<typeAlias type="com.util.StringTimeTypeHandler" alias="StringTimeTypeHandler"/>

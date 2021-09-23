@@ -130,5 +130,19 @@ public class MemberDaoImpl implements MemberDao {
 		return res;
 	}
 
+	@Override
+	public int updateAmount(String nickName, int amount) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.update(MEMBER_NAMESAPCE+"updateAmount",nickName);
+		} catch (Exception e) {
+			System.out.println("[error:tradeupdate] @dao ");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
 
 }

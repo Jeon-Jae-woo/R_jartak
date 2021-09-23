@@ -24,8 +24,24 @@
 							#{item.final_bid_price} AS FINAL_BID_PRICE
 					FROM SYS.DUAL
 				</foreach>
-			) T
+			) 
 	</update>
+	<select id="selectNo" parameterType="int" resultType="TradeUpdateDto" >
+		SELECT T.TRADE_NO, T.TRADE_STATUS_NO, T.FINAL_BID_PRICE,
+		SELLER.NICKNAME AS SELLER_NICKNAME, SELLER,AMOUNT AS SELLER_AMOUNT,
+		BIDDER.NICKNAME AS BIDDER_NICKNAME, BIDDER.AMOUNT AS BIDDER_AMOINT
+		FROM TRADE T
+		JOIN MEMBER SELLER ON SELLER.NICKNAME = T.SELLER
+		JOIN MEMVER BIDDER ON BIDDER.NICKNAME = T.BIDDER_NICKNAME
+		WHERE T.TRADE_NO = #{trade_no}
+	</select>
+	<update id="updateStatus" parameterType="int" >
+		UPDATE TRADE
+		SET TRADE_STATUS_NO = 3
+		WHERE TRADE_NO = #{trade_no}
+	</update>
+
+
 	
 	<select id="tradeList" parameterType="map" resultType="tradeDto">
 	SELECT FINAL_BID_PRICE
@@ -62,4 +78,5 @@
 		WHERE BIDDER_NICKNAME = #{nickname} AND TRADE_STATUS_NO IN (2,3)
 	</select> 
 	
+
 </mapper>

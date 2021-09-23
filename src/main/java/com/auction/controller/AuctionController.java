@@ -184,11 +184,11 @@ public class AuctionController {
 			int res = auctionbiz.insertInterested(dto);
 			if(res>0) {
 				model.addAttribute("msg","관심상품 등록하였습니다.");
-				model.addAttribute("url", "productAddForm.log?auction_no="+auction_no);
+				model.addAttribute("url", "mypage.do");
 				return "auctionAlert";
 			}else {
 				model.addAttribute("msg","관심상품 등록실패");
-				model.addAttribute("url", "productAddForm.log?auction_no="+auction_no);
+				model.addAttribute("url", "mypage.do");
 				return "auctionAlert";
 			}
 

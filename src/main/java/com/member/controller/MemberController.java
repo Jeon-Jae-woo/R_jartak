@@ -1,6 +1,7 @@
 package com.member.controller;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +38,9 @@ import com.bids.dto.BidsDto;
 import com.member.biz.MemberBiz;
 import com.member.dto.MemberDto;
 import com.member.dto.MemberRankDto;
+import com.trade.biz.TradeBiz;
+import com.trade.dao.TradeDao;
+import com.trade.dto.TradeDto;
 import com.util.pagingDto;
 
 @Controller
@@ -53,6 +57,8 @@ public class MemberController {
 	private AuctionBiz auctionbiz;
 	@Autowired
 	private BidsBiz bidsbiz;
+	@Autowired
+	private TradeBiz tradebiz;
 	
 	private JavaMailSender mailSender;
 	
@@ -174,15 +180,7 @@ public class MemberController {
 	}
 	
 
-	
-	//활동-관심상품으로 이동
-//	@RequestMapping("/mypage_interest.do")
-//	public String mypage_interest() {
-//		
-//		
-//		return "mypage_interest";
-//		
-//	}
+
 	//관심상품목록출력
 			@RequestMapping("/mypage_interest.do")
 			public String interestedlist(HttpSession session, HttpServletRequest request,Model model, @RequestParam("pageNum")int pageNum) {
@@ -248,20 +246,59 @@ public class MemberController {
 			Map<String,int[]> map = new HashMap<>();
 			for(int i=0; i<list.size();i++) {
 				Arr[i] = list.get(i).getAuction_no();
-				
 			}
 			map.put("Auction_no", Arr);
 			
 			List<AuctionDto> productlist = auctionbiz.MyProductListBiz(map);
 			model.addAttribute("productlist", productlist);
 			
+			//낙찰값 가져오기 : 위에서 가져온 auction_no통해서 TRADE에서 LIST가져오기
+			List<TradeDto> tradeList = tradebiz.tradeListBiz(map);
+			model.addAttribute("tradeList",tradeList);
+			
+			//나의 낙찰여부
+//			List<TradeDto> tradeListChk = new ArrayList<TradeDto>();
+//			for(int i=0; i<list.size();i++) {
+//				TradeDto dto = new TradeDto();
+//				dto.setAuction_no(list.get(i).getAuction_no());
+//				dto.setBidder_nickname(nickname);
+//				tradeListChk.add(i,dto);
+//			}
+			Map<String,Object> Chkmap = new HashMap<>();
+				Chkmap.put("auction_no",Arr);
+				String[] str = new String[1];
+				str[0] = nickname;
+ 				Chkmap.put("nickname",str);
+			List<TradeDto> chk = tradebiz.tradeListChkBiz(Chkmap);
+			model.addAttribute("chk",chk);
+			
 			return "mypage_buy_end";
 		}else if(money.equals("failure")) {
+			List<TradeDto> auctionNolist = tradebiz.tradeAuctionNoList_failBiz(nickname);
+			//
+			int[] Arr = new int[auctionNolist.size()];
+			Map<String,int[]> map = new HashMap<>();
+			for(int i=0; i<auctionNolist.size();i++) {
+				Arr[i] =auctionNolist.get(i).getAuction_no();
+			}
+			map.put("Auction_no", Arr);
+			
+			List<AuctionDto> productlist = auctionbiz.MyProductListBiz(map);
+			model.addAttribute("productlist", productlist);
+			
+			//낙찰상태 가져오기 : 위에서 가져온 auction_no통해서 TRADE에서 LIST가져오기
+			List<TradeDto> tradeList = tradebiz.tradeListBiz(map);
+			model.addAttribute("tradeList",tradeList);
+			
+			
 			return "mypage_buy_failure";
 		}else if(money.equals("ing")) {
+			//auction_stat과 nicnkname으로 bidList에서 조건에 맞는 auction_no 뽑아서 array에 담는다.
 			int auction_stat = 1;
 			list = bidsbiz.bidList(nickname,auction_stat);
 			int[] Arr = new int[list.size()];
+			
+			//위에서 가져온 auction_no통해 auction테이블에서 리스트로 쫙뽑아서 map에다가 저장
 			Map<String,int[]> map = new HashMap<>();
 			for(int i=0; i<list.size();i++) {
 				Arr[i] = list.get(i).getAuction_no();
@@ -271,8 +308,21 @@ public class MemberController {
 			List<AuctionDto> productlist = auctionbiz.MyProductListBiz(map);
 			model.addAttribute("productlist", productlist);
 			
+			
 			return "mypage_buy_ing";
 		}else{
+			List<TradeDto> auctionNolist = tradebiz.tradeAuctionNoListBiz(nickname);
+			int[] Arr = new int[auctionNolist.size()];
+			Map<String,int[]> map = new HashMap<>();
+			for(int i=0; i<auctionNolist.size();i++) {
+				Arr[i] =auctionNolist.get(i).getAuction_no();
+			}
+			map.put("Auction_no", Arr);
+			
+			List<AuctionDto> productlist = auctionbiz.MyProductListBiz(map);
+			model.addAttribute("productlist", productlist);
+			
+			
 			return "mypage_buy_trading";
 		}
 	}

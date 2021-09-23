@@ -79,25 +79,21 @@
                                   <th scope="cols">이미지</th>
                                   <th scope="cols">물품명</th>
                                   <th scope="cols">현재가</th>
-                                  <th scope="cols">입찰</th>
-                                  <th scope="cols">조회</th>
+                                  <th scope="cols">조회수</th>
                                   <th scope="cols">마감일</th>
                                   <th scope="cols">판매자</th>
-                                  <th scope="cols">입찰순위</th>
 
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
-                                  <td>${list.auction_no }</td>
+                                  <td><a href="productDetail?auction_no=${list.auction_no}">${list.auction_no }</a></td>
                                   <td><img src="resources/product/${list.product_img}"></td>                                  
                                   <td>${list.auction_title}</td>
                                   <td>${list.current_price}</td>
-                                  <td><a href="productDetail?auction_no=${list.auction_no}">이동</a></td>
-                                  <td></td>
+                                  <td>${list.auction_hits}</td>
                                   <td>${list.endDateStr}</td>
                                   <td>${list.nickname}</td>
-                                  <td></td>
 
                                 </tr>
                               

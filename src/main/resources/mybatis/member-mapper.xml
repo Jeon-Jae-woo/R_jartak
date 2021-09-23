@@ -22,7 +22,7 @@
 		#{password},
 		#{gender},
 		#{name},
-		#{birth},
+		#{birth},j
 		SYSDATE,
 		SYSDATE,
 		#{address},

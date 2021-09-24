@@ -168,7 +168,7 @@
 		<result column="AUCTION_CONTENT" property="auction_content"/>
 		<result column="PRODUCT_PRICE" property="product_price"/>
 		<result column="BIDDING_UNIT" property="bidding_unit"/>
-		<result column="CREATE_STR" property="createDateStr"/>
+		<result column="CREATED_AT" property="createDateStr"/>
 		<result column="END_DATE" property="endDateStr"/>
 		<result column="AUCTION_HITS" property="auction_hits"/>
 		<result column="PRODUCT_IMG" property="product_img"/>
@@ -181,5 +181,17 @@
 		
 	</resultMap>
 	
-
+	<select id="Mysalelist" parameterType="String" resultMap="MyproductListDetail">
+		SELECT AUCTION_NO, AUCTION_TYPE_NO, NICKNAME, AUCTION_STATUS_NO,PRODUCT_NAME, AUCTION_TITLE, PRODUCT_PRICE, 
+			 CREATED_AT,END_DATE,AUCTION_HITS,CURRENT_PRICE,PRODUCT_IMG
+    	FROM AUCTION
+		WHERE NICKNAME=#{nickname} AND AUCTION_STATUS_NO= 1
+	</select>
+	
+	<select id="MysalelistEnd" parameterType="String" resultMap="MyproductListDetail">
+		SELECT AUCTION_NO, AUCTION_TYPE_NO, NICKNAME, AUCTION_STATUS_NO,PRODUCT_NAME, AUCTION_TITLE, PRODUCT_PRICE, 
+			 CREATED_AT,END_DATE,AUCTION_HITS,CURRENT_PRICE,PRODUCT_IMG
+    	FROM AUCTION
+		WHERE NICKNAME=#{nickname} AND AUCTION_STATUS_NO= 3
+	</select>
 </mapper>

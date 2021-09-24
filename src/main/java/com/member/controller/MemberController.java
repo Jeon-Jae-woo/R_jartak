@@ -329,14 +329,59 @@ public class MemberController {
 	
 	//활동-판매페이지이동
 	@RequestMapping("/mypage_sale.do")
-	public String mypage_sale(String sale) {
+	public String mypage_sale(String sale,Model model,String money,HttpSession session,HttpServletRequest request) {
+		session = request.getSession();
+		String nickname = (String)session.getAttribute("nickname");
+		
+		List<BidsDto> list = null;
+
 		if(sale.equals("end")) {
+			//auction_stat = 3인 것들 가져오긴
+			List<AuctionDto> productlist = auctionbiz.MysalelistEndBiz(nickname);
+			model.addAttribute("productlist", productlist);
+			
 			return "mypage_sale_end";
 		}else if(sale.equals("failure")) {
+			List<TradeDto> auctionNolist = tradebiz.tradeAuctionNoList_failBiz(nickname);
+			
+			int[] Arr = new int[auctionNolist.size()];
+			Map<String,int[]> map = new HashMap<>();
+			for(int i=0; i<auctionNolist.size();i++) {
+				Arr[i] =auctionNolist.get(i).getAuction_no();
+			}
+			map.put("Auction_no", Arr);
+			
+			List<AuctionDto> productlist = auctionbiz.MyProductListBiz(map);
+			model.addAttribute("productlist", productlist);
+			
+			//낙찰상태 가져오기 : 위에서 가져온 auction_no통해서 TRADE에서 LIST가져오기
+			List<TradeDto> tradeList = tradebiz.tradeListBiz(map);
+			model.addAttribute("tradeList",tradeList);
+			
+			
 			return "mypage_sale_failure";
 		}else if(sale.equals("ing")) {
+			List<AuctionDto> productlist = auctionbiz.MysaleListBiz(nickname);
+			model.addAttribute("productlist", productlist);
+			
+			
 			return "mypage_sale_ing";
 		}else{
+			List<TradeDto> auctionNolist = tradebiz.SellertradeAuctionNoListBiz(nickname);
+			System.out.println("auctionNo="+auctionNolist.get(0).getAuction_no());
+			int[] Arr = new int[auctionNolist.size()];
+			Map<String,int[]> map = new HashMap<>();
+			for(int i=0; i<auctionNolist.size();i++) {
+				Arr[i] =auctionNolist.get(i).getAuction_no();
+			}
+			map.put("Auction_no", Arr);
+			
+			List<AuctionDto> productlist = auctionbiz.MyProductListBiz(map);
+			model.addAttribute("productlist", productlist);
+			model.addAttribute("auctionlist",auctionNolist);
+			
+			
+			
 			return "mypage_sale_trading";
 		}
 	}

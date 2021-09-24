@@ -166,6 +166,16 @@ public class AuctionBizImpl implements AuctionBiz {
 		return productList;
 	}
 
+	@Override
+	public List<AuctionDto> MysaleListBiz(String nickname) {
+		return auctiondao.MysaleList(nickname);
+	}
+
+	@Override
+	public List<AuctionDto> MysalelistEndBiz(String nickname) {
+		return auctiondao.MysalelistEnd(nickname);
+	}
+
 
 
 	

@@ -51,13 +51,13 @@ public class TradeBizImpl implements TradeBiz {
 		// 5. trade의 상태를 업데이트를 해준다.
 		
 		tradeDao.updateStatus(trade_no);
-		
-		
-		
-		
-		
-		
 	}
+		
+		
+		
+		
+		
+	
 	
 	@Override
 	public List<TradeDto> tradeListBiz(Map<String, int[]> map) {
@@ -79,6 +79,16 @@ public class TradeBizImpl implements TradeBiz {
 		// TODO Auto-generated method stub
 		return tradeDao.tradeAuctionNoList_fail(nickname);
 
+	}
+
+	@Override
+	public List<TradeDto> SellertradeAuctionNoListBiz(String nickname) {
+		return tradeDao.SellertradeAuctionNoList(nickname);
+	}
+
+	@Override
+	public List<TradeDto> SelltradeAuctionNoList_failBiz(String nickname) {
+		return tradeDao.SelltradeAuctionNoList_fail(nickname);
 	}
 	
 }

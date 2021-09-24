@@ -55,4 +55,9 @@ public interface AuctionDao {
 	//마이페이지 판매목록-end
 	public List<AuctionDto> MysalelistEnd(String nickname);
 	
+<<<<<<< HEAD
+=======
+	
+	
+>>>>>>> 104ff0d9a0eaf49c8189e8ec439e8e497a28bd16
 }

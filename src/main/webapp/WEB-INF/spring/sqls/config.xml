@@ -26,7 +26,7 @@
 		<typeAlias type="com.util.StringTimeTypeHandler" alias="StringTimeTypeHandler"/>
 		<typeAlias type="com.util.IntegerTimeTypeHandler" alias="IntegerTimeTypeHandler"/>
 		<typeAlias type="com.util.LocalDateTypeHandler" alias="LocalDateTypeHandler"/>
-		
+	
 	</typeAliases>
 	
 	<typeHandlers>

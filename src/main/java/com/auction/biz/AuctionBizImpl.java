@@ -79,6 +79,7 @@ public class AuctionBizImpl implements AuctionBiz {
 		
 		return result;
 	}
+	
 
 	//경매 종료 단일(경매 종료에 성공한 경우, 최고 입찰자를 찾아서, 거래 테이블에 등록)
 	@Override
@@ -176,7 +177,6 @@ public class AuctionBizImpl implements AuctionBiz {
 	}
 
 
-
 	//마감 임박
 	@Override
 	public List<AuctionDto> DeadlineProductListBiz(int pageNum) {
@@ -214,5 +214,6 @@ public class AuctionBizImpl implements AuctionBiz {
 		paging.pagination();
 		return paging;
 	}
+
 
 }

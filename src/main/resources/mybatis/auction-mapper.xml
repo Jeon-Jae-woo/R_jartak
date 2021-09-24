@@ -49,6 +49,12 @@
 		
 	</resultMap>
 	
+	<resultMap type="bookmarkDto" id="bookmarkList">
+		<result column="BOOKMARK_NO" property="bookmark_no" />
+		<result column="AUCTION_NO" property="auction_no" />
+		<result column="NICKNAME" property="nickname" />
+	</resultMap>
+	
 	<!-- 경매 등록 -->
 	<insert id="insertProduct" parameterType="auctionDto">
 		INSERT INTO AUCTION 
@@ -71,6 +77,14 @@
 			WHERE ROWNUM<![CDATA[ < ]]>#{endRow})
 		WHERE RNUM>=#{startRow}
 	</select>	
+	
+	
+	<select id="bookmarkList" resultMap="bookmarkList">
+		SELECT AUCTION_NO
+		FROM BOOKMARK
+		WHERE NICKNAME=#{nickname}
+	
+	</select>
 	
 	<!-- 경매 디테일 -->
 	<select id="productDetail" parameterType="int" resultMap="auctionDetail">

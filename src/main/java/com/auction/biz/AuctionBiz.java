@@ -20,5 +20,6 @@ public interface AuctionBiz {
 	public int TimeOutListBiz();
 	//경매 종료(단일)
 	public int TimeOutBiz(Map<String,Object> data);
+	
 
 }

@@ -53,6 +53,7 @@ public class AuctionBizImpl implements AuctionBiz {
 		int result = auctiondao.auctionTimeOverList();
 		return result;
 	}
+	
 
 	//경매 종료 단일(경매 종료에 성공한 경우, 최고 입찰자를 찾아서, 거래 테이블에 등록)
 	@Override
@@ -103,5 +104,7 @@ public class AuctionBizImpl implements AuctionBiz {
 		return paging;
 		
 	}
+
+	
 
 }

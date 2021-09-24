@@ -104,7 +104,7 @@
 					if(data.status_code=='UNAUTHORIZED'){
 						alert("아이디 혹은 비밀번호를 잘못 입력했습니다");
 					}else if(data.status_code=='OK'){
-						location.href='main.do';
+						location.href='main3.do';
 					}
 				},
 				error:function(){

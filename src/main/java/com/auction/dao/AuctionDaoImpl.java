@@ -73,7 +73,7 @@ public class AuctionDaoImpl implements AuctionDao {
 		int count = sqlSession.selectOne(NAMESPACE+"porductlistCount", auctionType);
 		return count;
 	}
-	
+
 	
 	
 

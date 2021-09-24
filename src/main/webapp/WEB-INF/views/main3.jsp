@@ -7,7 +7,12 @@
 <title>Insert title here</title>
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript"></script>
+<script type="text/javascript">
+
+
+
+
+</script>
 <link href="resources/css/main33.css" rel="stylesheet"/>
 </head>
 <body>
@@ -25,13 +30,13 @@
 					<table>
 						<tr>
 							<th rowspan="3"><img src="/webapp/resources/userIcon.png"></th>
-							<th colspan="2">이름</th>
+							<th colspan="2">${dto.nickname }</th>
 						</tr>
 						<tr>
-							<td colspan="2">내정보</td>
+							<td colspan="2"><a href="mypage.do?email="${dto.email }>내정보</a></td>
 						</tr>
 						<tr>
-							<td colspan="2">회원등급</td>
+							<td colspan="2">${rankDto.rank_name }</td>
 						</tr>
 						<tr>
 							<td colspan="2"></td>

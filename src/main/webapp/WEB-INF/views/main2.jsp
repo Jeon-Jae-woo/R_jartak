@@ -5,10 +5,49 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript"></script>
 <link href="resources/css/main2.css" rel="stylesheet"/>
+<script type="text/javascript">
+function loginCheck(){
+	console.log("[LOGIN]");
+	
+	var email = $("#email").val().trim();
+	var password = $("#password").val().trim();
+	
+	var loginInfo = {
+			"email":email,
+			"password":password
+	};
+	
+	if(email==""||email==null||password==""||password==null){
+		alert("아이디 혹은 비밀번호를 입력해 주세요");
+		
+	}else{
+		$.ajax({
+			type:"POST",
+			url:"afterlogin.do",
+			data:JSON.stringify(loginInfo),
+			contentType:"application/json",
+			dataType:"json",
+			success:function(data){
+				console.log(data.status_code);
+				if(data.status_code=='UNAUTHORIZED'){
+					alert("아이디 혹은 비밀번호를 잘못 입력했습니다");
+				}else if(data.status_code=='OK'){
+					location.href='main3.do';
+				}
+			},
+			error:function(){
+				alert("서버 에러");
+			}
+		});
+	}
+	
+	
+}
+
+</script>
+
+
 </head>
 <body>
 
@@ -19,18 +58,17 @@
 <!-- <div class="header"></div> -->
 	<div class="category">
 		<div class="upbox">
-			<form action="" method="post">
+			<form action="/login" method="post">
 			
 				<div class="loginForm">
 					<h2>Login</h2>
 					<div class="idForm">
-						<input type="text" class="id" placeholder="ID">
+						<input type="text" class="id" placeholder="EMAIL" name="email" id="email">
 					</div>
 					<div class="passForm">
-						<input type="password" class="pw" placeholder="PW">
+						<input type="password" class="pw" placeholder="PW" name="password" id="password">
 					</div>
-					<button type="submit" class="btn" onclick="button()">LOG
-						IN</button>
+					<button type="button" class="btn" onclick="loginCheck();">LOGIN</button>
 				</div>
 			</form>
 

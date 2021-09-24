@@ -49,4 +49,5 @@ public interface AuctionDao {
 	//검색기능
 	public List<AuctionDto> searchfor(int pageNum, String search, int category);
 	
+	
 }

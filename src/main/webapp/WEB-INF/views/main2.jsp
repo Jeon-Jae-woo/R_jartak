@@ -74,19 +74,19 @@ function loginCheck(){
 
 			<div class="notice">
 				<ul class="board">
-					<li class="fl tc w500 title t_line"><a>제목</a><span>/2021-08-24</span></li>
+					<li class="fl tc w500 title t_line"><a href="">[공지]21일 서버점검완료</a><span>/2021-09-21</span></li>
 				</ul>
 				<ul class="board">
-					<li class="fl tc w500 title t_line"><a>제목</a><span>/2021-08-24</span></li>
+					<li class="fl tc w500 title t_line"><a href="">[공지]마감임박경매 관련공지</a><span>/2021-09-11</span></li>
 				</ul>
 				<ul class="board">
-					<li class="fl tc w500 title t_line"><a>제목</a><span>/2021-08-24</span></li>
+					<li class="fl tc w500 title t_line"><a href="">[공지]불량이용자 제재내역</a><span>/2021-09-01</span></li>
 				</ul>
 				<ul class="board">
-					<li class="fl tc w500 title t_line"><a>제목</a><span>/2021-08-24</span></li>
+					<li class="fl tc w500 title t_line"><a href="">[공지]이용안내</a><span>/2021-08-27</span></li>
 				</ul>
 				<ul class="board">
-					<li class="fl tc w500 title t_line"><a>제목</a><span>/2021-08-24</span></li>
+					<li class="fl tc w500 title t_line"><a href="">[공지]경매등록시 안내</a><span>/2021-08-24</span></li>
 				</ul>
 			</div>
 		</div>

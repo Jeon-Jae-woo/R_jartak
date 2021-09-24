@@ -31,4 +31,6 @@ public interface MemberDao {
 	
 	public int insertBank(BankAccountDto bankacc);
 	
+	public int updateAmount(String nickName, int amount);
+	
 }

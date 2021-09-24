@@ -23,5 +23,12 @@ public class MainController {
       return "main2";
 	}
 	
+	@RequestMapping("/echo-ws")
+	public String echows(){
+		logger.info("websocket");
+		
+		return "echo-ws";
+	}
+	
 	
 }

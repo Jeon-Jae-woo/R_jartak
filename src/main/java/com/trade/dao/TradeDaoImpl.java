@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.trade.dto.TradeDto;
+import com.trade.dto.TradeUpdateDto;
 
 @Repository
 public class TradeDaoImpl implements TradeDao {
@@ -70,5 +71,45 @@ public class TradeDaoImpl implements TradeDao {
 		list = sqlSession.selectList(NAMESPACE+"tradeAuctionNoList_fail",nickname);
 		return list;
 	}
+
+	@Override
+	public List<TradeDto> SellertradeAuctionNoList(String nickname) {
+		List<TradeDto> list = null;
+		list = sqlSession.selectList(NAMESPACE+"SellertradeAuctionNoList",nickname);
+		return list;
+	}
+
+	@Override
+	public List<TradeDto> SelltradeAuctionNoList_fail(String nickname) {
+		List<TradeDto> list = null;
+		list = sqlSession.selectList(NAMESPACE+"SelltradeAuctionNoList_fail",nickname);
+		return list;
+	}
+
+	public TradeUpdateDto selectNo(int trade_no) {
+		System.out.println(trade_no);
+		TradeUpdateDto dto = new TradeUpdateDto();
+		
+		dto = sqlSession.selectOne(NAMESPACE+"selectNo",trade_no);
+		
+		return dto;
+	}
+
+	@Override
+	public int updateStatus(int trade_no) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.update(NAMESPACE+"updateStatus",trade_no);
+		} catch (Exception e) {
+			System.out.println("[error] : updatestatus");
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
+	
+	
 
 }

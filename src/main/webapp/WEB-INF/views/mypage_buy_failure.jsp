@@ -76,7 +76,7 @@
                                   <th scope="cols">금액정보</th>
                                   <th scope="cols">마감일</th>
                                   <th scope="cols">판매자</th>
-								  <th scope="cols">처리현황</th>
+                                  <th scope="cols">상태</th>
 								 
                                 </tr>
                                 </thead>

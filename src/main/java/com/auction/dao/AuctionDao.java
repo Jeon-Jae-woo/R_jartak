@@ -50,6 +50,9 @@ public interface AuctionDao {
 	//인기 경매 카운트
 	public int PopularListCount();
 
-
+	//마이페이지  판매목록
+	public List<AuctionDto> MysaleList(String nickname);
+	//마이페이지 판매목록-end
+	public List<AuctionDto> MysalelistEnd(String nickname);
 	
 }

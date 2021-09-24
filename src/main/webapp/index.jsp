@@ -26,7 +26,6 @@
 
 	<button onclick="webRTC();">webRTC테스트</button>
 	
-	
 	<a href="join.do?">회원가입</a>
 
 </body>

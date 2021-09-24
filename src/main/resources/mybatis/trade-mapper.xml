@@ -24,11 +24,27 @@
 							#{item.final_bid_price} AS FINAL_BID_PRICE
 					FROM SYS.DUAL
 				</foreach>
-			) T
+			) 
 	</update>
+	<select id="selectNo" parameterType="int" resultType="TradeUpdateDto" >
+		SELECT T.TRADE_NO, T.TRADE_STATUS_NO, T.FINAL_BID_PRICE,
+		SELLER.NICKNAME AS SELLER_NICKNAME, SELLER,AMOUNT AS SELLER_AMOUNT,
+		BIDDER.NICKNAME AS BIDDER_NICKNAME, BIDDER.AMOUNT AS BIDDER_AMOINT
+		FROM TRADE T
+		JOIN MEMBER SELLER ON SELLER.NICKNAME = T.SELLER
+		JOIN MEMVER BIDDER ON BIDDER.NICKNAME = T.BIDDER_NICKNAME
+		WHERE T.TRADE_NO = #{trade_no}
+	</select>
+	<update id="updateStatus" parameterType="int" >
+		UPDATE TRADE
+		SET TRADE_STATUS_NO = 3
+		WHERE TRADE_NO = #{trade_no}
+	</update>
+
+
 	
 	<select id="tradeList" parameterType="map" resultType="tradeDto">
-	SELECT FINAL_BID_PRICE
+	SELECT FINAL_BID_PRICE, BIDDER_NICKNAME
     FROM TRADE
   	WHERE AUCTION_NO IN
   			<foreach item="Auction_no" collection="Auction_no" open="(" separator="," close=")">
@@ -62,4 +78,17 @@
 		WHERE BIDDER_NICKNAME = #{nickname} AND TRADE_STATUS_NO IN (2,3)
 	</select> 
 	
+	<select id="SellertradeAuctionNoList" parameterType="String" resultType="tradeDto">
+		SELECT TRADE_NO, TRADE_STATUS_NO, BID_NO, AUCTION_NO, BIDDER_NICKNAME, SELLER,FINAL_BID_PRICE
+		FROM TRADE
+		WHERE SELLER = #{nickname} AND TRADE_STATUS_NO=1
+	</select> 
+	
+	<select id="SelltradeAuctionNoList_fail" parameterType="String" resultType="tradeDto">
+		SELECT TRADE_NO, TRADE_STATUS_NO, BID_NO, AUCTION_NO, BIDDER_NICKNAME, SELLER,FINAL_BID_PRICE
+		FROM TRADE
+		WHERE SELLER = #{nickname} AND TRADE_STATUS_NO IN (2,3)
+	</select> 
+	
+
 </mapper>

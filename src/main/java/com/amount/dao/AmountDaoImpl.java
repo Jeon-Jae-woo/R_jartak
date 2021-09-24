@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.amount.biz.AmountBiz;
 import com.amount.dto.BankAccountDto;
 import com.amount.dto.WithdrawalDto;
+import com.auction.dto.AuctionDto;
 
 @Repository
 public class AmountDaoImpl implements AmountDao {
@@ -100,4 +101,5 @@ public class AmountDaoImpl implements AmountDao {
 		return res;
 	}
 
+	
 }

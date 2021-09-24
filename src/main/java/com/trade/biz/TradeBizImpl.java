@@ -57,7 +57,7 @@ public class TradeBizImpl implements TradeBiz {
 		
 		
 		
-
+	
 	
 	@Override
 	public List<TradeDto> tradeListBiz(Map<String, int[]> map) {

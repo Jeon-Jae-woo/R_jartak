@@ -7,12 +7,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	function report(){
 		//세션 및 디테일 페이지에서 유저 아이디를 얻어오고 넘겨줘야 함, controller로 처리되도록 수정 필요
 		window.open("reportForm.log", "신고", "width=500px, height=500px");
 	}
+	
+	$(document).ready(function(){
+		location.href="main2.do"
+	});
+	
+	
 </script>
 
 </head>
@@ -24,7 +31,7 @@
 	<button onclick="report();">신고하기</button>
 	
 
-	<a href="main.do">메.인테스트</a>
+	<a href="main3.do">메인3테스트</a>
 	<a href="main2.do">메인2테스트</a>
 	
 	

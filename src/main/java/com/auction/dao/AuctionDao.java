@@ -48,4 +48,5 @@ public interface AuctionDao {
 	public List<AuctionDto> MysalelistEnd(String nickname);
 	
 	
+	
 }

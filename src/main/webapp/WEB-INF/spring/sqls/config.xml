@@ -24,7 +24,7 @@
 		<typeAlias type="com.util.LocalDateTimeTypeHandler" alias="LocalDateTimeTypeHandler"/>
 		<typeAlias type="com.util.StringTimeTypeHandler" alias="StringTimeTypeHandler"/>
 		<typeAlias type="com.util.IntegerTimeTypeHandler" alias="IntegerTimeTypeHandler"/>
-		
+		<typeAlias type="com.trade.dto.TradeUpdateDto" alias="tradeUpdateDto"/>
 	</typeAliases>
 	
 	<typeHandlers>

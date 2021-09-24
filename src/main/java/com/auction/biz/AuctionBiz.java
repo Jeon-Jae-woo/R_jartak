@@ -37,4 +37,5 @@ public interface AuctionBiz {
 	//마이페이지 판매목록-종료
 	public List<AuctionDto> MysalelistEndBiz(String nickname);
 
+
 }

@@ -49,6 +49,9 @@
 		
 	</resultMap>
 
+	
+
+
 	<!-- 경매 등록 -->
 	<insert id="insertProduct" parameterType="auctionDto">
 		INSERT INTO AUCTION 
@@ -71,6 +74,9 @@
 			WHERE ROWNUM<![CDATA[ < ]]>#{endRow})
 		WHERE RNUM>=#{startRow}
 	</select>	
+	
+	
+
 	
 	<!-- 경매 디테일 -->
 	<select id="productDetail" parameterType="int" resultMap="auctionDetail">

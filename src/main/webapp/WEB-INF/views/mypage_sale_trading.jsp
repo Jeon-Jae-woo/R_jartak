@@ -79,7 +79,7 @@
                                   <th scope="cols">판매일</th>
                                   <th scope="cols">구매자</th>
                                   <th scope="cols">화상채팅</th>
-                                  <th scope="cols">판매확정/취소</th>
+                                  <th scope="cols">판매확정</th>
 
 
                                 </tr>

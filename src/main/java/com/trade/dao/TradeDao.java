@@ -21,4 +21,8 @@ public interface TradeDao {
 	public List<TradeDto> tradeAuctionNoList(String nickname);
 	
 	public List<TradeDto> tradeAuctionNoList_fail(String nickname);
+	
+	public List<TradeDto> SellertradeAuctionNoList(String nickname);
+
+	public List<TradeDto> SelltradeAuctionNoList_fail(String nickname);
 }

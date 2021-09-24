@@ -14,4 +14,8 @@ public interface TradeBiz {
 	public List<TradeDto> tradeAuctionNoListBiz(String nickname);
 
 	public List<TradeDto> tradeAuctionNoList_failBiz(String nickname);
+
+	public List<TradeDto> SellertradeAuctionNoListBiz(String nickname);
+
+	public List<TradeDto> SelltradeAuctionNoList_failBiz(String nickname);
 }

@@ -42,7 +42,10 @@ public interface AuctionDao {
 	//거래 테이블에 등록될 정보 반환
 	public List<TradeDto> AuctionHighBidderList();
 
-
+	//마이페이지  판매목록
+	public List<AuctionDto> MysaleList(String nickname);
+	//마이페이지 판매목록-end
+	public List<AuctionDto> MysalelistEnd(String nickname);
 	
 	
 }

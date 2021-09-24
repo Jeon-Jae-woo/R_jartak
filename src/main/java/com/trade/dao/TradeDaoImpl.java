@@ -71,4 +71,18 @@ public class TradeDaoImpl implements TradeDao {
 		return list;
 	}
 
+	@Override
+	public List<TradeDto> SellertradeAuctionNoList(String nickname) {
+		List<TradeDto> list = null;
+		list = sqlSession.selectList(NAMESPACE+"SellertradeAuctionNoList",nickname);
+		return list;
+	}
+
+	@Override
+	public List<TradeDto> SelltradeAuctionNoList_fail(String nickname) {
+		List<TradeDto> list = null;
+		list = sqlSession.selectList(NAMESPACE+"SelltradeAuctionNoList_fail",nickname);
+		return list;
+	}
+
 }

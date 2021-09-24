@@ -72,6 +72,7 @@
                             <table class="type11">
                                 <thead>
                                 <tr>
+                                  <th scope="cols">구분</th>
                                   <th scope="cols">물품번호</th>
                                   <th scope="cols">이미지</th>
                                   <th scope="cols">물품명</th>
@@ -86,6 +87,7 @@
                                 </thead>
                                 <tbody>
                                 <tr>
+                                  <td>구매완료/구매전</td>
                                   <td><a href="productDetail?auction_no=${list.auction_no}">${list.auction_no }</a></td>
                                   <td><img src="resources/product/${list.product_img}"></td>                                  
                                   <td>${list.auction_title}</td>

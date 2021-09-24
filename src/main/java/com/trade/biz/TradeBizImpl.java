@@ -34,5 +34,15 @@ public class TradeBizImpl implements TradeBiz {
 		// TODO Auto-generated method stub
 		return tradeDao.tradeAuctionNoList_fail(nickname);
 	}
+
+	@Override
+	public List<TradeDto> SellertradeAuctionNoListBiz(String nickname) {
+		return tradeDao.SellertradeAuctionNoList(nickname);
+	}
+
+	@Override
+	public List<TradeDto> SelltradeAuctionNoList_failBiz(String nickname) {
+		return tradeDao.SelltradeAuctionNoList_fail(nickname);
+	}
 	
 }

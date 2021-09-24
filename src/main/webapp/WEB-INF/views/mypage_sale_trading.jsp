@@ -94,7 +94,7 @@
                                   <td>${list.endDateStr}</td>
                                   <td>${auctionlist[status.index].bidder_nickname}</td>
                                   <td><button></button></td>
-                                  <td><button></button></td>
+                                  <td><button onclick="location.href='trade.do?${list.auction.no}'"></button></td>
 
                                 </tr>
                               

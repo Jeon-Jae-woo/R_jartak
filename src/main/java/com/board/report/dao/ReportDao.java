@@ -17,4 +17,6 @@ public interface ReportDao {
 	//신고 삭제
 	public int DeleteReport(int report_no);
 	
+	//신고 하기
+	public int ReportInsert(ReportDto reportdto);
 }

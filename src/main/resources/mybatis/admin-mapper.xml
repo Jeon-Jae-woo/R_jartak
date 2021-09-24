@@ -14,7 +14,7 @@
 		<result column="EMAIL" property="email"/>
 		<result column="NICKNAME" property="nickname"/>
 		<result column="NAME" property="name"/>
-		<result column="CREATED_AT" property="created_at"/>
+		<result column="CREATED_AT" property="createdLocalDate" typeHandler="LocalDateTypeHandler"/>
 		<result column="AMOUNT" property="amount"/>
 		<result column="TX_AMOUNT" property="tx_amount"/>
 		<result column="STATUS_NO" property="status_no"/>

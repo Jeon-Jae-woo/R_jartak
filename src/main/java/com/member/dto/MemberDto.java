@@ -1,5 +1,6 @@
 package com.member.dto;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class MemberDto {
@@ -22,6 +23,7 @@ public class MemberDto {
 	private String address_detail2;
 	private String phone;
 
+	private LocalDate createdLocalDate;
 	
 	//JOIN시에 활용
 	private MemberStatusDto MemberStatus;
@@ -36,7 +38,7 @@ public class MemberDto {
 	public MemberDto(String email, String nickname, String password, String gender, String name, String birth,
 			Date created_at, Date updated_at, String address, String address_detail, int amount, int tx_amount,
 			int level_no, int status_no, int rank_no, MemberStatusDto memberStatus, MemberLevelDto memberLevel,
-			com.member.dto.MemberRankDto memberRankDto, String address_detail2, String phone) {
+			com.member.dto.MemberRankDto memberRankDto, String address_detail2, String phone, LocalDate createdLocalDate) {
 		
 
 		super();
@@ -55,12 +57,22 @@ public class MemberDto {
 		this.level_no = level_no;
 		this.status_no = status_no;
 		this.rank_no = rank_no;
+		this.createdLocalDate = createdLocalDate;
 
 		MemberStatus = memberStatus;
 		MemberLevel = memberLevel;
 		MemberRankDto = memberRankDto;
 		this.address_detail2 = address_detail2;
     this.phone = phone;
+	}
+
+	
+	public LocalDate getCreatedLocalDate() {
+		return createdLocalDate;
+	}
+
+	public void setCreatedLocalDate(LocalDate createdLocalDate) {
+		this.createdLocalDate = createdLocalDate;
 	}
 
 	public String getPhone() {

@@ -157,8 +157,14 @@
 			return false;
 		}
 		
-
+	
 		
+	}
+	
+	function report(){
+		//세션 및 디테일 페이지에서 유저 아이디를 얻어오고 넘겨줘야 함, controller로 처리되도록 수정 필요
+		var nickname = ' ${productDetail.nickname }';
+		window.open("reportForm.log?targetNickname="+nickname, "신고", "width=500px, height=500px");
 	}
 
 </script>
@@ -199,7 +205,7 @@
                             
                         </div>
                         <hr>
-                        <p><b>물품번호</b> : ${productDetail.auction_no } <input type="button" value="신고"> </p>
+                        <p><b>물품번호</b> : ${productDetail.auction_no } <input type="button" value="신고" onclick="report();"> </p>
                         <p><b>경매기간</b> : ${productDetail.createDateStr } ~ ${productDetail.endDateStr } </p>
                         <p id="startPrice"></p>
                         <p id="biddingUnit"></p>

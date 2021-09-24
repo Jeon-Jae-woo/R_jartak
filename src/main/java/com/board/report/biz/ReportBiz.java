@@ -17,4 +17,7 @@ public interface ReportBiz {
 	
 	//신고 처리
 	public int ReportProcessing(Map<String, Object> reportInfo);
+	
+	//신고 하기
+	public int ReportInsertBiz(ReportDto reportdto);
 }

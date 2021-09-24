@@ -134,7 +134,7 @@
 						</td>
 						<td>${list.nickname }</td>
 						<td>${list.target_nickname }</td>
-						<td>${list.created_at }</td>
+						<td>${list.createdLocalDate }</td>
 						<td>
 	                        <input type="button" class="stopStatus" id="" value="정지">
 	                        <input type="button" class="outStatus" id="" value="탈퇴">

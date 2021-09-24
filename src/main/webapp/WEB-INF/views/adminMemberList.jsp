@@ -72,7 +72,7 @@
 						<td>${list.email }</td>
 						<td>${list.nickname }</td>
 						<td>${list.name }</td>
-						<td>${list.created_at }</td>
+						<td>${list.createdLocalDate }</td>
 						<td>${list.amount }</td>
 						<td>${list.tx_amount }</td>
 						<td id="status_td">

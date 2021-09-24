@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <!-- 인코딩 처리 -->    
+<%
+    	request.setCharacterEncoding("UTF-8");
+    %>    
+<%
+    	response.setContentType("text/html; charset=UTF-8");
+    %>       
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,6 +59,16 @@
 
                     <div class="content">
                         <h4>구매거부/반품/미입금 목록</h4>
+                            <c:choose>
+	                    	<c:when test="${empty productlist }">
+	                    		<table class="type11">
+	                    			<tr>
+	                    				<td>입찰내역이 없습니다.</td>
+	                    			</tr>
+	                    		</table>
+	                    	</c:when>
+	                    	<c:otherwise>
+	                    		<c:forEach var="list" items="${productlist }" varStatus="status">
                             <table class="type11">
                                 <thead>
                                 <tr>
@@ -58,30 +76,37 @@
                                   <th scope="cols">이미지</th>
                                   <th scope="cols">물품명</th>
                                   <th scope="cols">금액정보</th>
+                                  <th scope="cols">마감일</th>
                                   <th scope="cols">구매자</th>
-                                  <th scope="cols">현재상태</th>
-                                  <th scope="cols">처리현황</th>
-                                  <th scope="cols">날짜정보</th>
-                                  <th scope="cols">관리</th>
-
+                                  <th scope="cols">상태</th>
+								 
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
-                                  <td>내용</td>
-                                  <td>내용</td>
-                                  <td>내용</td>
-                                  <td>내용</td>
-                                  <td>내용</td>
-                                  <td>내용</td>
-                                  <td>내용</td>
-                                  <td>내용</td>
-                                  <td>내용</td>
-
+                                  <td><a href="productDetail?auction_no=${list.auction_no}">${list.auction_no }</a></td>
+                                  <td><img src="resources/product/${list.product_img}"></td>                                  
+                                  <td>${list.auction_title}</td>
+                                  <td>${list.current_price}</td>
+                                  <td>${list.endDateStr}</td>
+                                  <td>${tradeList[status.index].bidder_nickname}</td>
+                                  	<c:choose>
+                                  		<c:when test=" ${tradeList[status.index].trade_status_no eq 2}">
+		                                  	<td>보류</td>
+		                                  </c:when>
+		                                  <c:otherwise>
+		                                  	<td>종료</td>
+		                                  </c:otherwise>
+                                  	</c:choose>
+                                  
                                 </tr>
                               
                                 </tbody>
                               </table>
+                             </c:forEach>
+                            </c:otherwise>
+                           </c:choose>
+
                             
                      </div>
 

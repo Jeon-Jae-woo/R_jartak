@@ -31,6 +31,10 @@ public interface AuctionBiz {
 	public auction_interestedDto interestedListChk(int auction_no,String nickname);
 	//마이페이지에서 구매관리에 쓰이는
 	public List<AuctionDto> MyProductListBiz(Map<String,int[]> map);
-
+	
+	//마이페이지 판매목록
+	public List<AuctionDto> MysaleListBiz(String nickname);
+	//마이페이지 판매목록-종료
+	public List<AuctionDto> MysalelistEndBiz(String nickname);
 
 }

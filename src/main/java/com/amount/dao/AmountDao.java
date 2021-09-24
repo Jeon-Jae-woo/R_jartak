@@ -6,6 +6,7 @@ import java.util.Map;
 import com.amount.biz.AmountBiz;
 import com.amount.dto.BankAccountDto;
 import com.amount.dto.WithdrawalDto;
+import com.auction.dto.AuctionDto;
 
 public interface AmountDao {
 	String NAMESPACE = "amount.";
@@ -25,4 +26,6 @@ public interface AmountDao {
 	public List<BankAccountDto> getAccountNo(String nickname);
 	//마이페이지에서의 출금신청
 	public int insertWithdrawal(String[] str);
+
+
 }

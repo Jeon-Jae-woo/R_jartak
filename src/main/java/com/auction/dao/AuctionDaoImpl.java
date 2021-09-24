@@ -136,5 +136,19 @@ public class AuctionDaoImpl implements AuctionDao {
 		return Myproductlist;
 	}
 
+	@Override
+	public List<AuctionDto> MysaleList(String nickname) {
+		List<AuctionDto> Mysalelist= new ArrayList<AuctionDto>();
+		Mysalelist = sqlSession.selectList(NAMESPACE+"Mysalelist",nickname);
+		return Mysalelist;
+	}
+
+	@Override
+	public List<AuctionDto> MysalelistEnd(String nickname) {
+		List<AuctionDto> Mysalelist= new ArrayList<AuctionDto>();
+		Mysalelist = sqlSession.selectList(NAMESPACE+"MysalelistEnd",nickname);		
+		return Mysalelist;
+	}
+
 
 }

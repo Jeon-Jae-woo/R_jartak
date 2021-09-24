@@ -82,6 +82,7 @@
                                   <th scope="cols">조회수</th>
                                   <th scope="cols">마감일</th>
                                   <th scope="cols">판매자</th>
+                                  <th>입찰취소</th>
 
                                 </tr>
                                 </thead>
@@ -94,6 +95,7 @@
                                   <td>${list.auction_hits}</td>
                                   <td>${list.endDateStr}</td>
                                   <td>${list.nickname}</td>
+                                  <td><button>취소</button></td>
 
                                 </tr>
                               

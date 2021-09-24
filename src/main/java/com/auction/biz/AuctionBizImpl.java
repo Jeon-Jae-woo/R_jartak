@@ -175,6 +175,13 @@ public class AuctionBizImpl implements AuctionBiz {
 		return auctiondao.MysalelistEnd(nickname);
 	}
 
+	@Override
+	public List<AuctionDto> searchforBiz(int pageNum,String search, int auctionType) {
+		List<AuctionDto> productList = null;
+		productList = auctiondao.searchfor(pageNum,search, auctionType);
+		return productList;
+	}
+
 
 
 }

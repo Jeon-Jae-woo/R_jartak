@@ -227,12 +227,13 @@
       <h2>검색</h2>
     </div>
     <div class="modal-body">
-      <form action="" method="post" id="search_form">
+      <form action="searchfor.do" method="post" id="search_form">
+      	<input type="hidden" name="pageNum" value=1>
       	<select name="category">
-      		<option>일반 경매</option>
-      		<option>블라인드 경매</option>
+      		<option value="1">일반 경매</option>
+      		<option value="2">블라인드 경매</option>
       	</select>
-      	<input id="search_input" type="text" name="search" placeholder="검색어를 입력하세요">
+      	<input id="search_input" type="text" name="search" placeholder="검색어를 입력하세요" >
       	<input id="search_input_button" type="submit" value="검색">
       	<br><br>
       </form>

@@ -70,7 +70,6 @@ public class MemberDaoImpl implements MemberDao {
 		return res;
 	}
 	public MemberRankDto rank(int rank_no) {
-		System.out.println("등급확인");
 		MemberRankDto dto = new MemberRankDto();
 		try {
 			dto = sqlSession.selectOne(MEMBER_NAMESAPCE+"grade",rank_no);
@@ -128,6 +127,20 @@ public class MemberDaoImpl implements MemberDao {
 	public int insertBank(BankAccountDto bankacc) {
 		int res = 0;
 		res = sqlSession.insert(MYPAGE_NAMESPACE+"insertBank",bankacc);
+		return res;
+	}
+
+	@Override
+	public int updateAmount(String nickName, int amount) {
+		int res = 0;
+		
+		try {
+			res = sqlSession.update(MEMBER_NAMESAPCE+"updateAmount",nickName);
+		} catch (Exception e) {
+			System.out.println("[error:tradeupdate] @dao ");
+			e.printStackTrace();
+		}
+		
 		return res;
 	}
 

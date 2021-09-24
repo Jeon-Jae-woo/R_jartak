@@ -1,5 +1,7 @@
 package com.bids.dao;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.auction.dto.AuctionDto;
 import com.bids.dto.BidsDto;
 
 
@@ -16,6 +19,7 @@ public class BidsDaoImpl implements BidsDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
+
 	//입찰 정보 조회
 	@Override
 	public BidsDto BidsSelectOne(String nickname, int auction_no) {
@@ -85,8 +89,23 @@ public class BidsDaoImpl implements BidsDao {
 		
 		return result;
 	}
-
-
+	
+	
+	//마이페이지 구매이력에서 사용
+	@Override
+	public List<BidsDto> bidList(String nickname,int auction_stat) {
+		AuctionDto dto = new AuctionDto();
+		dto.setNickname(nickname);
+		dto.setAuction_status_no(auction_stat);
+		List<BidsDto> bidList = new ArrayList<BidsDto>();
+		try {
+			bidList = sqlSession.selectList(NAMESPACE+"selectList",dto);
+		} catch (Exception e) {
+			System.out.println("BidDto불러오기 실패...");
+			e.printStackTrace();
+		}
+		return bidList;
+	}
 
 
 	

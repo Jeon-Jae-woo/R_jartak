@@ -48,6 +48,7 @@
 		<collection property="auctionType" resultMap="auctionType"/>
 		
 	</resultMap>
+
 	
 	<resultMap type="bookmarkDto" id="bookmarkList">
 		<result column="BOOKMARK_NO" property="bookmark_no" />
@@ -55,6 +56,7 @@
 		<result column="NICKNAME" property="nickname" />
 	</resultMap>
 	
+
 	<!-- 경매 등록 -->
 	<insert id="insertProduct" parameterType="auctionDto">
 		INSERT INTO AUCTION 
@@ -98,22 +100,96 @@
 		WHERE AUCTION_NO=#{auction_no}
 	</select>
 
-	<!-- 시간 종료 리스트 -->
+	<!-- 시간 종료 리스트  -->
 	<update id="timeOverList">
-		UPDATE AUCTION SET AUCTION_STATUS_NO=3 WHERE SYSDATE > END_DATE
+		UPDATE AUCTION SET AUCTION_STATUS_NO=3 WHERE SYSDATE >= END_DATE
 	</update>
 	
-	<!-- 시간 종료 단일 -->
+	<!-- 시간 종료 단일  -->
 	<update id="timeOver" parameterType="int">
-		UPDATE AUCTION SET AUCTION_STATUS_NO=3 WHERE AUCTION_NO=#{auction_no} AND (SYSDATE > END_DATE)
+		UPDATE AUCTION SET AUCTION_STATUS_NO=3 WHERE AUCTION_NO=#{auction_no} AND (SYSDATE >= END_DATE)
 	</update>
+	
+	<!-- 경매가 종료된 리스트, 거래 테이블에 등록될 리스트 -->
+	<select id="auctionListTrade" resultType="tradeDto">
+		SELECT BID_NO, A.AUCTION_NO, HIGH_BIDDER AS BIDDER_NICKNAME, A.NICKNAME AS SELLER, B.BID_PRICE AS FINAL_BID_PRICE
+		FROM AUCTION A
+		JOIN BIDS B ON(A.AUCTION_NO=B.AUCTION_NO)
+		WHERE (AUCTION_STATUS_NO=3) AND (HIGH_BIDDER IS NOT NULL) 
+		AND (NOT A.AUCTION_NO IN(SELECT AUCTION_NO FROM TRADE)) AND (HIGH_BIDDER = B.NICKNAME)
+	</select>
 	
 	<!-- 리스트 카운트 -->
 	<select id="porductlistCount" parameterType="int" resultType="int">
 		SELECT COUNT(*) FROM AUCTION WHERE AUCTION_TYPE_NO=#{auctionType} AND AUCTION_STATUS_NO=1
 	</select>
 	
+	<insert id="insertInterested" parameterType="interestedDto" >
+		INSERT INTO INTERESTED_AUCTIONS
+		VALUES(#{interested_auction_no},#{sell_nickname},#{buy_nickname})
+	</insert>
 	
+	
+	
+	
+	<select id="interestedList" parameterType="HashMap" resultMap="auctionlist">
+		SELECT AUCTION_NO, AUCTION_TYPE_NO, NICKNAME, AUCTION_STATUS_NO, AUCTION_TITLE, PRODUCT_PRICE, 
+        	PRODUCT_IMG, AUCTION_HITS,END_DATE
+		FROM(
+			SELECT ROWNUM AS RNUM,AUCTION_NO, AUCTION_TYPE_NO, NICKNAME, AUCTION_STATUS_NO, AUCTION_TITLE, PRODUCT_PRICE, 
+        	PRODUCT_IMG, AUCTION_HITS,END_DATE
+			FROM(
+			SELECT AUCTION.AUCTION_NO, AUCTION_TYPE_NO, AUCTION.NICKNAME, AUCTION_STATUS_NO, AUCTION_TITLE, PRODUCT_PRICE, 
+        		PRODUCT_IMG, AUCTION_HITS,END_DATE
+				FROM AUCTION 
+				JOIN INTERESTED_AUCTIONS ON(AUCTION.AUCTION_NO = INTERESTED_AUCTIONS.INTERESTED_AUCTION_NO)
+				WHERE AUCTION_STATUS_NO=1 AND INTERESTED_AUCTIONS.BUY_NICKNAME=#{buy_nickname}		
+				)
+			WHERE ROWNUM<![CDATA[ < ]]>#{endRow})
+		WHERE RNUM>=#{startRow}
+	</select>	
+	
+	<select id="interestedlistCount"  resultType="int">
+		SELECT COUNT(*) FROM INTERESTED_AUCTIONS 
+	</select>
+	
+	<select id="interestedlistChk" resultType="interestedDto">
+	 SELECT * FROM INTERESTED_AUCTIONS
+	 WHERE INTERESTED_AUCTION_NO = #{interested_auction_no} AND BUY_NICKNAME=#{buy_nickname}
+	</select>
+	
+	<select id="MyproductList" parameterType="map" resultMap="MyproductListDetail">
+	SELECT AUCTION_NO, AUCTION_TYPE_NO, NICKNAME, AUCTION_STATUS_NO,PRODUCT_NAME, AUCTION_TITLE, PRODUCT_PRICE, 
+	 CREATED_AT,END_DATE,AUCTION_HITS,CURRENT_PRICE,PRODUCT_IMG
+    FROM AUCTION
+  	WHERE AUCTION_NO IN
+  			<foreach item="Auction_no" collection="Auction_no" open="(" separator="," close=")">
+  			  	#{Auction_no}
+  			</foreach>
+  	</select>
+  	
+  	<resultMap type="auctionDto" id="MyproductListDetail">
+		<result column="AUCTION_NO" property="auction_no"/>
+		<result column="AUCTION_TYPE_NO" property="auction_type_no"/>
+		<result column="NICKNAME" property="nickname"/>
+		<result column="AUCTION_STATUS_NO" property="auction_status_no"/>
+		<result column="PRODUCT_NAME" property="product_name"/>
+		<result column="AUCTION_TITLE" property="auction_title"/>
+		<result column="AUCTION_CONTENT" property="auction_content"/>
+		<result column="PRODUCT_PRICE" property="product_price"/>
+		<result column="BIDDING_UNIT" property="bidding_unit"/>
+		<result column="CREATE_STR" property="createDateStr"/>
+		<result column="END_DATE" property="endDateStr"/>
+		<result column="AUCTION_HITS" property="auction_hits"/>
+		<result column="PRODUCT_IMG" property="product_img"/>
+		<result column="CURRENT_PRICE" property="current_price"/>
+<!-- 		<result column="END_DATE" property="remainingSeconds" typeHandler="IntegerTimeTypeHandler"/> -->
+		<result column="HIGH_BIDDER" property="high_bidder"/>
+		
+		<collection property="auctionStatus" resultMap="auctionStatus"/>
+		<collection property="auctionType" resultMap="auctionType"/>
+		
+	</resultMap>
 	
 
 </mapper>

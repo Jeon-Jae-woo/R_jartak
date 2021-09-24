@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,23 +47,35 @@
 					</table>
 				</div>
 			</form>
-
+		<!-- <ul class="board">
+					<li class="fl tc w500 title t_line"><a>제목</a><span>/2021-08-24</span></li>
+				</ul>
+				<ul class="board">
+					<li class="fl tc w500 title t_line"><a>제목</a><span>/2021-08-24</span></li>
+				</ul>
+				<ul class="board">
+					<li class="fl tc w500 title t_line"><a>제목</a><span>/2021-08-24</span></li>
+				</ul>
+				<ul class="board">
+					<li class="fl tc w500 title t_line"><a>제목</a><span>/2021-08-24</span></li>
+				</ul> -->
+				
 			<div class="notice">
-				<ul class="board">
-					<li class="fl tc w500 title t_line"><a>제목</a><span>/2021-08-24</span></li>
-				</ul>
-				<ul class="board">
-					<li class="fl tc w500 title t_line"><a>제목</a><span>/2021-08-24</span></li>
-				</ul>
-				<ul class="board">
-					<li class="fl tc w500 title t_line"><a>제목</a><span>/2021-08-24</span></li>
-				</ul>
-				<ul class="board">
-					<li class="fl tc w500 title t_line"><a>제목</a><span>/2021-08-24</span></li>
-				</ul>
-				<ul class="board">
-					<li class="fl tc w500 title t_line"><a>제목</a><span>/2021-08-24</span></li>
-				</ul>
+				<c:choose>
+					<c:when test="${empty productList }">
+							<div>등록된 관심상품이 없습니다.</div>
+					</c:when>
+					<c:otherwise>
+						<c:forEach var="list" items="${productList }" begin="0" end="4">
+						<ul class="board">
+							<li class="fl tc w500 title t_line">${list.auction_title }<span>/${list.remainingTime }</span></li>
+						</ul>
+						</c:forEach>
+					</c:otherwise>	
+						
+				</c:choose>
+				
+				
 			</div>
 		</div>
 		<br>

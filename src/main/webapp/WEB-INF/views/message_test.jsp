@@ -14,7 +14,7 @@
 		$('#message').val('')
 	});
 
-	let sock = new SockJS("http://localhost:8585/echo/");
+	let sock = new SockJS('ws://localhost:8585/echo/');
 	sock.onmessage = onMessage;
 	sock.onclose = onClose;
 	// 메시지 전송

@@ -30,6 +30,11 @@ public class BidsController {
 			data.put("status", HttpStatus.UNAUTHORIZED);
 			return data;
 		}
+		/*
+		if((Integer)request.getSession().getAttribute("level_no")==1) {
+			data.put("message", "관리자는 입찰할 수 없습니다");
+			return data;
+		}*/
 		
 		String nickname = (String)request.getSession().getAttribute("nickname");
 		

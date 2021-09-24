@@ -23,6 +23,7 @@ import com.auction.dto.AuctionDto;
 import com.member.biz.MemberBiz;
 import com.member.dto.MemberDto;
 import com.member.dto.MemberRankDto;
+import com.util.pagingDto;
 
 @Controller
 public class MainController {
@@ -41,11 +42,12 @@ public class MainController {
 		String email = (String)session.getAttribute("email");
 		String nickname = (String)session.getAttribute("nickname");
 		
-		/*
-		 * List<AuctionDto> list = auctionbiz.bookmark(nickname);
-		 * 
-		 * System.out.println(list);
-		 */
+		List<AuctionDto> productList = null;
+		
+		productList = auctionbiz.selectInterestedListBiz(1,nickname);
+		pagingDto paging = auctionbiz.interestedListCountBiz(1);
+		model.addAttribute("paging", paging);
+		model.addAttribute("productList", productList);
 		
 		MemberDto dto = memberbiz.selectOne(email);
 		
@@ -68,6 +70,13 @@ public class MainController {
       logger.info("MAIN CONTROLLER");
   
       return "main2";
+	}
+	
+	@RequestMapping("/echo-ws")
+	public String echows(){
+		logger.info("websocket");
+		
+		return "echo-ws";
 	}
 	
 	

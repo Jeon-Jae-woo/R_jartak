@@ -1,5 +1,6 @@
 package com.bids.biz;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import com.bids.dao.BidsDao;
 import com.bids.dto.BidsDto;
 import com.member.dao.MemberDao;
 import com.member.dto.MemberDto;
+
 
 @Service
 @Transactional(rollbackFor=Exception.class)
@@ -61,7 +63,7 @@ public class BidsBizImpl implements BidsBiz {
 		String result = "서버 에러 발생";
 		try {
 			BidsDto bidsDetail = bidsdao.BidsSelectOne(nickname, auction_no);
-			int bidPrice = (int) data.get("bid_price"); 
+			int bidPrice = Integer.parseInt(data.get("bid_price").toString()); 
 			
 			int memberUpdateResult = 0;
 			int bidsResult = 0;
@@ -124,6 +126,11 @@ public class BidsBizImpl implements BidsBiz {
 		return result;
 	}
 	
-	
+
+	//마이페이지 구매이력에서 사용
+	@Override
+	public List<BidsDto>  bidList(String nickname,int auction_stat) {
+		return bidsdao.bidList(nickname,auction_stat);
+	}
 
 }

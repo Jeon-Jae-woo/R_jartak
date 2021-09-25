@@ -23,8 +23,10 @@ td{
     max-width: 0 auto;
     margin: 0 auto;
     margin-top: 5%;
+    margin-bottom: 5%;
     display: flex;
    justify-content: space-evenly;
+   padding-bottom:150px;
 }
 /* 왼쪽 메뉴 */
 #menu {

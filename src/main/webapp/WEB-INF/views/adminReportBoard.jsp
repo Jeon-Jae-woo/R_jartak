@@ -5,7 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>알잘딱 - 화상 채팅 경매 서비스</title>
+<link rel="icon" type="image/png" sizes="32x32" href="resources/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="resources/images/favicon-16x16.png">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">

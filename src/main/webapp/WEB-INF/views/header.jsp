@@ -7,65 +7,6 @@
 
 <style type="text/css">
 	
-	/* 맨 위 nav */
-	.header_wrap1 nav{
-		display:flex;
-		border-bottom : 1px solid;
-		justify-content: flex-end;
-		align-items: space-between;
-	}
-	/* 아래 nav */
-	.header_wrap2 nav{
-		display:flex;
-		border-bottom : 1px solid;
-		justify-content: space-between;
-		align-items: center;
-	}
-	
-	.header_logo{
-		border : 1px solid;
-	}
-	.header_nav{
-		display:flex;
-		justify-content: flex-end;
-	}
-
-	.header_ul{
-		margin:0 auto;
-		padding:0 auto;
-		width:700px;
-	}
-	
-	.header_ul li{
-		float:right;
-		border : 1px solid;
-		list-style: none;
-		display:inline-block;
-		width:140px;
-		height:30px;
-		text-align:center;
-		margin-right:10px;
-	}
-	
-	.header_ul li a{
-		font-size:15px;
-		display:inline-block;
-		text-decoration: none;
-		height:auto;
-		color:black;
-		font-weight:bold;
-		margin-top:3px;
-	}
-	
-	/* 맨 위 사이드*/
-	.side_a{
-		padding:5px;
-		color:black;
-		text-decoration:none;
-		font-weight:bold;
-	}
-
-	
 	/* 검색 모달 */
 	.modal {
 	    display: none; 
@@ -145,78 +86,68 @@
 		width:70px;
 	}
 	
+	
+	
 
 </style>
+
+<link href="resources/css/header.css" rel="stylesheet"/>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-	function todayTime(){
-		var clock = document.getElementById("clock");
-		var now_date = new Date();
-		var now_Time = now_date.getFullYear()+"/"+(now_date.getMonth()+1)+"/"+now_date.getDate()+"&nbsp;&nbsp;"+now_date.getHours()+"시 "
-							+now_date.getMinutes()+"분 "+now_date.getSeconds()+"초";
-		
-		clock.innerHTML= now_Time;
-		setTimeout("todayTime()",1000);
-	}
-	
-	window.onload = function(){
-		todayTime();
-	}
-	
-</script>
-<title>Insert title here</title>
+
+<title>알잘딱 - 화상 채팅 경매 서비스</title>
+<link rel="icon" type="image/png" sizes="32x32" href="resources/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="resources/images/favicon-16x16.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+
+
 </head>
 <body>
-	<!-- 맨위 헤더 -->
-	<div class="header_wrap1">
-		<nav>
-			<div style="display:flex; width:400px">
-				<div style="text-align:center; margin-right:40px;">
-					<span id="clock"></span>
-				</div>
-				
-				<% if(session.getAttribute("email")==null){ %>
-				<div class="header_nav_side">
-					<a class="side_a" href="loginForm">로그인</a>
-					<a class="side_a" href="joinForm">회원가입</a>		
-				<!-- 관리자인 경우 보여줌, 임시 레벨 지정 -->
-				<% }else if((Integer)session.getAttribute("level_no")==1){ %>
-					<a class="side_a" href="adminMemberList?pageNum=1">관리자</a>
-					<a class="side_a" href="logout">로그아웃</a>
-				<!-- 로그인했을 경우 -->
-				<% } else{  %>
-					<a class="side_a" href="mypage.do?email=user01@final.com">마이페이지</a>
-					<a class="side_a" href="logout">로그아웃</a>
-			<% } %>
-				</div>
-			</div>
-		</nav>
-	
-	</div>
-	
-	<!-- 제일 바깥 -->
-	<div class="header_wrap2">
-		<nav>
-			<div class="header_logo">
-				<a href="main3.do"><img src="resources/qs.PNG" style="width:150px; height:30px;"/></a>
-			</div>
-			<div class="header_nav">
-				<ul class="header_ul">
-					<li><a href="productlist?pageNum=1&type=1">일반경매</a></li>
-					<li><a href="productlist?pageNum=1&type=2">블라인드 경매</a></li>
-					<li><a href="productlist?pageNum=1&type=3">마감임박</a></li>
-					<li><a href="productlist?pageNum=1&type=4">인기경매</a></li>
-				</ul>
-				<div><button id="myBtn" style="width:50px; height:28px;">
-						<!--<img src="resources/qs.PNG" style="width:40px; height:28px; margin-right:50px; object-fit: cover;" >-->
-						검색
-					</button>
-				</div>	
-			</div>
-			
-		</nav>
-		
-	</div>
+    <div class="top">
+        <div class="time">
+            <span class="date"></span>
+            &nbsp;&nbsp;
+            <span class="hms"></span>
+            <span class="ampm"></span>
+        </div>
+        
+
+        <div class="top-right">
+        <% if(session.getAttribute("email")==null){ %>
+       	
+	        <span class="top-session"><a class="" href="loginForm">로그인</a></span>
+       		<span class="top-session"><a class="" href="joinForm">회원가입</a></span>
+
+			<!-- 관리자인 경우 보여줌, 임시 레벨 지정 -->
+			<% }else if((Integer)session.getAttribute("level_no")==1){ %>
+			<span class="top-session"><a class="" href="adminMemberList?pageNum=1">관리자</a></span>
+       		<span class="top-session"><a class="" href="logout">로그아웃</a></span>
+
+			<!-- 로그인했을 경우 -->
+			<% } else{  %>
+			<span class="top-session"><a class="" href="mypage.do?email=user01@final.com">마이페이지</a></span>
+			<span class="top-session"><a class="" href="logout">로그아웃</a></span>
+
+			<% } %>	     
+	    </div>
+        
+    </div>
+    <nav>
+        <div class="nav-content">
+            <a href="main2.do"><img class="logo-image" src="resources/images/logo.png" alt="logo"></a>
+            <a href="main2.do" class="logo-word">알잘딱</a>
+            <span class="logo-description">화상 채팅 경매 서비스</span>
+
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="productlist?pageNum=1&type=4">인기경매</a></li>
+                    <li><a href="productlist?pageNum=1&type=3">마감임박</a></li>
+                    <li><a href="productlist?pageNum=1&type=2">블라인드 경매</a></li>
+                    <li><a href="productlist?pageNum=1&type=1">일반경매</a></li>
+                </ul>
+                <button class="nav-search"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </nav>
 
 <!-- 검색 모달  -->
 <div id="myModal" class="modal">
@@ -237,10 +168,95 @@
       	<br><br>
       </form>
     </div>
-    <div class="modal-footer">
+   	<div class="modal-footer">
     </div>
   </div>
 </div>
+
+
+
+<script>
+    function updateTime() {
+        var dateInfo = new Date();
+
+        /* time */
+        var hr,
+            _min = (dateInfo.getMinutes() < 10) ? "0" + dateInfo.getMinutes() : dateInfo.getMinutes(),
+            sec = (dateInfo.getSeconds() < 10) ? "0" + dateInfo.getSeconds() : dateInfo.getSeconds(),
+            ampm = (dateInfo.getHours() >= 12) ? "PM" : "AM";
+
+        // replace 0 with 12 at midnight, subtract 12 from hour if 13–23
+        if (dateInfo.getHours() == 0) {
+            hr = 12;
+        } else if (dateInfo.getHours() > 12) {
+            hr = dateInfo.getHours() - 12;
+        } else {
+            hr = dateInfo.getHours();
+        }
+
+        var currentTime = hr + ":" + _min + ":" + sec;
+
+        // print time
+        document.getElementsByClassName("hms")[0].innerHTML = currentTime;
+        document.getElementsByClassName("ampm")[0].innerHTML = ampm;
+
+        /* date */
+        var dow = [
+            // "Sunday",
+            // "Monday",
+            // "Tuesday",
+            // "Wednesday",
+            // "Thursday",
+            // "Friday",
+            // "Saturday"
+            "일요일",
+            "월요일",
+            "화요일",
+            "수요일",
+            "목요일",
+            "금요일",
+            "토요일"
+        ],
+            month = [
+                // "January",
+                // "February",
+                // "March",
+                // "April",
+                // "May",
+                // "June",
+                // "July",
+                // "August",
+                // "September",
+                // "October",
+                // "November",
+                // "December"
+                "1월",
+                "2월",
+                "3월",
+                "4월",
+                "5월",
+                "6월",
+                "7월",
+                "8월",
+                "9월",
+                "10월",
+                "11월",
+                "12월"
+            ],
+            day = dateInfo.getDate();
+
+        // store date
+        var currentDate = "2021년 " + month[dateInfo.getMonth()] + " " + day+ "일 " + dow[dateInfo.getDay()];
+
+        document.getElementsByClassName("date")[0].innerHTML = currentDate;
+    };
+
+    // print time and date once, then update them every second
+    updateTime();
+    setInterval(function () {
+        updateTime()
+    }, 1000);
+</script>
 <script>
 	var modal = document.getElementById('myModal');
 	var btn = document.getElementById("myBtn");

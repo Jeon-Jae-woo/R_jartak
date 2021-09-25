@@ -42,25 +42,21 @@ public class MainController {
 		String email = (String)session.getAttribute("email");
 		String nickname = (String)session.getAttribute("nickname");
 		
-		List<AuctionDto> productList = null;
 		
-		productList = auctionbiz.selectInterestedListBiz(1,nickname);
-		pagingDto paging = auctionbiz.interestedListCountBiz(1);
-		model.addAttribute("paging", paging);
-		model.addAttribute("productList", productList);
-		
-		MemberDto dto = memberbiz.selectOne(email);
-		
-		int rank_no = dto.getRank_no();
-		
-		MemberRankDto rankDto = memberbiz.rank(rank_no);
-		
-		String rank = (String)rankDto.getRank_name();
-		
-		System.out.println(rank);
-		
-		model.addAttribute("rankDto", rankDto);
-		model.addAttribute("dto", dto);
+		if(email != null) {
+			MemberDto dto = memberbiz.selectOne(email);
+			
+			int rank_no = dto.getRank_no();
+			
+			MemberRankDto rankDto = memberbiz.rank(rank_no);
+			
+			String rank = (String)rankDto.getRank_name();
+			
+			System.out.println(rank);
+			
+			model.addAttribute("rankDto", rankDto);
+			model.addAttribute("dto", dto);	
+		}
 		
 		return "main3";
 	}

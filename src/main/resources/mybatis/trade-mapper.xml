@@ -34,7 +34,8 @@
 		FROM TRADE T
 		JOIN MEMBER SELLER ON SELLER.NICKNAME = T.SELLER
 		JOIN MEMBER BIDDER ON BIDDER.NICKNAME = T.BIDDER_NICKNAME
-		WHERE T.AUCTION_NO = #{auction_no}
+        WHERE T.AUCTION_NO = #{auction_no}
+  
 	</select>
 	<!-- 경매 상태 변경 -->
 	<update id="updateStatus" parameterType="int" >

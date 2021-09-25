@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.amount.dto.BankAccountDto;
 import com.member.dto.MemberDto;
 import com.member.dto.MemberRankDto;
+import com.trade.dto.TradeUpdateDto;
 
 @Repository
 public class MemberDaoImpl implements MemberDao {
@@ -132,10 +133,16 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int updateAmount(String nickName, int amount) {
+		System.out.println(nickName);
+		System.out.println(amount);
 		int res = 0;
+		Map<String,Object> data = new HashMap<String, Object>();
+		data.put("nickname", nickName);
+		data.put("amount", amount);
+		
 		
 		try {
-			res = sqlSession.update(MEMBER_NAMESAPCE+"updateAmount",nickName);
+			res = sqlSession.update(MEMBER_NAMESAPCE+"updateAmount",data);
 		} catch (Exception e) {
 			System.out.println("[error:tradeupdate] @dao ");
 			e.printStackTrace();

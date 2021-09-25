@@ -20,10 +20,10 @@ public class TradeController {
 	
 	//1 번째 방법
 	@RequestMapping("/trade.do")
-	public String tread(Model model, @RequestParam("auction_no") int auction_no) {
-		logger.info("tradeselect one");
+	public String trade(Model model, @RequestParam("auction_no") int auction_no) {
+		System.out.println(auction_no);
 		int selectNo = tradebiz.selectNo(auction_no);
-		model.addAttribute("TradeUpdateDto",tradebiz.selectNo(auction_no));
+		
 		if(selectNo>0) {
 			return "mypage_sale_trading";
 		}else {

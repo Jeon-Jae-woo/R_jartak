@@ -28,9 +28,10 @@ public class AmountDaoImpl implements AmountDao {
 		int startRow = (pageNum-1)*10+1;
 		int endRow = pageNum*10+1;
 		
-		Map<String,Integer> paging = new HashMap<String,Integer>();
+		Map<String,Object> paging = new HashMap<String,Object>();
 		paging.put("startRow", startRow);
 		paging.put("endRow", endRow);
+		paging.put("status", "대기중");
 		
 		withList = sqlSession.selectList(NAMESPACE+"withdrawallist", paging);
 		
@@ -41,7 +42,7 @@ public class AmountDaoImpl implements AmountDao {
 	@Override
 	public int WithdrawalListCount() {
 		int count = 0;
-		count = sqlSession.selectOne(NAMESPACE+"withdrawalcount");
+		count = sqlSession.selectOne(NAMESPACE+"withdrawalcount", "대기중");
 		return count;
 	}
 
@@ -87,9 +88,9 @@ public class AmountDaoImpl implements AmountDao {
 		map.put("withdrawal_amount", str[0]);
 		map.put("account_no", str[1]);
 		map.put("nickname", str[2]);
-		System.out.println("withdrawal_amount="+map.get("withdrawal_amount"));
-		System.out.println("account_no="+map.get("account_no"));
-		System.out.println("nickname="+map.get("nickname"));
+		//System.out.println("withdrawal_amount="+map.get("withdrawal_amount"));
+		//System.out.println("account_no="+map.get("account_no"));
+		//System.out.println("nickname="+map.get("nickname"));
 		
 		try {
 			res = sqlSession.insert(NAMESPACE+"insertWithdrawal",map);
@@ -99,6 +100,13 @@ public class AmountDaoImpl implements AmountDao {
 		}
 		
 		return res;
+	}
+
+	//출금 단일 조회
+	@Override
+	public WithdrawalDto withdrawalOne(Map<String, Object> withInfo) {
+		WithdrawalDto dto = sqlSession.selectOne(NAMESPACE+"withOne", withInfo);
+		return dto;
 	}
 
 	

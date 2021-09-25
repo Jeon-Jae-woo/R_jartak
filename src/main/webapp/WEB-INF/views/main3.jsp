@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>알잘딱 - 화상 채팅 경매 서비스</title>
+<link rel="icon" type="image/png" sizes="32x32" href="resources/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="resources/images/favicon-16x16.png">
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -26,27 +28,6 @@
 <!-- <div class="header"></div> -->
 	<div class="category">
 		<div class="upbox">
-			<form action="" method="post">
-			
-				<div class="loginForm">
-					<table>
-						<tr>
-							<th rowspan="3"><img src="/webapp/resources/userIcon.png"></th>
-							<th colspan="2">${dto.nickname }</th>
-						</tr>
-						<tr>
-							<td colspan="2"><a href="mypage.do?email="${dto.email }>내정보</a></td>
-						</tr>
-						<tr>
-							<td colspan="2">${rankDto.rank_name }</td>
-						</tr>
-						<tr>
-							<td colspan="2"></td>
-							<td><input type="button" value="로그아웃"></td>
-						</tr>
-					</table>
-				</div>
-			</form>
 		<!-- <ul class="board">
 					<li class="fl tc w500 title t_line"><a>제목</a><span>/2021-08-24</span></li>
 				</ul>
@@ -59,7 +40,7 @@
 				<ul class="board">
 					<li class="fl tc w500 title t_line"><a>제목</a><span>/2021-08-24</span></li>
 				</ul> -->
-				
+			
 			<div class="notice">
 				<c:choose>
 					<c:when test="${empty productList }">
@@ -79,10 +60,6 @@
 			</div>
 		</div>
 		<br>
-		<div class="search">
-			<input type="text" placeholder="검색어 입력" class="search-box"> <input
-				type="button" value="검색" class="search-btn">
-			</div>
 		
 	</div>
 	

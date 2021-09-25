@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>알잘딱 - 화상 채팅 경매 서비스</title>
+<link rel="icon" type="image/png" sizes="32x32" href="resources/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="resources/images/favicon-16x16.png">
 	
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -15,6 +17,10 @@
         $(".approval").click(function(){
         	var statusBtn = $(this);
         	//승인은 아직 미구현
+        	var with_no = statusBtn.parent().children().eq(0).val();
+        	var status = '승인';
+        	
+        	WithdrawalStatus(with_no, status);
         });
         
         $(".refusal").click(function(){
@@ -120,9 +126,10 @@
 						<td>${list.created_at }</td>
 						<td>
 							<input type="hidden" value="${list.withdrawal_no}">
+							<input type="hidden" value="${list.nickname}">
 	                        <input type="button" class="approval" id="" value="승인">
 	                        <input type="button" class="refusal" id="" value="거절">
-	                        <input type="button" class="pending" id="" value="보류">
+	                        
 	                        <!--<a id="complete"><strong>처리완료</strong></a>-->
 	                     </td> 
 					</tr>

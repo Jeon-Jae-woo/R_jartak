@@ -58,4 +58,12 @@ public class ReportDaoImpl implements ReportDao {
 		return result;
 	}
 
+	//신고하기
+	@Override
+	public int ReportInsert(ReportDto reportdto) {
+		int result = 0;
+		result = sqlSession.insert(NAMESPACE+"insertReport", reportdto);
+		return result;
+	}
+
 }

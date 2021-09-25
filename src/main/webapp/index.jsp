@@ -1,5 +1,3 @@
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,9 +8,9 @@
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-	function report(){
-		//세션 및 디테일 페이지에서 유저 아이디를 얻어오고 넘겨줘야 함, controller로 처리되도록 수정 필요
-		window.open("reportForm.log", "신고", "width=500px, height=500px");
+	function webRTC(){
+		//room name은 경매 번호로 지정
+		window.open("http://ec2-13-124-233-131.ap-northeast-2.compute.amazonaws.com:3000?room1","web", "width=1000px, height=500px");
 	}
 	
 	$(document).ready(function(){
@@ -22,46 +20,22 @@
 	
 </script>
 
+
+
 </head>
 <body>
-	<h1>테스트</h1>
-	<a href="test">홈테스트</a>
-	<a href="test2">컨트롤러2 테스트</a>
-
-	<button onclick="report();">신고하기</button>
 	
 
 	<a href="main3.do">메인3테스트</a>
 	<a href="main2.do">메인2테스트</a>
 	
 	
-	<a href="admin">헤더테스트</a>
-	
-	<a href="adminForm">관리자페이지</a>
-
-	<a href="product.do">경매테스트</a>
-	
-	<a href="productAddForm.log">경매등록테스트</a>
-
-	<a href="productlist">리스트페이지테스트</a>
-
-
-	<a href="streaming.do">스트리밍페이지테스트</a>
-	
-	
-	<a href="dateTest">테스트경매날짜</a>
-	
-	<a href="message_test.do">메시지 테스트</a>
-
 	<a href="mypage.do?">마이페이지</a>
 
-	
 
+	<button onclick="webRTC();">webRTC테스트</button>
 	
-	
-
 	<a href="join.do?">회원가입</a>
-	<a href="echo-ws.do">웹소켓</a>
 
 </body>
 </html>

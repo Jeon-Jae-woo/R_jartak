@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +32,9 @@ public class ReportController {
 	
 	//신고 폼 전환
 	@RequestMapping(value="/reportForm.log", method=RequestMethod.GET)
-	public String reportForm() {
+	public String reportForm(Model model, @RequestParam("targetNickname")String targetNickname) {
+		System.out.println(targetNickname);
+		model.addAttribute("targetNickname", targetNickname);
 		return "report";
 	}
 	
@@ -74,4 +78,21 @@ public class ReportController {
 		}
 	}
 	
+	//신고등록
+	@RequestMapping(value="reportIn.log", method=RequestMethod.POST)
+	public String report(Model model, ReportDto reportdto, HttpServletRequest request) {
+		
+		String nickname = (String)request.getSession().getAttribute("nickname");
+		reportdto.setNickname(nickname.trim());
+		reportdto.setTarget_nickname(reportdto.getTarget_nickname().trim());
+		int result = reportbiz.ReportInsertBiz(reportdto);
+		
+		if(result > 0) {
+			model.addAttribute("msg", "신고되었습니다");	
+		}else {
+			model.addAttribute("msg", "신고에 실패했습니다");
+		}
+		
+		return "reportAlert";
+	}
 }

@@ -17,7 +17,6 @@ public class AdminInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		//logger가 적용이 안됨 이유는 모름
 		logger.info("[ADMIN INTERCEPTOR]");
 		
 		System.out.println("admin interceptor");

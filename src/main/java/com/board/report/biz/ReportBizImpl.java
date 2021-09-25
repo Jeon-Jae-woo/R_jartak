@@ -70,5 +70,12 @@ public class ReportBizImpl implements ReportBiz {
 		}
 		
 	}
+	
+	//신고하기
+	@Override
+	public int ReportInsertBiz(ReportDto reportdto) {
+		int result = reportdao.ReportInsert(reportdto);
+		return result;
+	}
 
 }

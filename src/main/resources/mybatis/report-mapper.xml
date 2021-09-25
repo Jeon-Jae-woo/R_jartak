@@ -11,7 +11,7 @@
 		<result column="TARGET_NICKNAME" property="target_nickname" />
 		<result column="REPORT_TYPE" property="report_type" />
 		<result column="REPORT_CONTENT" property="report_content" />
-		<result column="CREATED_AT" property="created_at" typeHandler="com.util.LocalDateTimeTypeHandler" />
+		<result column="CREATED_AT" property="createdLocalDate" typeHandler="LocalDateTypeHandler" />
 		<result column="UPDATED_AT" property="updated_at" typeHandler="com.util.LocalDateTimeTypeHandler" />
 		<result column="REPORT_TITLE" property="report_title" />
 	</resultMap>
@@ -41,6 +41,12 @@
 	<delete id="deletereport" parameterType="int">
 		DELETE FROM REPORT WHERE REPORT_NO=#{report_no}
 	</delete>
+	
+	<insert id="insertReport" parameterType="reportDto">
+		INSERT INTO REPORT 
+		VALUES(REPORT_SEQ.NEXTVAL, #{nickname}, #{target_nickname},
+		 #{report_type}, #{report_content}, SYSDATE, SYSDATE, #{report_title})
+	</insert>
 	
 	
 </mapper>

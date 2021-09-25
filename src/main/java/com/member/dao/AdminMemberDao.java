@@ -15,4 +15,7 @@ public interface AdminMemberDao {
 	//회원 상태 변경
 	public int changeStatus(String email, int status);
 	
+	//회원 출금 처리(돈 - )
+	public int updateEmoney(String nickname, int requestAmount);
+	
 }

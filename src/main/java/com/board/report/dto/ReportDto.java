@@ -14,13 +14,15 @@ public class ReportDto {
 	private LocalDateTime updated_at;
 	private String report_title;
 	
+	private LocalDate createdLocalDate;
+	
 	public ReportDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	public ReportDto(int report_no, String nickname, String target_nickname, String report_type, String report_content,
-			LocalDateTime created_at, LocalDateTime updated_at, String report_title) {
+			LocalDateTime created_at, LocalDateTime updated_at, String report_title, LocalDate createdLocalDate) {
 		super();
 		this.report_no = report_no;
 		this.nickname = nickname;
@@ -30,8 +32,17 @@ public class ReportDto {
 		this.created_at = created_at;
 		this.updated_at = updated_at;
 		this.report_title = report_title;
+		this.createdLocalDate = createdLocalDate;
 	}
 
+
+	public LocalDate getCreatedLocalDate() {
+		return createdLocalDate;
+	}
+
+	public void setCreatedLocalDate(LocalDate createdLocalDate) {
+		this.createdLocalDate = createdLocalDate;
+	}
 
 	public int getReport_no() {
 		return report_no;

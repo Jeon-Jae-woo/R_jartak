@@ -26,11 +26,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/bffb243368.js" crossorigin="anonymous"></script>
 	
-    <title>list</title>
+    <title>알잘딱 - 화상 채팅 경매 서비스</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="resources/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="resources/images/favicon-16x16.png">
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
+	<style>
+	
 
+	
+	</style>
 
 </head>
 <body>
@@ -106,7 +112,7 @@
 				                    </div>
 				                    <div class="price">
 				                        <div class="amount">
-				                            <b class="num">${list.product_price }</b>
+				                            <b class="num" id="current_b">${list.current_price }</b>
 				                        <span class="won"><b>원</b></span>
 				                        </div>
 				                        <div class="time">남은 시간: ${list.remainingTime }</div>
@@ -118,42 +124,55 @@
 				</c:otherwise>
 				</c:choose>
 				
-			<nav class="pull-bottom">
-			<c:set var="pageNum" value="${paging.pageNum }"/>
-			<c:set var="startPage" value="${paging.startPage}"/>
-			<c:set var="endPage" value="${paging.endPage}"/>
-			<c:set var="totalPage" value="${paging.totalPage}"/>
-			<c:set var="itemCount" value="${paging.itemCount}"/>
-				<ul class="pagination">
-					<li>
-			      		<a href="productlist?pageNum=1&type=${auctionType}" aria-label="Previous">
-			        	<span aria-hidden="true">&laquo;</span>
-			      		</a>
-			    	</li>
-					<c:forEach var="item" varStatus="status" begin="${ startPage }" end="${ endPage }" step="1">
-                		<c:if test="${ pageNum == item }">
-                    		<li><a href="productlist?pageNum=1&type=${auctionType }">${ item }</a></li>
-                		</c:if>
-                		<c:if test="${ pageNum != item }">
-		 					<li><a href="productlist?pageNum=${ item }&type=${auctionType}">${ item }</a></li>
-                		</c:if>
-            		</c:forEach>
-            		<li>
-			      		<a href="productlist?pageNum=${totalPage }&type=${auctionType}" aria-label="Next">
-			        	<span aria-hidden="true">&raquo;</span>
-			      		</a>
-			    	</li>
-				</ul>
-			</nav>         
+				
+				
+				
+				
+				    
   </div>
 </div>
- 				 <div>
-				 	<a href="productAddForm.log">경매 등록</a>
-				 </div>  
+ 
+				 
+	
+	
+   
 </div>
 				
 </div>
 
+
+	<nav class="paging-nav">
+		<c:set var="pageNum" value="${paging.pageNum }"/>
+		<c:set var="startPage" value="${paging.startPage}"/>
+		<c:set var="endPage" value="${paging.endPage}"/>
+		<c:set var="totalPage" value="${paging.totalPage}"/>
+		<c:set var="itemCount" value="${paging.itemCount}"/>
+		<ul class="">
+			<li>
+	      		<a href="productlist?pageNum=1&type=${auctionType}" aria-label="Previous">
+	        	<span aria-hidden="true">&laquo;</span>
+	      		</a>
+	    	</li>
+			<c:forEach var="item" varStatus="status" begin="${ startPage }" end="${ endPage }" step="1">
+              		<c:if test="${ pageNum == item }">
+                  		<li><a href="productlist?pageNum=1&type=${auctionType }">${ item }</a></li>
+              		</c:if>
+              		<c:if test="${ pageNum != item }">
+ 					<li><a href="productlist?pageNum=${ item }&type=${auctionType}">${ item }</a></li>
+              		</c:if>
+          		</c:forEach>
+          		<li>
+	      		<a href="productlist?pageNum=${totalPage }&type=${auctionType}" aria-label="Next">
+	        	<span aria-hidden="true">&raquo;</span>
+	      		</a>
+	    	</li>
+		</ul>
+	</nav>   
+	
+	<div class="auction-register">
+	 	<a href="productAddForm.log">경매 등록</a>
+	</div>
+ 
 	<%@ include file="footer.jsp" %>
 </body>
 	     

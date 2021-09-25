@@ -158,7 +158,7 @@ public class MemberController {
 	public String logout(HttpSession session) {
 		logger.info("LOGOUT");
 		session.invalidate();
-		return "redirect:main.do";
+		return "redirect:main2.do";
 	}
 	
 	//로그인 체크(인터셉터 활용)

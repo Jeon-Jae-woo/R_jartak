@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>알잘딱 - 화상 채팅 경매 서비스</title>
+<link rel="icon" type="image/png" sizes="32x32" href="resources/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="resources/images/favicon-16x16.png">
 
 <style type="text/css">
 	#loginBody{	
@@ -104,7 +106,7 @@
 					if(data.status_code=='UNAUTHORIZED'){
 						alert("아이디 혹은 비밀번호를 잘못 입력했습니다");
 					}else if(data.status_code=='OK'){
-						location.href='main3.do';
+						location.href='main2.do';
 					}
 				},
 				error:function(){

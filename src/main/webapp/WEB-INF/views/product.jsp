@@ -157,12 +157,20 @@
 			return false;
 		}
 		
-
+	
 		
+	}
+	
+	function report(){
+		//세션 및 디테일 페이지에서 유저 아이디를 얻어오고 넘겨줘야 함, controller로 처리되도록 수정 필요
+		var nickname = ' ${productDetail.nickname }';
+		window.open("reportForm.log?targetNickname="+nickname, "신고", "width=500px, height=500px");
 	}
 
 </script>
-    <title>상품</title>
+    <title>알잘딱 - 화상 채팅 경매 서비스</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="resources/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="resources/images/favicon-16x16.png">
 </head>
 <body>
 <!-- header 추가 -->
@@ -199,16 +207,16 @@
                             
                         </div>
                         <hr>
-                        <p><b>물품번호</b> : ${productDetail.auction_no } <input type="button" value="신고"> </p>
+                        <p><b>물품번호</b> : ${productDetail.auction_no } <input type="button" value="신고" onclick="report();"> </p>
                         <p><b>경매기간</b> : ${productDetail.createDateStr } ~ ${productDetail.endDateStr } </p>
                         <p id="startPrice"></p>
                         <p id="biddingUnit"></p>
-                        <p><b>즉시구매</b> : ?</p>
+                        
                         <p><b>최고입찰자</b> : ${productDetail.high_bidder }</p>
                         <p><b>입찰방식</b> : ${productDetail.auctionType.auction_type_name } 경매</p>
-                        <p><b>입찰 수</b> : ? <input type="button" value="경매기록보고 > "></p>
+                        
                         <hr>
-                       	<p><b>배송방법</b> : ?</p>
+                       	
                         <p><b>입찰 :  </b><input id="bidPrice" type="number" placeholder="입찰 금액을 적어주세요"/> 원</p>
                     </div>
                 </div>

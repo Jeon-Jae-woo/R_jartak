@@ -124,7 +124,53 @@ public class AuctionDaoImpl implements AuctionDao {
 		List<TradeDto> bidderList = sqlSession.selectList(NAMESPACE+"auctionListTrade");
 		return bidderList;
 	}
+
+	//마감 임박 경매 리스트 -> 1시간 이하로 남은 경매
+	@Override
+	public List<AuctionDto> DeadlineProductList(int pageNum) {
+		List<AuctionDto> productlist;
+		int startRow = (pageNum-1)*10+1;
+		int endRow = pageNum*10+1;
+		
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("startRow", startRow);
+		data.put("endRow", endRow);
+		
+		productlist = sqlSession.selectList(NAMESPACE+"deadlineProductList", data);
+		
+		return productlist;
+	}
+	//마감 임박 경매 리스트 카운트
+	@Override
+	public int deadlineListCount() {
+		int count = sqlSession.selectOne(NAMESPACE+"deadlinePorductCount");
+		return count;
+	}
+
+	//인기 경매 리스트
+	@Override
+	public List<AuctionDto> PopularProductList(int pageNum) {
+		List<AuctionDto> productlist;
+		int startRow = (pageNum-1)*10+1;
+		int endRow = pageNum*10+1;
+		
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("startRow", startRow);
+		data.put("endRow", endRow);
+		
+		productlist = sqlSession.selectList(NAMESPACE+"popularProductList", data);
+		
+		return productlist;
+	}
+
+	//인기 경매 카운트
+	@Override
+	public int PopularListCount() {
+		int count = sqlSession.selectOne(NAMESPACE+"popularProductCount");
+		return count;
+	}
 	
+	@Override
 	public List<AuctionDto> MyProductList(Map<String,int[]> map){
 		List<AuctionDto> Myproductlist= new ArrayList<AuctionDto>();
 		try {

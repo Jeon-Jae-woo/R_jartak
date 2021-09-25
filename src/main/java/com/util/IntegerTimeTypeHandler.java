@@ -34,8 +34,6 @@ public class IntegerTimeTypeHandler extends BaseTypeHandler<Integer> {
 		
 		long sec = ChronoUnit.SECONDS.between(currentDateTime, local);
 		
-		//System.out.println("sec : " + sec);
-		
 		return (int)(long)sec;
 	}
 

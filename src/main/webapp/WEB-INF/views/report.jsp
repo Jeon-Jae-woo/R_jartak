@@ -22,10 +22,12 @@
 </style>
 
 
-<title>report</title>
+<title>알잘딱 - 화상 채팅 경매 서비스</title>
+<link rel="icon" type="image/png" sizes="32x32" href="resources/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="resources/images/favicon-16x16.png">
 </head>
 <body>
-	<form action="" method="post">
+	<form action="reportIn.log" method="post">
 		<input type="hidden" name="email" value=""><!-- value에 넘어온 값 세팅, 신고한 유저 이메일 -->
 		<div id="report_wrap">
 			<h2 style="text-align:center">신고하기</h2>
@@ -34,27 +36,28 @@
 				<label for="reportTitle">제 목</label>
 			</div>
 			<div>
-				<input type="text" placeholder="제목을 입력하세요" name="reportTitle">
+				<input type="text" placeholder="제목을 입력하세요" name="report_title">
 			</div>
 			<hr>
 			<div class="form_label">
 				<label>신고사유</label>
 			</div>
 			<div>
-			<select name="">
-				<option value="">부적절한 게시물</option>
-				<option value="">광고 및 홍보</option>
+			<select name="report_type">
+				<option value="부적절한 게시물">부적절한 게시물</option>
+				<option value="광고 및 홍보">광고 및 홍보</option>
+				<option value="기타">기타</option>
 			</select>
 			</div>
 			<br>
 			<div class="form_label"><label>신고 내용</label></div>
 			<div>
-				<textarea rows="7" cols="40" placeholder="신고 내용을 입력하세요"></textarea>
+				<textarea rows="7" cols="40" placeholder="신고 내용을 입력하세요" name="report_content"></textarea>
 			</div>
 			<hr>
 			<div class="form_label"><label>신고 유저</label></div>
 			<div>
-				<input type="text" value="넘어온 타겟 유저 아이디" readonly="readonly"/>
+				<input type="text" value="${targetNickname}" readonly="readonly" name="target_nickname"/>
 			</div>
 			<hr>
 			

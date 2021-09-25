@@ -58,7 +58,7 @@ public class AuctionBizImpl implements AuctionBiz {
 		List<TradeDto> bidderList;
 		
 		try {
-			if(result <= 0) {
+			if(result < 0) {
 				throw new Exception("시간 업데이트 실패");
 			}
 			//경매, 최고 입찰자 리스트
@@ -184,7 +184,43 @@ public class AuctionBizImpl implements AuctionBiz {
 	}
 
 
+	//마감 임박
+	@Override
+	public List<AuctionDto> DeadlineProductListBiz(int pageNum) {
+		List<AuctionDto> productList = null;
+		productList = auctiondao.DeadlineProductList(pageNum);
+		return productList;
+	}
 
-	
+	//모든 경매 카운트
+	@Override
+	public pagingDto DeadProductListCountBiz(int pageNum) {
+		paging.setPageNum(pageNum);
+		int size = 0;
+		size = auctiondao.deadlineListCount();
+		paging.setTotalCount(size);
+		paging.pagination();
+		return paging;
+	}
+
+	//인기 경매
+	@Override
+	public List<AuctionDto> PopularProductListBiz(int pageNum) {
+		List<AuctionDto> productList = null;
+		productList = auctiondao.PopularProductList(pageNum);
+		return productList;
+	}
+
+	//인기 경매 카운트
+	@Override
+	public pagingDto PopularListCountBiz(int pageNum) {
+		paging.setPageNum(pageNum);
+		int size = 0;
+		size = auctiondao.PopularListCount();
+		paging.setTotalCount(size);
+		paging.pagination();
+		return paging;
+	}
+
 
 }

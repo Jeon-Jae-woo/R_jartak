@@ -14,7 +14,7 @@
 		<result column="EMAIL" property="email"/>
 		<result column="NICKNAME" property="nickname"/>
 		<result column="NAME" property="name"/>
-		<result column="CREATED_AT" property="created_at"/>
+		<result column="CREATED_AT" property="createdLocalDate" typeHandler="LocalDateTypeHandler"/>
 		<result column="AMOUNT" property="amount"/>
 		<result column="TX_AMOUNT" property="tx_amount"/>
 		<result column="STATUS_NO" property="status_no"/>
@@ -43,6 +43,10 @@
 		UPDATE MEMBER SET STATUS_NO=#{status} WHERE EMAIL=#{email} 
 	</update>
 	
+	<!-- 출금 처리 -->
+	<update id="withProcess" parameterType="HashMap">
+		UPDATE MEMBER SET AMOUNT = (AMOUNT-#{requestAmount}) WHERE NICKNAME = #{nickname}
+	</update>
 	
 </mapper>
  

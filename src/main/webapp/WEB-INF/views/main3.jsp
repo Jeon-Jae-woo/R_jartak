@@ -31,7 +31,7 @@
 				<div class="loginForm">
 					<table>
 						<tr>
-							<th rowspan="3"><img src="/webapp/resources/userIcon.png"></th>
+							<th rowspan="3"><img src="resources/userIcon.png"></th>
 							<th colspan="2">${dto.nickname }</th>
 						</tr>
 						<tr>

@@ -42,7 +42,7 @@ public class AmountController {
 		return "adminWithdrawBoard";
 	}
 	
-	//출금 요청하면 상태 4가지 - 대기중, 승인, 거절, 보류 ---> 정렬 필요한데... 테이블 추가할지 고민
+	//출금 요청하면 상태 4가지 - 대기중, 승인, 거절
 	
 	//출금 상태 변경
 	@RequestMapping(value="/adminWithdrawPC", method=RequestMethod.POST)

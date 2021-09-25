@@ -32,7 +32,7 @@ public class UtilFileUpload {
 			if(! new File(uploadPath).exists()) {
 				new File(uploadPath).mkdirs();
 			}
-			//System.out.println(request.getSession().getServletContext().getRealPath(uploadPath));
+			System.out.println(request.getSession().getServletContext().getRealPath(uploadPath));
 			File file = new File(path, fileName);
 			
 			out = new FileOutputStream(file);

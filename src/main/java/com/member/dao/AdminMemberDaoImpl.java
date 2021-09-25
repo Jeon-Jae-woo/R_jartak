@@ -52,4 +52,14 @@ public class AdminMemberDaoImpl implements AdminMemberDao {
 		return result;
 	}
 
+	@Override
+	public int updateEmoney(String nickname, int requestAmount) {
+		Map<String,Object> data = new HashMap<String, Object>();
+		data.put("nickname", nickname);
+		data.put("requestAmount", requestAmount);
+		int result = sqlSession.update(NAMESPACE+"withProcess", data);
+		System.out.println("돈처리");
+		return result;
+	}
+
 }

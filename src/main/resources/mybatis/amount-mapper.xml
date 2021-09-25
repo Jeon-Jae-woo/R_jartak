@@ -6,18 +6,20 @@
 <mapper namespace="amount">
 	
 	<select id="withdrawallist" parameterType="HashMap" resultType="withdrawalDto">
+		<![CDATA[ 
 		SELECT WITHDRAWAL_NO, ACCOUNT_NO, NICKNAME, AMOUNT, WITHDRAWAL_STATUS, CREATED_AT, UPDATED_AT
 		FROM(
 		    SELECT ROWNUM AS RNUM, WITHDRAWAL_NO, ACCOUNT_NO, NICKNAME, AMOUNT, WITHDRAWAL_STATUS, CREATED_AT, UPDATED_AT
 		    FROM(
 		        SELECT WITHDRAWAL_NO, ACCOUNT_NO, NICKNAME, AMOUNT, WITHDRAWAL_STATUS, CREATED_AT, UPDATED_AT
-		        FROM WITHDRAWAL ORDER BY CREATED_AT DESC)
-		    WHERE ROWNUM<![CDATA[ < ]]>#{endRow})
+		        FROM WITHDRAWAL WHERE WITHDRAWAL_STATUS = '${status}'  ORDER BY CREATED_AT DESC)
+		    WHERE ROWNUM < #{endRow})
 		WHERE RNUM>=#{startRow}
+		]]>
 	</select>
 	
-	<select id="withdrawalcount" resultType="int">
-		SELECT COUNT(*) FROM WITHDRAWAL
+	<select id="withdrawalcount" resultType="int" parameterType="String">
+		SELECT COUNT(*) FROM WITHDRAWAL WHERE WITHDRAWAL_STATUS = '${status}'
 	</select>
 	
 	<update id="withprocessing" parameterType="HashMap">
@@ -43,6 +45,14 @@
 		 )		 
 	
 	</insert>
+	
+	<!-- 단일 조회 -->
+	<select id="withOne" parameterType="HashMap" resultType="withdrawalDto">
+		SELECT WITHDRAWAL_NO, ACCOUNT_NO, NICKNAME, AMOUNT, WITHDRAWAL_STATUS, CREATED_AT, UPDATED_AT
+		FROM WITHDRAWAL
+		WHERE WITHDRAWAL_NO=#{with_no}
+	</select>
+	
 	
 </mapper>
  

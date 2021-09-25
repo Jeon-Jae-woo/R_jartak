@@ -17,6 +17,9 @@ public interface AmountDao {
 	public int WithdrawalListCount();
 	//출금 요청 처리
 	public int WithdrawalProcessing(Map<String, Object> withInfo);
+	//출금 단일 조회
+	public WithdrawalDto withdrawalOne(Map<String, Object> withInfo);
+	
 	
 	//마이페이지에서 쓰임
 	//은행코드

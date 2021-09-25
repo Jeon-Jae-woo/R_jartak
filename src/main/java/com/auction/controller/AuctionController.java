@@ -52,6 +52,7 @@ public class AuctionController {
 		model.addAttribute("productDetail", productDetail);
 		
 		MemberDto member = memberbiz.selectOneNickBiz(productDetail.getNickname());
+		System.out.println("member rank : " + member.getRank_no());
 		MemberRankDto rank = memberbiz.rank(member.getRank_no());
 		model.addAttribute("rank", rank);
 		

@@ -58,7 +58,7 @@ public class AuctionBizImpl implements AuctionBiz {
 		List<TradeDto> bidderList;
 		
 		try {
-			if(result <= 0) {
+			if(result < 0) {
 				throw new Exception("시간 업데이트 실패");
 			}
 			//경매, 최고 입찰자 리스트

@@ -198,7 +198,7 @@
 	<div class="header_wrap2">
 		<nav>
 			<div class="header_logo">
-				<a href="main.do"><img src="resources/qs.PNG" style="width:150px; height:30px;"/></a>
+				<a href="main3.do"><img src="resources/qs.PNG" style="width:150px; height:30px;"/></a>
 			</div>
 			<div class="header_nav">
 				<ul class="header_ul">

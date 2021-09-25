@@ -209,12 +209,12 @@
                         <p><b>경매기간</b> : ${productDetail.createDateStr } ~ ${productDetail.endDateStr } </p>
                         <p id="startPrice"></p>
                         <p id="biddingUnit"></p>
-                        <p><b>즉시구매</b> : ?</p>
+                        
                         <p><b>최고입찰자</b> : ${productDetail.high_bidder }</p>
                         <p><b>입찰방식</b> : ${productDetail.auctionType.auction_type_name } 경매</p>
-                        <p><b>입찰 수</b> : ? <input type="button" value="경매기록보고 > "></p>
+                        
                         <hr>
-                       	<p><b>배송방법</b> : ?</p>
+                       	
                         <p><b>입찰 :  </b><input id="bidPrice" type="number" placeholder="입찰 금액을 적어주세요"/> 원</p>
                     </div>
                 </div>

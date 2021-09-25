@@ -43,6 +43,10 @@
 		UPDATE MEMBER SET STATUS_NO=#{status} WHERE EMAIL=#{email} 
 	</update>
 	
+	<!-- 출금 처리 -->
+	<update id="withProcess" parameterType="HashMap">
+		UPDATE MEMBER SET AMOUNT = (AMOUNT-#{requestAmount}) WHERE NICKNAME = #{nickname}
+	</update>
 	
 </mapper>
  

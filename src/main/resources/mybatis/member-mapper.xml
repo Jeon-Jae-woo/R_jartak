@@ -56,8 +56,8 @@
  		WHERE NICKNAME = #{nickname}
   	</select>
  
- 	<update id="updateAmount" parameterType="tradeUpdateDto">
- 	UPDATE MEMER
+ 	<update id="updateAmount" parameterType="HashMap">
+ 	UPDATE MEMBER
  	SET AMOUNT = #{amount}
  	WHERE NICKNAME = #{nickname}
  	</update>

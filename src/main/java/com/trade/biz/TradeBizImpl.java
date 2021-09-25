@@ -33,20 +33,23 @@ public class TradeBizImpl implements TradeBiz {
 		
 		TradeUpdateDto tradeUpdate = tradeDao.selectNo(auction_no);
 		
-		int sellerMoney = tradeUpdate.getSellerMoney();
-		int bidderMoney = tradeUpdate.getBidderMoney();
+		int sellerMoney = tradeUpdate.getSeller_amount();
+		int bidderMoney = tradeUpdate.getBidder_amount();
 		int final_bid_price = tradeUpdate.getFinal_bid_price();
-	
+		System.out.println("1.sellerMoney = "+sellerMoney);
+		System.out.println("1.bidderMoney = "+bidderMoney);
 		
 		// 2. 트레이드 금액으로 sellerMoney, bidderMoney 연산을 해준다.
 		sellerMoney = sellerMoney + final_bid_price;
 		bidderMoney = bidderMoney - final_bid_price;
-	
+		System.out.println("2.sellerMoney = "+sellerMoney);
+		System.out.println("2.bidderMoney = "+bidderMoney);
+		
 		// 3. seller의 보유 금액을 업데이트 해준다.
-		memberDao.updateAmount(tradeUpdate.getSellerName(),sellerMoney);
+		memberDao.updateAmount(tradeUpdate.getSeller(),sellerMoney);
 		
 		// 4. bidder의 보유 금액을 업데이트 해준다.
-		memberDao.updateAmount(tradeUpdate.getBidderName(),bidderMoney);
+		memberDao.updateAmount(tradeUpdate.getBidder_nickname(),bidderMoney);
 		
 		// 5. trade의 상태를 업데이트를 해준다.
 		

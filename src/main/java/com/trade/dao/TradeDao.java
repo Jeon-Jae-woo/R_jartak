@@ -17,10 +17,10 @@ public interface TradeDao {
 	
 
 	//거래 진행
-	public TradeUpdateDto selectNo(int trade_no);
+	public TradeUpdateDto selectNo(int auction_no);
 	
 	//trade상태 업데이트
-	public int updateStatus(int trade_no);
+	public int updateStatus(int auction_no);
 
   
   

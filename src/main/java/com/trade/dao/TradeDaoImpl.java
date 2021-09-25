@@ -86,27 +86,29 @@ public class TradeDaoImpl implements TradeDao {
 		return list;
 	}
 
-	public TradeUpdateDto selectNo(int trade_no) {
-		System.out.println(trade_no);
+	
+	
+	public TradeUpdateDto selectNo(int auction_no) {
+		System.out.println(auction_no);
 		TradeUpdateDto dto = new TradeUpdateDto();
 		
-		dto = sqlSession.selectOne(NAMESPACE+"selectNo",trade_no);
+		dto = sqlSession.selectOne(NAMESPACE+"selectNo",auction_no);
 		
 		return dto;
 	}
 
 	@Override
-	public int updateStatus(int trade_no) {
+	public int updateStatus(int auction_no) {
 		int res = 0;
 		
 		try {
-			res = sqlSession.update(NAMESPACE+"updateStatus",trade_no);
+			res = sqlSession.update(NAMESPACE+"updateStatus",auction_no);
 		} catch (Exception e) {
 			System.out.println("[error] : updatestatus");
 			e.printStackTrace();
 		}
 		
-		return 0;
+		return res;
 	}
 
 	

@@ -256,14 +256,7 @@ public class MemberController {
 			List<TradeDto> tradeList = tradebiz.tradeListBiz(map);
 			model.addAttribute("tradeList",tradeList);
 			
-			//나의 낙찰여부
-//			List<TradeDto> tradeListChk = new ArrayList<TradeDto>();
-//			for(int i=0; i<list.size();i++) {
-//				TradeDto dto = new TradeDto();
-//				dto.setAuction_no(list.get(i).getAuction_no());
-//				dto.setBidder_nickname(nickname);
-//				tradeListChk.add(i,dto);
-//			}
+			
 			Map<String,Object> Chkmap = new HashMap<>();
 				Chkmap.put("auction_no",Arr);
 				String[] str = new String[1];

@@ -36,6 +36,8 @@ public interface AuctionBiz {
 	public List<AuctionDto> MysaleListBiz(String nickname);
 	//마이페이지 판매목록-종료
 	public List<AuctionDto> MysalelistEndBiz(String nickname);
+	//검색기능
+	public List<AuctionDto> searchforBiz(int pageNum, String search, int category);
 
 
 }

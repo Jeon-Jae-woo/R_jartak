@@ -16,8 +16,14 @@ public interface TradeBiz {
 	
 	public List<TradeDto> tradeAuctionNoListBiz(String nickname);
 
-  //거래진행
-  public void tradeupdateBiz(int trade_no);
+	//거래진행
+	public int selectNo(int auction_no);
+	
+	//2. 거래진행
+	public TradeDto selectOne(int auction_no);
+	public int seller(String seller);
+	public int bidder(String bidder);
+	public int status(int auction_no);
 
 	//경매 조회
 	

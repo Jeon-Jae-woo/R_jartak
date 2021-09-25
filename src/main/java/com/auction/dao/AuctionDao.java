@@ -54,6 +54,10 @@ public interface AuctionDao {
 	public List<AuctionDto> MysaleList(String nickname);
 	//마이페이지 판매목록-end
 	public List<AuctionDto> MysalelistEnd(String nickname);
+
+	//검색기능
+	public List<AuctionDto> searchfor(int pageNum, String search, int category);
+	
 	
 }
 	

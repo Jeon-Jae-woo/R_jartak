@@ -196,6 +196,25 @@ public class AuctionDaoImpl implements AuctionDao {
 		return Mysalelist;
 	}
 
+	@Override
+	public List<AuctionDto> searchfor(int pageNum, String search, int auctionType) {
+		List<AuctionDto> productlist;
+		int startRow = (pageNum-1)*10+1;
+		int endRow = pageNum*10+1;
+		
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("auctionType", auctionType);
+		data.put("search",search);
+		data.put("startRow", startRow);
+		data.put("endRow", endRow);
+		
+		productlist = sqlSession.selectList(NAMESPACE+"searchProductList", data);
+		
+		return productlist;
+	}
+
+
+
 
 
 }

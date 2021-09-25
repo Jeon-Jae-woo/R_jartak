@@ -27,11 +27,11 @@ public class TradeBizImpl implements TradeBiz {
 
 	
 	@Override
-	public void tradeupdateBiz(int trade_no) {
+	public int selectNo(int auction_no) {
 		
 		// 1. trade와 seller,bidder의 정보를 가져온다.
 		
-		TradeUpdateDto tradeUpdate = tradeDao.selectNo(trade_no);
+		TradeUpdateDto tradeUpdate = tradeDao.selectNo(auction_no);
 		
 		int sellerMoney = tradeUpdate.getSellerMoney();
 		int bidderMoney = tradeUpdate.getBidderMoney();
@@ -50,9 +50,16 @@ public class TradeBizImpl implements TradeBiz {
 		
 		// 5. trade의 상태를 업데이트를 해준다.
 		
-		tradeDao.updateStatus(trade_no);
+		 int res =tradeDao.updateStatus(auction_no);
+		
+		return res;
+	
 	}
 		
+	@Override
+	public TradeDto selectOne(int auction_no) {
+		return null;
+	}
 		
 		
 		
@@ -90,5 +97,30 @@ public class TradeBizImpl implements TradeBiz {
 	public List<TradeDto> SelltradeAuctionNoList_failBiz(String nickname) {
 		return tradeDao.SelltradeAuctionNoList_fail(nickname);
 	}
+
+	@Override
+	public int seller(String seller) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int bidder(String bidder) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int status(int auction_no) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
+
+
+
+
 	
 }

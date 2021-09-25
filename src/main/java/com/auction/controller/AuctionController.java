@@ -208,24 +208,35 @@ public class AuctionController {
 		
 		
 	}
-	//관심상품목록출력
-//		@RequestMapping("/interestedlist")
-//		public String interestedlist(HttpSession session,HttpServletRequest request,Model model, @RequestParam("pageNum")int pageNum) {
-//			session = request.getSession();
-//			String buy_nickname = (String)session.getAttribute("nickname");
-//			
-//			int result = auctionbiz.TimeOutListBiz();
-//			List<AuctionDto> productList = null;
-//			if(result>0) {
-//				productList = auctionbiz.selectInterestedListBiz(pageNum,buy_nickname);
-//			}
-//			pagingDto paging = auctionbiz.interestedListCountBiz(pageNum);
-//			model.addAttribute("paging", paging);
-//			model.addAttribute("productList", productList);
-//			
-//			return "interestedlist";
+	
+	//검색기능
+	@RequestMapping(value="/searchfor.do",method=RequestMethod.POST)
+	public String searchfor(String search,@RequestParam("category")int auctionType,Model model,@RequestParam("pageNum")int pageNum,HttpServletRequest request) {
+		System.out.println("pageNum="+pageNum);
+//		int result = auctionbiz.TimeOutListBiz();
+//		List<AuctionDto> productList = null;
+//		if(result>0) {
+//			productList = auctionbiz.selectProductListBiz(pageNum, auctionType);
 //		}
+//		pagingDto paging = auctionbiz.productListCountBiz(pageNum, auctionType);
+//		model.addAttribute("paging", paging);
+//		model.addAttribute("productList", productList);
+//		model.addAttribute("auctionType", auctionType);
+//		
+//		return "productList";
+		int result = auctionbiz.TimeOutListBiz();
+		List<AuctionDto> productList = null;
+		if(result>0) {
+			productList = auctionbiz.searchforBiz(pageNum, search, auctionType);
+		}
+		pagingDto paging = auctionbiz.productListCountBiz(pageNum, auctionType);
+		model.addAttribute("paging", paging);
+		model.addAttribute("productList", productList);
+		model.addAttribute("auctionType", auctionType);
 		
+		return "searchProductList";
+	}
+	
 
 
 

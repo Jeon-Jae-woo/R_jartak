@@ -5,26 +5,28 @@ public class TradeUpdateDto {
 	private int trade_no;
 	private int trade_status_no;
 	private int final_bid_price;
-	private String sellerName;
-	private int sellerMoney;
-	private String bidderName;
-	private int bidderMoney;
+	private int auction_no;
+	private String seller;
+	private int seller_amount;
+	private String bidder_nickname;
+	private int bidder_amount;
 	
 	public TradeUpdateDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public TradeUpdateDto(int trade_no, int trade_status_no, int final_bid_price, String sellerName, int sellerMoney,
-			String bidderName, int bidderMoney) {
+	public TradeUpdateDto(int trade_no, int trade_status_no, int final_bid_price, int auction_no, String seller,
+			int seller_amount, String bidder_nickname, int bidder_amount) {
 		super();
 		this.trade_no = trade_no;
 		this.trade_status_no = trade_status_no;
 		this.final_bid_price = final_bid_price;
-		this.sellerName = sellerName;
-		this.sellerMoney = sellerMoney;
-		this.bidderName = bidderName;
-		this.bidderMoney = bidderMoney;
+		this.auction_no = auction_no;
+		this.seller = seller;
+		this.seller_amount = seller_amount;
+		this.bidder_nickname = bidder_nickname;
+		this.bidder_amount = bidder_amount;
 	}
 
 	public int getTrade_no() {
@@ -51,40 +53,46 @@ public class TradeUpdateDto {
 		this.final_bid_price = final_bid_price;
 	}
 
-	public String getSellerName() {
-		return sellerName;
+	public int getAuction_no() {
+		return auction_no;
 	}
 
-	public void setSellerName(String sellerName) {
-		this.sellerName = sellerName;
+	public void setAuction_no(int auction_no) {
+		this.auction_no = auction_no;
 	}
 
-	public int getSellerMoney() {
-		return sellerMoney;
+	public String getSeller() {
+		return seller;
 	}
 
-	public void setSellerMoney(int sellerMoney) {
-		this.sellerMoney = sellerMoney;
+	public void setSeller(String seller) {
+		this.seller = seller;
 	}
 
-	public String getBidderName() {
-		return bidderName;
+	public int getSeller_amount() {
+		return seller_amount;
 	}
 
-	public void setBidderName(String bidderName) {
-		this.bidderName = bidderName;
+	public void setSeller_amount(int seller_amount) {
+		this.seller_amount = seller_amount;
 	}
 
-	public int getBidderMoney() {
-		return bidderMoney;
+	public String getBidder_nickname() {
+		return bidder_nickname;
 	}
 
-	public void setBidderMoney(int bidderMoney) {
-		this.bidderMoney = bidderMoney;
+	public void setBidder_nickname(String bidder_nickname) {
+		this.bidder_nickname = bidder_nickname;
 	}
-	
-	
-	
+
+	public int getBidder_amount() {
+		return bidder_amount;
+	}
+
+	public void setBidder_amount(int bidder_amount) {
+		this.bidder_amount = bidder_amount;
+	}
+
 
 	
 	

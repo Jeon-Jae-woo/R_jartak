@@ -87,7 +87,7 @@ public class TradeDaoImpl implements TradeDao {
 	}
 
 	
-	
+	@Override
 	public TradeUpdateDto selectNo(int auction_no) {
 		System.out.println(auction_no);
 		TradeUpdateDto dto = new TradeUpdateDto();

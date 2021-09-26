@@ -59,7 +59,7 @@ public class AmountDaoImpl implements AmountDao {
 	public String getBankNo(String bankName) {
 		String res ="";
 		try {
-			res = sqlSession.selectOne(NAMESPACE+"getAccountNo",bankName);
+			res = sqlSession.selectOne(NAMESPACE+"getBankNo",bankName);
 		} catch (Exception e) {
 			System.out.println("[error : ] getBankAcc @ amountdaoimpl");
 			e.printStackTrace();

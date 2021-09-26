@@ -49,6 +49,9 @@ public interface AuctionDao {
 	public List<AuctionDto> PopularProductList(int pageNum);
 	//인기 경매 카운트
 	public int PopularListCount();
+	//옥션삭제
+	public int deleteAuction(int auction_no);
+
 
 	//마이페이지  판매목록
 	public List<AuctionDto> MysaleList(String nickname);

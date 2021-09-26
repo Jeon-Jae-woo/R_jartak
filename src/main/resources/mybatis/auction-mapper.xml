@@ -257,4 +257,9 @@
 			WHERE ROWNUM<![CDATA[ < ]]>#{endRow})
 		WHERE RNUM>=#{startRow}
 	</select>	
+	
+	<delete id="deleteAuction" parameterType="int"  >
+		DELETE FROM AUCTION
+		WHERE AUCTION_NO=#{auction_no}
+	</delete>
 </mapper>

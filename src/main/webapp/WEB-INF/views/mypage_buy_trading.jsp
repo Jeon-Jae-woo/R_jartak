@@ -65,7 +65,7 @@
 	                    	<c:when test="${empty productlist }">
 	                    		<table class="type11">
 	                    			<tr>
-	                    				<td>입찰내역이 없습니다.</td>
+	                    				<td>거래내역이 없습니다.</td>
 	                    			</tr>
 	                    		</table>
 	                    	</c:when>

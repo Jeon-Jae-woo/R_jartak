@@ -222,5 +222,10 @@ public class AuctionBizImpl implements AuctionBiz {
 		return paging;
 	}
 
+	@Override
+	public int deleteAuctionBiz(int auction_no) {
+		return auctiondao.deleteAuction(auction_no);
+	}
+
 
 }

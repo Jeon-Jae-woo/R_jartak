@@ -67,33 +67,33 @@
                     
                     </div>
 
-                    <div class="content">
-                        <h4>e머니 거래내역</h4>
-                            <table class="type11">
-                                <thead>
-                                <tr>
-                                  <th scope="cols">사용종류</th>
-                                  <th scope="cols">결재번호</th>
-                                  <th scope="cols">금액</th>
-                                  <th scope="cols">결제상태</th>
-                                  <th scope="cols">등록일</th>
-                                  <th scope="cols">완료일</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                  <td>내용</td>
-                                  <td>내용</td>
-                                  <td>내용</td>
-                                  <td>내용</td>
-                                  <td>내용</td>
-                                  <td>내용</td>
-                                </tr>
+<!--                     <div class="content"> -->
+<!--                         <h4>e머니 거래내역</h4> -->
+<!--                             <table class="type11"> -->
+<!--                                 <thead> -->
+<!--                                 <tr> -->
+<!--                                   <th scope="cols">사용종류</th> -->
+<!--                                   <th scope="cols">결재번호</th> -->
+<!--                                   <th scope="cols">금액</th> -->
+<!--                                   <th scope="cols">결제상태</th> -->
+<!--                                   <th scope="cols">등록일</th> -->
+<!--                                   <th scope="cols">완료일</th> -->
+<!--                                 </tr> -->
+<!--                                 </thead> -->
+<!--                                 <tbody> -->
+<!--                                 <tr> -->
+<!--                                   <td>내용</td> -->
+<!--                                   <td>내용</td> -->
+<!--                                   <td>내용</td> -->
+<!--                                   <td>내용</td> -->
+<!--                                   <td>내용</td> -->
+<!--                                   <td>내용</td> -->
+<!--                                 </tr> -->
                               
-                                </tbody>
-                              </table>
+<!--                                 </tbody> -->
+<!--                               </table> -->
                             
-                     </div>
+<!--                      </div> -->
 
                     <div class="item">
                        

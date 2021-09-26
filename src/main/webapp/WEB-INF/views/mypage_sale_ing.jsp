@@ -81,7 +81,6 @@
                                   <th scope="cols">조회수</th>
                                   <th scope="cols">시작일</th>
                                   <th scope="cols">마감일</th>
-                                  <th scope="cols">종료</th>
                                   <th scope="cols">삭제</th>
 
                                 </tr>
@@ -95,8 +94,7 @@
                                   <td>${list.auction_hits}</td>
                                   <td>${list.createDateStr}</td>
                                   <td>${list.endDateStr}</td>
-                                  <td><button>종료</button></td>
-                                  <td><button>삭제</button></td>
+                                  <td><button type="button" onclick="location.href='delete.do?auction_no=${list.auction_no}'">삭제</button></td>
 
                                 </tr>
                               

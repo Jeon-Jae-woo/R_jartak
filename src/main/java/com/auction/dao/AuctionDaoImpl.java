@@ -213,6 +213,18 @@ public class AuctionDaoImpl implements AuctionDao {
 		return productlist;
 	}
 
+	@Override
+	public int deleteAuction(int auction_no) {
+		int res=0;
+		try {
+			res = sqlSession.delete(NAMESPACE+"deleteAuction",auction_no);
+		} catch (Exception e) {
+			System.out.println("[error]delete @daoImpl");
+			e.printStackTrace();
+		}
+		return res;
+	}
+
 
 
 

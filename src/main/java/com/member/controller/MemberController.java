@@ -241,29 +241,38 @@ public class MemberController {
 
 		if(money.equals("end")) {
 			int auction_stat = 3;
-			list = bidsbiz.bidList(nickname,auction_stat);
-			int[] Arr = new int[list.size()];
-			Map<String,int[]> map = new HashMap<>();
-			for(int i=0; i<list.size();i++) {
-				Arr[i] = list.get(i).getAuction_no();
+			try {
+				list = bidsbiz.bidList(nickname,auction_stat);
+				int[] Arr = new int[list.size()];
+				Map<String,int[]> map = new HashMap<>();
+				for(int i=0; i<list.size();i++) {
+					Arr[i] = list.get(i).getAuction_no();
+				}
+				map.put("Auction_no", Arr);
+				
+				
+				List<AuctionDto> productlist = auctionbiz.MyProductListBiz(map);
+				model.addAttribute("productlist", productlist);
+				
+				//낙찰값 가져오기 : 위에서 가져온 auction_no통해서 TRADE에서 LIST가져오기
+				List<TradeDto> tradeList = tradebiz.tradeListBiz(map);
+				model.addAttribute("tradeList",tradeList);
+				
+				
+				Map<String,Object> Chkmap = new HashMap<>();
+					Chkmap.put("auction_no",Arr);
+					String[] str = new String[1];
+					str[0] = nickname;
+	 				Chkmap.put("nickname",str);
+				List<TradeDto> chk = tradebiz.tradeListChkBiz(Chkmap);
+				model.addAttribute("chk",chk);
+			
+			} catch (Exception e) {
+				System.out.println("[error]list에 값이 없음 ");
+				e.printStackTrace();
 			}
-			map.put("Auction_no", Arr);
+				
 			
-			List<AuctionDto> productlist = auctionbiz.MyProductListBiz(map);
-			model.addAttribute("productlist", productlist);
-			
-			//낙찰값 가져오기 : 위에서 가져온 auction_no통해서 TRADE에서 LIST가져오기
-			List<TradeDto> tradeList = tradebiz.tradeListBiz(map);
-			model.addAttribute("tradeList",tradeList);
-			
-			
-			Map<String,Object> Chkmap = new HashMap<>();
-				Chkmap.put("auction_no",Arr);
-				String[] str = new String[1];
-				str[0] = nickname;
- 				Chkmap.put("nickname",str);
-			List<TradeDto> chk = tradebiz.tradeListChkBiz(Chkmap);
-			model.addAttribute("chk",chk);
 			
 			return "mypage_buy_end";
 		}else if(money.equals("failure")) {
@@ -305,15 +314,18 @@ public class MemberController {
 			return "mypage_buy_ing";
 		}else{
 			List<TradeDto> auctionNolist = tradebiz.tradeAuctionNoListBiz(nickname);
-			int[] Arr = new int[auctionNolist.size()];
-			Map<String,int[]> map = new HashMap<>();
-			for(int i=0; i<auctionNolist.size();i++) {
-				Arr[i] =auctionNolist.get(i).getAuction_no();
+			if(auctionNolist!=null) {
+				int[] Arr = new int[auctionNolist.size()];
+				Map<String,int[]> map = new HashMap<>();
+				for(int i=0; i<auctionNolist.size();i++) {
+					Arr[i] =auctionNolist.get(i).getAuction_no();
+				}
+				map.put("Auction_no", Arr);
+				
+				List<AuctionDto> productlist = auctionbiz.MyProductListBiz(map);
+				model.addAttribute("productlist", productlist);
+				
 			}
-			map.put("Auction_no", Arr);
-			
-			List<AuctionDto> productlist = auctionbiz.MyProductListBiz(map);
-			model.addAttribute("productlist", productlist);
 			
 			
 			return "mypage_buy_trading";
@@ -330,8 +342,15 @@ public class MemberController {
 
 		if(sale.equals("end")) {
 			//auction_stat = 3인 것들 가져오긴
-			List<AuctionDto> productlist = auctionbiz.MysalelistEndBiz(nickname);
-			model.addAttribute("productlist", productlist);
+			List<AuctionDto> productlist;
+			try {
+				productlist = auctionbiz.MysalelistEndBiz(nickname);
+				model.addAttribute("productlist", productlist);
+
+			} catch (Exception e) {
+				System.out.println("auction_stat=3이고 , nickname이 구매자 해당하는 auction목록이없음");
+				e.printStackTrace();
+			}
 			
 			return "mypage_sale_end";
 		}else if(sale.equals("failure")) {
@@ -361,19 +380,18 @@ public class MemberController {
 			return "mypage_sale_ing";
 		}else{
 			List<TradeDto> auctionNolist = tradebiz.SellertradeAuctionNoListBiz(nickname);
-			System.out.println("auctionNo="+auctionNolist.get(0).getAuction_no());
-			int[] Arr = new int[auctionNolist.size()];
-			Map<String,int[]> map = new HashMap<>();
-			for(int i=0; i<auctionNolist.size();i++) {
-				Arr[i] =auctionNolist.get(i).getAuction_no();
+			if(auctionNolist!=null) {
+				int[] Arr = new int[auctionNolist.size()];
+				Map<String,int[]> map = new HashMap<>();
+				for(int i=0; i<auctionNolist.size();i++) {
+					Arr[i] =auctionNolist.get(i).getAuction_no();
+				}
+				map.put("Auction_no", Arr);
+				
+				List<AuctionDto> productlist = auctionbiz.MyProductListBiz(map);
+				model.addAttribute("productlist", productlist);
+				model.addAttribute("auctionlist",auctionNolist);
 			}
-			map.put("Auction_no", Arr);
-			
-			List<AuctionDto> productlist = auctionbiz.MyProductListBiz(map);
-			model.addAttribute("productlist", productlist);
-			model.addAttribute("auctionlist",auctionNolist);
-			
-			
 			
 			return "mypage_sale_trading";
 		}

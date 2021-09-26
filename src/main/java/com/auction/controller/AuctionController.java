@@ -237,8 +237,24 @@ public class AuctionController {
 		return "searchProductList";
 	}
 	
+	//경매삭제	@RequestMapping(value="/searchfor.do",method=RequestMethod.POST)
 
-
+	@RequestMapping(value="/delete.do")
+	public String deleteAuction(int auction_no,Model model) {
+		
+//		System.out.println("aucton_no="+auction_no);
+		
+		int res = auctionbiz.deleteAuctionBiz(auction_no);
+		if(res>0) {
+			model.addAttribute("msg","경매가 삭제되었습니다.");
+			model.addAttribute("url", "mypage_sale.do?sale=ing");
+			return "auctionAlert";
+		}else {
+			model.addAttribute("msg","경매 삭제 실패하였습니다.");
+			model.addAttribute("url", "mypage_sale.do?sale=ing");
+			return "auctionAlert";
+		}
+	}
 
 
 

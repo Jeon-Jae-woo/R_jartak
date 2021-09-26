@@ -41,7 +41,7 @@
 	<insert id="insertWithdrawal" parameterType="HashMap">
 		 INSERT INTO WITHDRAWAL
 		 VALUES(
-		 	WITHDRAWAL_SEQ.NEXTVAL,#{account_no},#{nickname},#{withdrawal_amount},'대기'
+		 	WITHDRAWAL_SEQ.NEXTVAL,#{account_no},#{nickname},#{withdrawal_amount},'대기',SYSDATE,SYSDATE
 		 )		 
 	
 	</insert>

@@ -47,5 +47,6 @@ public interface AuctionBiz {
 	//검색기능
 	public List<AuctionDto> searchforBiz(int pageNum, String search, int category);
 
-
+	//auction삭제
+	public int deleteAuctionBiz(int auction_no);
 }

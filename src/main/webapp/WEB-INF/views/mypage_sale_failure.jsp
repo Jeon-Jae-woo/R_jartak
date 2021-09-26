@@ -60,12 +60,12 @@
                     </div>
 
                     <div class="content">
-                        <h4>구매거부/반품/미입금 목록</h4>
+                        <h4>판매 종류/보류목록</h4>
                             <c:choose>
 	                    	<c:when test="${empty productlist }">
 	                    		<table class="type11">
 	                    			<tr>
-	                    				<td>입찰내역이 없습니다.</td>
+	                    				<td>판매내역이 없습니다.</td>
 	                    			</tr>
 	                    		</table>
 	                    	</c:when>

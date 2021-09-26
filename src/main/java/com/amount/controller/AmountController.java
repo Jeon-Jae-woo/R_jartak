@@ -64,7 +64,6 @@ public class AmountController {
 	@ResponseBody
 	@RequestMapping(value="/insertWithdrawal")
 	public String insertwithdrawal(String withdrawal_amount,String account_no,String nickname) {
-		System.out.println("도착~");
 		String[] contents= new String[]{withdrawal_amount,account_no,nickname};
 		System.out.println(contents[0] +"\n"+contents[1]+"\n"+contents[2]);
 		int res = amountbiz.insertWithdrawal(contents);
